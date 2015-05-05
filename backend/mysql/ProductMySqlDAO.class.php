@@ -1,0 +1,278 @@
+<?php
+/**
+ * Class that operate on table 'product'. Database Mysql.
+ *
+ * @author: http://phpdao.com
+ * @date: 2015-05-05 16:53
+ */
+class ProductMySqlDAO implements ProductDAO{
+
+	/**
+	 * Get Domain object by primry key
+	 *
+	 * @param String $id primary key
+	 * @return ProductMySql 
+	 */
+	public function load($id){
+		$sql = 'SELECT * FROM product WHERE id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		return $this->getRow($sqlQuery);
+	}
+
+	/**
+	 * Get all records from table
+	 */
+	public function queryAll(){
+		$sql = 'SELECT * FROM product';
+		$sqlQuery = new SqlQuery($sql);
+		return $this->getList($sqlQuery);
+	}
+	
+	/**
+	 * Get all records from table ordered by field
+	 *
+	 * @param $orderColumn column name
+	 */
+	public function queryAllOrderBy($orderColumn){
+		$sql = 'SELECT * FROM product ORDER BY '.$orderColumn;
+		$sqlQuery = new SqlQuery($sql);
+		return $this->getList($sqlQuery);
+	}
+	
+	/**
+ 	 * Delete record from table
+ 	 * @param product primary key
+ 	 */
+	public function delete($id){
+		$sql = 'DELETE FROM product WHERE id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		return $this->executeUpdate($sqlQuery);
+	}
+	
+	/**
+ 	 * Insert record to table
+ 	 *
+ 	 * @param ProductMySql product
+ 	 */
+	public function insert($product){
+		$sql = 'INSERT INTO product (name, description, sku, pricebuy, pricesell, category_id, image_link) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sqlQuery = new SqlQuery($sql);
+		
+		$sqlQuery->set($product->name);
+		$sqlQuery->set($product->description);
+		$sqlQuery->set($product->sku);
+		$sqlQuery->set($product->pricebuy);
+		$sqlQuery->set($product->pricesell);
+		$sqlQuery->setNumber($product->categoryId);
+		$sqlQuery->set($product->imageLink);
+
+		$id = $this->executeInsert($sqlQuery);	
+		$product->id = $id;
+		return $id;
+	}
+	
+	/**
+ 	 * Update record in table
+ 	 *
+ 	 * @param ProductMySql product
+ 	 */
+	public function update($product){
+		$sql = 'UPDATE product SET name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ? WHERE id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		
+		$sqlQuery->set($product->name);
+		$sqlQuery->set($product->description);
+		$sqlQuery->set($product->sku);
+		$sqlQuery->set($product->pricebuy);
+		$sqlQuery->set($product->pricesell);
+		$sqlQuery->setNumber($product->categoryId);
+		$sqlQuery->set($product->imageLink);
+
+		$sqlQuery->setNumber($product->id);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	/**
+ 	 * Delete all rows
+ 	 */
+	public function clean(){
+		$sql = 'DELETE FROM product';
+		$sqlQuery = new SqlQuery($sql);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function queryByName($value){
+		$sql = 'SELECT * FROM product WHERE name = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByDescription($value){
+		$sql = 'SELECT * FROM product WHERE description = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryBySku($value){
+		$sql = 'SELECT * FROM product WHERE sku = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByPricebuy($value){
+		$sql = 'SELECT * FROM product WHERE pricebuy = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByPricesell($value){
+		$sql = 'SELECT * FROM product WHERE pricesell = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByCategoryId($value){
+		$sql = 'SELECT * FROM product WHERE category_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByImageLink($value){
+		$sql = 'SELECT * FROM product WHERE image_link = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteByName($value){
+		$sql = 'DELETE FROM product WHERE name = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByDescription($value){
+		$sql = 'DELETE FROM product WHERE description = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteBySku($value){
+		$sql = 'DELETE FROM product WHERE sku = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByPricebuy($value){
+		$sql = 'DELETE FROM product WHERE pricebuy = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByPricesell($value){
+		$sql = 'DELETE FROM product WHERE pricesell = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByCategoryId($value){
+		$sql = 'DELETE FROM product WHERE category_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByImageLink($value){
+		$sql = 'DELETE FROM product WHERE image_link = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+
+	
+	/**
+	 * Read row
+	 *
+	 * @return ProductMySql 
+	 */
+	protected function readRow($row){
+		$product = new Product();
+		
+		$product->id = $row['id'];
+		$product->name = $row['name'];
+		$product->description = $row['description'];
+		$product->sku = $row['sku'];
+		$product->pricebuy = $row['pricebuy'];
+		$product->pricesell = $row['pricesell'];
+		$product->categoryId = $row['category_id'];
+		$product->imageLink = $row['image_link'];
+
+		return $product;
+	}
+	
+	protected function getList($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		$ret = array();
+		for($i=0;$i<count($tab);$i++){
+			$ret[$i] = $this->readRow($tab[$i]);
+		}
+		return $ret;
+	}
+	
+	/**
+	 * Get row
+	 *
+	 * @return ProductMySql 
+	 */
+	protected function getRow($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		if(count($tab)==0){
+			return null;
+		}
+		return $this->readRow($tab[0]);		
+	}
+	
+	/**
+	 * Execute sql query
+	 */
+	protected function execute($sqlQuery){
+		return QueryExecutor::execute($sqlQuery);
+	}
+	
+		
+	/**
+	 * Execute sql query
+	 */
+	protected function executeUpdate($sqlQuery){
+		return QueryExecutor::executeUpdate($sqlQuery);
+	}
+
+	/**
+	 * Query for one row and one column
+	 */
+	protected function querySingleResult($sqlQuery){
+		return QueryExecutor::queryForString($sqlQuery);
+	}
+
+	/**
+	 * Insert row to table
+	 */
+	protected function executeInsert($sqlQuery){
+		return QueryExecutor::executeInsert($sqlQuery);
+	}
+}
+?>
