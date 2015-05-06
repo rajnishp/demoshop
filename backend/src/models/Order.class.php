@@ -8,14 +8,14 @@
 	class Order{
 		
 		var $id;
-		var $userId;
+		var $phone;
 		var $address;
 		var $orderTime;
 		var $status;
 
-		function __construct ($userId, $address, $orderTime, $status, $id = null) {
+		function __construct ($phone, $address, $orderTime, $status, $id = null) {
 			$this -> id = $id;
-			$this -> userId = $userId;
+			$this -> phone = $phone;
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
@@ -28,11 +28,11 @@
 			return $this -> id;
 		}
 
-		function setUserId ($userId) {
-			$this -> userId = $userId;
+		function setPhone ($phone) {
+			$this -> phone = $phone;
 		}
-		function getUserId () {
-			return $this -> userId;
+		function getPhone () {
+			return $this -> phone;
 		}
 
 		function setAddress ($address) {
@@ -58,7 +58,7 @@
 
 		function toString () {
 			return $this -> id . ", " . 
-					$this -> userId. ", " . 
+					$this -> phone. ", " . 
 					$this -> address. ", " . 
 					$this -> orderTime. ", " . 
 					$this -> status;
@@ -68,7 +68,7 @@
 		function toArray () {
 			return array (
 						id => $this-> id,
-						userId => $this-> userId,
+						phone => $this-> phone,
 						address => $this-> address,
 						orderTime => $this-> orderTime,
 						status => $this-> status

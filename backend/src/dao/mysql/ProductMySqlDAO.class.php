@@ -3,7 +3,7 @@
  * Class that operate on table 'product'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 class ProductMySqlDAO implements ProductDAO{
 
@@ -57,9 +57,10 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function insert($product){
-		$sql = 'INSERT INTO product (name, description, sku, pricebuy, pricesell, category_id, image_link) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($product->storeId);
 		$sqlQuery->set($product->name);
 		$sqlQuery->set($product->description);
 		$sqlQuery->set($product->sku);
@@ -67,6 +68,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->set($product->pricesell);
 		$sqlQuery->setNumber($product->categoryId);
 		$sqlQuery->set($product->imageLink);
+		$sqlQuery->setNumber($product->type);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$product->id = $id;
@@ -79,9 +81,10 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function update($product){
-		$sql = 'UPDATE product SET name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ? WHERE id = ?';
+		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($product->storeId);
 		$sqlQuery->set($product->name);
 		$sqlQuery->set($product->description);
 		$sqlQuery->set($product->sku);
@@ -89,6 +92,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->set($product->pricesell);
 		$sqlQuery->setNumber($product->categoryId);
 		$sqlQuery->set($product->imageLink);
+		$sqlQuery->setNumber($product->type);
 
 		$sqlQuery->setNumber($product->id);
 		return $this->executeUpdate($sqlQuery);
@@ -101,6 +105,13 @@ class ProductMySqlDAO implements ProductDAO{
 		$sql = 'DELETE FROM product';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function queryByStoreId($value){
+		$sql = 'SELECT * FROM product WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
 	}
 
 	public function queryByName($value){
@@ -152,6 +163,20 @@ class ProductMySqlDAO implements ProductDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByType($value){
+		$sql = 'SELECT * FROM product WHERE type = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteByStoreId($value){
+		$sql = 'DELETE FROM product WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 	public function deleteByName($value){
 		$sql = 'DELETE FROM product WHERE name = ?';
@@ -202,6 +227,13 @@ class ProductMySqlDAO implements ProductDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByType($value){
+		$sql = 'DELETE FROM product WHERE type = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 
 	
 	/**
@@ -213,6 +245,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$product = new Product();
 		
 		$product->id = $row['id'];
+		$product->storeId = $row['store_id'];
 		$product->name = $row['name'];
 		$product->description = $row['description'];
 		$product->sku = $row['sku'];
@@ -220,6 +253,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$product->pricesell = $row['pricesell'];
 		$product->categoryId = $row['category_id'];
 		$product->imageLink = $row['image_link'];
+		$product->type = $row['type'];
 
 		return $product;
 	}

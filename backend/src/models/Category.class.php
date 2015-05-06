@@ -11,13 +11,15 @@
 		var $name;
 		var $parentId;
 		var $imageLink;
+		var $type;
 		
 
-		function __construct ($name, $parentId, $imageLink, $id = null) {
+		function __construct ($name, $parentId, $imageLink, $type, $id = null) {
 			$this -> id = $id;
 			$this -> name = $name;
 			$this -> parentId = $parentId;
 			$this -> imageLink = $imageLink;
+			$this -> type = $type;
 		}
 
 		function setId ($id) {
@@ -48,11 +50,19 @@
 			return $this -> imageLink;
 		}
 
+		function setType ($type) {
+			$this -> type = $type;
+		}
+		function getType () {
+			return $this -> type;
+		}
+
 		function toString () {
 			return $this -> id . ", " . 
 					$this -> name. ", " . 
 					$this -> parentId. ", " . 
-					$this -> imageLink;
+					$this -> imageLink. ", " . 
+					$this -> type;
 		}
 
 
@@ -61,7 +71,8 @@
 						id => $this-> id,
 						name => $this-> name,
 						parentId => $this-> parentId,
-						imageLink => $this-> imageLink
+						imageLink => $this-> imageLink,
+						type => $this-> type
 				);
 		}
 	}

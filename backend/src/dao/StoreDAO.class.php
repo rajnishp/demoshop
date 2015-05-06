@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 interface StoreDAO{
 
@@ -57,7 +57,13 @@ interface StoreDAO{
 
 	public function queryByPassword($value);
 
-	public function queryByLocation($value);
+	public function queryByAddress($value);
+
+	public function queryByLatitude($value);
+
+	public function queryByLongitude($value);
+
+	public function queryByType($value);
 
 
 	public function deleteByName($value);
@@ -66,7 +72,13 @@ interface StoreDAO{
 
 	public function deleteByPassword($value);
 
-	public function deleteByLocation($value);
+	public function deleteByAddress($value);
+
+	public function deleteByLatitude($value);
+
+	public function deleteByLongitude($value);
+
+	public function deleteByType($value);
 
 
 }

@@ -3,7 +3,7 @@
  * Class that operate on table 'cart'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 class CartMySqlDAO implements CartDAO{
 
@@ -57,12 +57,12 @@ class CartMySqlDAO implements CartDAO{
  	 * @param CartMySql cart
  	 */
 	public function insert($cart){
-		$sql = 'INSERT INTO cart (user_id, order_id, product_id, status) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO cart (order_id, product_id, quantity, status) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($cart->userId);
 		$sqlQuery->setNumber($cart->orderId);
 		$sqlQuery->setNumber($cart->productId);
+		$sqlQuery->setNumber($cart->quantity);
 		$sqlQuery->setNumber($cart->status);
 
 		$id = $this->executeInsert($sqlQuery);	
@@ -76,12 +76,12 @@ class CartMySqlDAO implements CartDAO{
  	 * @param CartMySql cart
  	 */
 	public function update($cart){
-		$sql = 'UPDATE cart SET user_id = ?, order_id = ?, product_id = ?, status = ? WHERE id = ?';
+		$sql = 'UPDATE cart SET order_id = ?, product_id = ?, quantity = ?, status = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($cart->userId);
 		$sqlQuery->setNumber($cart->orderId);
 		$sqlQuery->setNumber($cart->productId);
+		$sqlQuery->setNumber($cart->quantity);
 		$sqlQuery->setNumber($cart->status);
 
 		$sqlQuery->setNumber($cart->id);
@@ -95,13 +95,6 @@ class CartMySqlDAO implements CartDAO{
 		$sql = 'DELETE FROM cart';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function queryByUserId($value){
-		$sql = 'SELECT * FROM cart WHERE user_id = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
 	}
 
 	public function queryByOrderId($value){
@@ -118,6 +111,13 @@ class CartMySqlDAO implements CartDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByQuantity($value){
+		$sql = 'SELECT * FROM cart WHERE quantity = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
 	public function queryByStatus($value){
 		$sql = 'SELECT * FROM cart WHERE status = ?';
 		$sqlQuery = new SqlQuery($sql);
@@ -125,13 +125,6 @@ class CartMySqlDAO implements CartDAO{
 		return $this->getList($sqlQuery);
 	}
 
-
-	public function deleteByUserId($value){
-		$sql = 'DELETE FROM cart WHERE user_id = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->executeUpdate($sqlQuery);
-	}
 
 	public function deleteByOrderId($value){
 		$sql = 'DELETE FROM cart WHERE order_id = ?';
@@ -142,6 +135,13 @@ class CartMySqlDAO implements CartDAO{
 
 	public function deleteByProductId($value){
 		$sql = 'DELETE FROM cart WHERE product_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByQuantity($value){
+		$sql = 'DELETE FROM cart WHERE quantity = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
@@ -165,9 +165,9 @@ class CartMySqlDAO implements CartDAO{
 		$cart = new Cart();
 		
 		$cart->id = $row['id'];
-		$cart->userId = $row['user_id'];
 		$cart->orderId = $row['order_id'];
 		$cart->productId = $row['product_id'];
+		$cart->quantity = $row['quantity'];
 		$cart->status = $row['status'];
 
 		return $cart;

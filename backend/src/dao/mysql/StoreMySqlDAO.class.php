@@ -3,7 +3,7 @@
  * Class that operate on table 'store'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 class StoreMySqlDAO implements StoreDAO{
 
@@ -57,13 +57,16 @@ class StoreMySqlDAO implements StoreDAO{
  	 * @param StoreMySql store
  	 */
 	public function insert($store){
-		$sql = 'INSERT INTO store (name, login_id, password, location) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO store (name, login_id, password, address, latitude, longitude, type) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($store->name);
 		$sqlQuery->set($store->loginId);
 		$sqlQuery->set($store->password);
-		$sqlQuery->set($store->location);
+		$sqlQuery->set($store->address);
+		$sqlQuery->set($store->latitude);
+		$sqlQuery->set($store->longitude);
+		$sqlQuery->setNumber($store->type);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$store->id = $id;
@@ -76,13 +79,16 @@ class StoreMySqlDAO implements StoreDAO{
  	 * @param StoreMySql store
  	 */
 	public function update($store){
-		$sql = 'UPDATE store SET name = ?, login_id = ?, password = ?, location = ? WHERE id = ?';
+		$sql = 'UPDATE store SET name = ?, login_id = ?, password = ?, address = ?, latitude = ?, longitude = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($store->name);
 		$sqlQuery->set($store->loginId);
 		$sqlQuery->set($store->password);
-		$sqlQuery->set($store->location);
+		$sqlQuery->set($store->address);
+		$sqlQuery->set($store->latitude);
+		$sqlQuery->set($store->longitude);
+		$sqlQuery->setNumber($store->type);
 
 		$sqlQuery->setNumber($store->id);
 		return $this->executeUpdate($sqlQuery);
@@ -118,10 +124,31 @@ class StoreMySqlDAO implements StoreDAO{
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByLocation($value){
-		$sql = 'SELECT * FROM store WHERE location = ?';
+	public function queryByAddress($value){
+		$sql = 'SELECT * FROM store WHERE address = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByLatitude($value){
+		$sql = 'SELECT * FROM store WHERE latitude = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByLongitude($value){
+		$sql = 'SELECT * FROM store WHERE longitude = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByType($value){
+		$sql = 'SELECT * FROM store WHERE type = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
@@ -147,10 +174,31 @@ class StoreMySqlDAO implements StoreDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByLocation($value){
-		$sql = 'DELETE FROM store WHERE location = ?';
+	public function deleteByAddress($value){
+		$sql = 'DELETE FROM store WHERE address = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByLatitude($value){
+		$sql = 'DELETE FROM store WHERE latitude = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByLongitude($value){
+		$sql = 'DELETE FROM store WHERE longitude = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByType($value){
+		$sql = 'DELETE FROM store WHERE type = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -168,7 +216,10 @@ class StoreMySqlDAO implements StoreDAO{
 		$store->name = $row['name'];
 		$store->loginId = $row['login_id'];
 		$store->password = $row['password'];
-		$store->location = $row['location'];
+		$store->address = $row['address'];
+		$store->latitude = $row['latitude'];
+		$store->longitude = $row['longitude'];
+		$store->type = $row['type'];
 
 		return $store;
 	}

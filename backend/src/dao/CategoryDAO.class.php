@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 interface CategoryDAO{
 
@@ -57,12 +57,16 @@ interface CategoryDAO{
 
 	public function queryByImageLink($value);
 
+	public function queryByType($value);
+
 
 	public function deleteByName($value);
 
 	public function deleteByParentId($value);
 
 	public function deleteByImageLink($value);
+
+	public function deleteByType($value);
 
 
 }

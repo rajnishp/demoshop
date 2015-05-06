@@ -3,7 +3,7 @@
  * Class that operate on table 'orders'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 class OrdersMySqlDAO implements OrdersDAO{
 
@@ -57,10 +57,10 @@ class OrdersMySqlDAO implements OrdersDAO{
  	 * @param OrdersMySql order
  	 */
 	public function insert($order){
-		$sql = 'INSERT INTO orders (user_id, address, order_time, status) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO orders (phone, address, order_time, status) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($order->userId);
+		$sqlQuery->setNumber($order->phone);
 		$sqlQuery->set($order->address);
 		$sqlQuery->set($order->orderTime);
 		$sqlQuery->setNumber($order->status);
@@ -76,10 +76,10 @@ class OrdersMySqlDAO implements OrdersDAO{
  	 * @param OrdersMySql order
  	 */
 	public function update($order){
-		$sql = 'UPDATE orders SET user_id = ?, address = ?, order_time = ?, status = ? WHERE id = ?';
+		$sql = 'UPDATE orders SET phone = ?, address = ?, order_time = ?, status = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($order->userId);
+		$sqlQuery->setNumber($order->phone);
 		$sqlQuery->set($order->address);
 		$sqlQuery->set($order->orderTime);
 		$sqlQuery->setNumber($order->status);
@@ -97,8 +97,8 @@ class OrdersMySqlDAO implements OrdersDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByUserId($value){
-		$sql = 'SELECT * FROM orders WHERE user_id = ?';
+	public function queryByPhone($value){
+		$sql = 'SELECT * FROM orders WHERE phone = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
@@ -126,8 +126,8 @@ class OrdersMySqlDAO implements OrdersDAO{
 	}
 
 
-	public function deleteByUserId($value){
-		$sql = 'DELETE FROM orders WHERE user_id = ?';
+	public function deleteByPhone($value){
+		$sql = 'DELETE FROM orders WHERE phone = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
@@ -165,7 +165,7 @@ class OrdersMySqlDAO implements OrdersDAO{
 		$order = new Order();
 		
 		$order->id = $row['id'];
-		$order->userId = $row['user_id'];
+		$order->phone = $row['phone'];
 		$order->address = $row['address'];
 		$order->orderTime = $row['order_time'];
 		$order->status = $row['status'];

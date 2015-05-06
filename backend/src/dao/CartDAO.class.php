@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 interface CartDAO{
 
@@ -51,20 +51,20 @@ interface CartDAO{
 	 */
 	public function clean();
 
-	public function queryByUserId($value);
-
 	public function queryByOrderId($value);
 
 	public function queryByProductId($value);
 
+	public function queryByQuantity($value);
+
 	public function queryByStatus($value);
 
-
-	public function deleteByUserId($value);
 
 	public function deleteByOrderId($value);
 
 	public function deleteByProductId($value);
+
+	public function deleteByQuantity($value);
 
 	public function deleteByStatus($value);
 

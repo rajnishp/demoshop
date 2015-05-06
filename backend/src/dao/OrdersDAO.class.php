@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2015-05-05 16:53
+ * @date: 2015-05-06 23:52
  */
 interface OrdersDAO{
 
@@ -51,7 +51,7 @@ interface OrdersDAO{
 	 */
 	public function clean();
 
-	public function queryByUserId($value);
+	public function queryByPhone($value);
 
 	public function queryByAddress($value);
 
@@ -60,7 +60,7 @@ interface OrdersDAO{
 	public function queryByStatus($value);
 
 
-	public function deleteByUserId($value);
+	public function deleteByPhone($value);
 
 	public function deleteByAddress($value);
 

@@ -8,16 +8,16 @@
 	class Cart{
 		
 		var $id;
-		var $userId;
 		var $orderId;
 		var $productId;
+		var $quantity;
 		var $status;
 		
-		function __construct ($userId, $orderId, $productId, $status, $id = null) {
+		function __construct ($orderId, $productId, $quantity, $status, $id = null) {
 			$this -> id = $id;
-			$this -> userId = $userId;
 			$this -> orderId = $orderId;
 			$this -> productId = $productId;
+			$this -> quantity = $quantity;
 			$this -> status = $status;
 		}
 
@@ -26,13 +26,6 @@
 		}
 		function getId () {
 			return $this -> id;
-		}
-
-		function setUserId ($userId) {
-			$this -> userId = $userId;
-		}
-		function getUserId () {
-			return $this -> userId;
 		}
 
 		function setOrderId ($orderId) {
@@ -49,6 +42,13 @@
 			return $this -> productId;
 		}
 
+		function setQuantity ($quantity) {
+			$this -> quantity = $quantity;
+		}
+		function getQuantity () {
+			return $this -> quantity;
+		}
+
 		function setStatus ($status) {
 			$this -> status = $status;
 		}
@@ -58,9 +58,9 @@
 
 		function toString () {
 			return $this -> id . ", " . 
-					$this -> userId. ", " . 
 					$this -> orderId. ", " . 
 					$this -> productId. ", " . 
+					$this -> quantity. ", " . 
 					$this -> status;
 
 		}
@@ -69,9 +69,9 @@
 		function toArray () {
 			return array (
 						id => $this-> id,
-						userId => $this-> userId,
 						orderId => $this-> orderId,
 						productId => $this-> productId,
+						quantity => $this-> quantity,
 						status => $this-> status
 				);
 		}

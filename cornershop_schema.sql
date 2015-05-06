@@ -1,29 +1,36 @@
 CREATE Database cornerShop;
 
 CREATE TABLE store (
-	id int (10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id int (6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name varchar (25) NOT NULL,
 	login_id varchar (20) NOT NULL UNIQUE,
 	password varchar (20) NOT NULL,
-	location varchar (20) NOT NULL
+	address varchar (80) NOT NULL,
+	latitude float (10, 6) NOT NULL,
+	longitude float (10, 6) NOT NULL,
+	type int (3) NOT NULL
 );
 
 CREATE TABLE category (
 	id int (3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name varchar (25) NOT NULL,
 	parent_id int (3) DEFAULT NULL,
-	image_link varchar (50) NOT NULL
+	image_link varchar (50) NOT NULL,
+	type int (3) NOT NULL
 );
 
 CREATE TABLE product (
 	id int (10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	store_id int (6) NOT NULL,
 	name varchar (25) NOT NULL,
 	description varchar (100) DEFAULT NULL,
 	sku varchar (30) NOT NULL UNIQUE,
 	pricebuy varchar (5) NOT NULL,
 	pricesell varchar (5) NOT NULL,
 	category_id int (3) DEFAULT 0,
-	image_link varchar (50) NOT NULL
+	image_link varchar (50) NOT NULL,
+	type int (3) NOT NULL
+
 );
 
 CREATE TABLE user_details (
@@ -37,22 +44,22 @@ CREATE TABLE user_details (
 	
 CREATE TABLE orders (
 	id int (16) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	user_id int (11) NOT NULL,
+	phone int (11) NOT NULL,
 	address varchar (30) NOT NULL UNIQUE,
 	order_time timestamp NOT NULL,
 	status int (2) DEFAULT 0,
-	UNIQUE KEY (id, user_id)
+	UNIQUE KEY (id, phone)
 );
 
 #status: 0: pending, 1: success, 2: inQueue
 
 CREATE TABLE cart (
 	id int (20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	user_id int (11) NOT NULL,
 	order_id int (16) NOT NULL,
 	product_id int (10) NOT NULL,
+	quantity int (4) NOT NULL,
 	status int (2) DEFAULT 0,
-	UNIQUE KEY (user_id, order_id)
+	UNIQUE KEY (product_id, order_id)
 );
 
 #status: 0: cart-order, 1: wishlist
