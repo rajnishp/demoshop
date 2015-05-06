@@ -11,7 +11,7 @@ CREATE TABLE store (
 CREATE TABLE category (
 	id int (3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name varchar (25) NOT NULL,
-	parent_id int (10) DEFAULT NULL,
+	parent_id int (3) DEFAULT NULL,
 	image_link varchar (50) NOT NULL
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE user_details (
 	lastname varchar (25),
 	email varchar (100) NOT NULL,
 	phone varchar (30) NOT NULL,
-	password varchar (5) NOT NULL
+	password varchar (20) NOT NULL
 );
 	
 CREATE TABLE orders (
