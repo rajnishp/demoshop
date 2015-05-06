@@ -16,7 +16,7 @@ class OrdersResource implements Resource {
     
     public function __construct() {
 		$DAOFactory = new DAOFactory();
-		$this -> shopDAO = $DAOFactory->getOrderDAO();
+		$this -> shopDAO = $DAOFactory->getOrdersDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {

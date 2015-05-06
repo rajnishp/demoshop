@@ -25,6 +25,12 @@ class DAOFactory{
 	 * @return OrdersDAO
 	 */
 	public static function getOrdersDAO(){
+
+		require_once('OrdersDAO.class.php');
+		require_once('models/Order.class.php');
+		require_once('mysql/OrdersMySqlDAO.class.php');
+		require_once('mysql/ext/OrdersMySqlExtDAO.class.php');
+		
 		return new OrdersMySqlExtDAO();
 	}
 
