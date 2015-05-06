@@ -9,9 +9,10 @@ require_once 'models/Product.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
-class PostsResource implements Resource {
+class ProductsResource implements Resource {
 
     private $shopDAO;
+    private $product;
     
     public function __construct() {
 		$DAOFactory = new DAOFactory();
@@ -114,37 +115,39 @@ class PostsResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
-        $postId = $resourceVals ['posts'];
-        if (isset($postId)) {
-            $warnings_payload [] = 'POST call to /posts must not have ' . 
-                                        '/POST_ID appended i.e. POST /posts';
+        $productId = $resourceVals ['products'];
+        if (isset($productId)) {
+            $warnings_payload [] = 'POST call to /products must not have ' . 
+                                        '/productID appended i.e. POST /products';
             throw new UnsupportedResourceMethodException();
         }
 
-        $this -> sanitize($data);
+        $productObj = new Product($data ['name'], 
+                                $data ['description'], 
+                                $data ['sku']
+                                $data ['pricebuy'],
+                                $data ['pricesell'],
+                                $data ['category_id'],
+                                $data ['store_id'],
+                                $data ['image_link'],
+                                0
+                            );
+        $logger -> debug ("POSTed product: " . $productObj -> toString());
 
-        $postObj = new Post($data ['chId'], $data ['title'], $data ['hashtag'], 0);
-        $logger -> debug ("POSTed post: " . $postObj -> toString());
+        $this -> shopDAO -> insert($productObj);
 
-        $this -> postDAO -> insert($postObj);
-
-        $posts = $postObj -> toArray();
+        $products = $productObj -> toArray();
         
-        if(! isset($posts ['id'])) 
+        if(! isset($products ['id'])) 
             return array('code' => '2011');
 
-        $this -> posts[] = $posts;
+        $this -> products[] = $products;
         return array ('code' => '2001', 
                         'data' => array(
-                            'posts' => $this -> posts
+                            'products' => $this -> products
                         )
         );
     }
-
-    private function create($postObj) {
-
-    }
-
 
     public function get($resourceVals, $data) {
 		
@@ -206,5 +209,4 @@ class PostsResource implements Resource {
                             )
             );
     }
-
 }

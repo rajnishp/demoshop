@@ -2,7 +2,7 @@
 	/**
 	 * Object represents table 'product'
 	 *
-     	 * @author: http://phpdao.com
+     	 * @author: rajnish
      	 * @date: 2015-05-05 16:53	 
 	 */
 	class Product{
@@ -99,6 +99,5 @@
 						imageLink => $this-> imageLink
 				);
 		}
-
 	}
 ?>
