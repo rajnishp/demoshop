@@ -2,8 +2,8 @@
     "mysql": {
         "host": "localhost", 
         "user": "root", 
-        "password": "redhat@11111p", 
-        "database": "smartShare",
+        "password": "redhat111111", 
+        "database": "cornerShop",
     	"social": {
     		"host": "localhost", 
     		"user": "root", 

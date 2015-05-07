@@ -60,18 +60,18 @@ class ProductMySqlDAO implements ProductDAO{
 		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($product->storeId);
-		$sqlQuery->set($product->name);
-		$sqlQuery->set($product->description);
-		$sqlQuery->set($product->sku);
-		$sqlQuery->set($product->pricebuy);
-		$sqlQuery->set($product->pricesell);
-		$sqlQuery->setNumber($product->categoryId);
-		$sqlQuery->set($product->imageLink);
-		$sqlQuery->setNumber($product->type);
+		$sqlQuery->setNumber($product->getStoreId());
+		$sqlQuery->set($product->getName());
+		$sqlQuery->set($product->getDescription());
+		$sqlQuery->set($product->getSku());
+		$sqlQuery->set($product->getPricebuy());
+		$sqlQuery->set($product->getPricesell());
+		$sqlQuery->setNumber($product->getCategoryId());
+		$sqlQuery->set($product->getImageLink());
+		$sqlQuery->setNumber($product->getType());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$product->id = $id;
+		$product->setId ($id);
 		return $id;
 	}
 	
@@ -242,9 +242,9 @@ class ProductMySqlDAO implements ProductDAO{
 	 * @return ProductMySql 
 	 */
 	protected function readRow($row){
-		$product = new Product();
+		//$product = new Product();
 		
-		$product->id = $row['id'];
+		/*$product->id = $row['id'];
 		$product->storeId = $row['store_id'];
 		$product->name = $row['name'];
 		$product->description = $row['description'];
@@ -253,8 +253,10 @@ class ProductMySqlDAO implements ProductDAO{
 		$product->pricesell = $row['pricesell'];
 		$product->categoryId = $row['category_id'];
 		$product->imageLink = $row['image_link'];
-		$product->type = $row['type'];
+		$product->type = $row['type'];*/
 
+		$product = new Product($row['store_id'], $row['name'], $row['description'], $row['sku'],$row['pricebuy'], $row['pricesell'], $row['category_id'], $row['image_link'], $row['type'], $row['id']);
+		
 		return $product;
 	}
 	
