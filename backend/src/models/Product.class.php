@@ -7,20 +7,22 @@
 	 */
 	class Product{
 		
-		var $id;
-		var $store_id;
-		var $name;
-		var $description;
-		var $sku;
-		var $pricebuy;
-		var $pricesell;
-		var $categoryId;
-		var $imageLink;
-		var $type;
+		private $id;
+		private $storeId;
+		private $name;
+		private $description;
+		private $sku;
+		private $pricebuy;
+		private $pricesell;
+		private $categoryId;
+		private $imageLink;
+		private $type;
 		
-		function __construct ($store_id, $name, $description, $sku, $pricebuy, $pricesell, $categoryId, imageLink, $type, $id = null) {
+		function __construct ($storeId, $name, $description, 
+								$sku, $pricebuy, $pricesell, 
+								$categoryId, $imageLink, $type, $id = null) {
 			$this -> id = $id;
-			$this -> store_id = $store_id;
+			$this -> storeId = $storeId;
 			$this -> name = $name;
 			$this -> description = $description;
 			$this -> sku = $sku;
@@ -38,11 +40,11 @@
 			return $this -> id;
 		}
 
-		function setStoreId ($store_id) {
-			$this -> store_id = $store_id;
+		function setStoreId ($storeId) {
+			$this -> storeId = $storeId;
 		}
 		function getStoreId () {
-			return $this -> store_id;
+			return $this -> storeId;
 		}
 
 		function setName ($name) {
@@ -57,6 +59,13 @@
 		}
 		function getDescription () {
 			return $this -> description;
+		}
+
+		function setSku ($sku) {
+			$this -> sku = $sku;
+		}
+		function getSku () {
+			return $this -> sku;
 		}
 
 		function setPricebuy ($setPriceBuy) {
@@ -94,9 +103,10 @@
 			return $this -> type;
 		}
 
+
 		function toString (){
 			return $this -> id . ", " . 
-					$this -> store_id . ", " . 
+					$this -> storeId . ", " . 
 					$this -> name. ", " . 
 					$this -> description. ", " . 
 					$this -> sku. ", " . 
@@ -110,7 +120,7 @@
 		function toArray() {
 			return array (
 						id => $this-> id,
-						store_id => $this-> store_id,
+						storeId => $this-> storeId,
 						name => $this-> name,
 						description => $this-> description,
 						sku => $this-> sku,

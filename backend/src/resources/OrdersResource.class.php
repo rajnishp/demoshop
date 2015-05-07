@@ -17,6 +17,7 @@ class OrdersResource implements Resource {
     public function __construct() {
 		$DAOFactory = new DAOFactory();
 		$this -> shopDAO = $DAOFactory->getOrdersDAO();
+        $this -> cartDAO = $DAOFactory -> getCartDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
@@ -112,17 +113,39 @@ class OrdersResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
-        $orderObj = new Order($data ['product_id'], 
-                                $data ['quantity'],
+        $orderObj = new Orders($data ['phone'], 
+                                $data ['address'],
+                                $data ['order_time'],
+                                0,
                                 0
                             );
         $logger -> debug ("POSTed order: " . $orderObj -> toString());
 
         $this -> shopDAO -> insert($orderObj);
 
-        $order = $orderObj -> toArray();
+        $orderDetail = $orderObj -> toArray();
+
+        if (isset($orderDetail['id'])) {
+            if( isset( $data['order']['cart']) ){
+            
+                foreach ($data['order']['cart'] as $key => $value) {
+
+                    $cartObj = new Cart($orderDetail['id'],
+                                        $value ['product_id'],
+                                        $value ['quantity'],
+                                        0,
+                                        0
+                                    );
+                    $logger -> debug ("POSTed order cart Detail: " . $cartObj -> toString());
+
+                    $this -> cartDAO -> insert($cartObj);
+
+                    $cartDetail = $cartObj -> toArray();
+                }
+            }
+        }
         
-        if(! isset($order ['id'])) 
+        else 
             return array('code' => '2011');
 
         $this -> order[] = $order;

@@ -11,12 +11,12 @@ require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
 class ProductsResource implements Resource {
 
-    private $shopDAO;
+    private $productDAO;
     private $product;
     
     public function __construct() {
 		$DAOFactory = new DAOFactory();
-		$this -> shopDAO = $DAOFactory->getProductsDAO();
+		$this -> productDAO = $DAOFactory-> getProductDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
@@ -37,7 +37,7 @@ class ProductsResource implements Resource {
         }
         $logger -> debug ("Delete product with Id: " . $productId);-
         
-        $result = $this -> shopDAO -> delete($productId);
+        $result = $this -> productDAO -> delete($productId);
         $logger -> debug ("Product Deleted? " . $result);
 
         if ($result) 
@@ -62,7 +62,7 @@ class ProductsResource implements Resource {
         if (! isset($data))
             throw new MissingParametersException('No fields specified for updation');
 
-        $postObj = $this -> postDAO -> load($postId);
+        $postObj = $this -> productDAO -> load($postId);
         
         if(! is_object($postObj)) 
             return array('code' => '2004');
@@ -122,26 +122,61 @@ class ProductsResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
-        $productObj = new Product($data ['name'], 
-                                $data ['description'], 
-                                $data ['sku']
-                                $data ['pricebuy'],
-                                $data ['pricesell'],
-                                $data ['category_id'],
-                                $data ['store_id'],
-                                $data ['image_link'],
-                                0
-                            );
-        $logger -> debug ("POSTed product: " . $productObj -> toString());
+        if( isset( $data["products"] ) ) {
 
-        $this -> shopDAO -> insert($productObj);
+            foreach ($data["products"] as $key => $value) {
 
-        $products = $productObj -> toArray();
+                $productObj = new Product($value ['storeId'],
+                                        $value ['name'], 
+                                        $value ['description'], 
+                                        $value ['sku'],
+                                        $value ['pricebuy'],
+                                        $value ['pricesell'],
+                                        $value ['categoryId'],
+                                        $value ['imageLink'],
+                                        $value ['type'],
+                                        0
+                                    );
+
+                $logger -> debug ("POSTed product detail............................: " . $productObj -> toString());
+
+                try {
+                    $this -> productDAO -> insert($productObj);
+                } 
+                catch (Exception $e) {    }
+
+                $products = $productObj -> toArray();
+
+                $this -> products[] = $products;
+            }
+        }
+        else {
+            $productObj = new Product($data ['storeId'],
+                                        $data ['name'], 
+                                        $data ['description'], 
+                                        $data ['sku'],
+                                        $data ['pricebuy'],
+                                        $data ['pricesell'],
+                                        $data ['categoryId'],
+                                        $data ['imageLink'],
+                                        $data ['type'],
+                                        0
+                                    );
+
+                $logger -> debug ("POSTed product detail..........: " . $productObj -> toString());
+
+                $this -> productDAO -> insert($productObj);
+
+                $products = $productObj -> toArray();
+
+                if(! isset($products ['id'])) 
+                return array('code' => '2011');
+
+
+                $this -> product[] = $products;
+        }
+    
         
-        if(! isset($products ['id'])) 
-            return array('code' => '2011');
-
-        $this -> products[] = $products;
         return array ('code' => '2001', 
                         'data' => array(
                             'products' => $this -> products
@@ -151,13 +186,14 @@ class ProductsResource implements Resource {
 
     public function get($resourceVals, $data) {
 		
-        $storeId = 1;
+        $storeId = (int) $data['store_id'];
+        $categoryId = (int) $data['category_id'];
 
 		$productId = $resourceVals ['products'];
 		if (isset($productId))
 			$result = $this-> getProduct($productId, $storeId, $categoryId);
 		else	
-			$result = $this-> getListOfAllProducts($storeId);
+			$result = $this-> getListOfAllProducts($storeId, $categoryId);
 
 		if (!is_array($result)) {
 		    return array('code' => '6004');
@@ -170,7 +206,7 @@ class ProductsResource implements Resource {
 		global $logger;
 		$logger->debug('Fetch list of  product...');
 
-		$productObj = $this -> shopDAO -> load($productId, $categoryId);
+		$productObj = $this -> productDAO -> load($productId, $categoryId);
 
         if(empty($productObj)) 
                 return array('code' => '2004');
@@ -192,7 +228,7 @@ class ProductsResource implements Resource {
 		global $logger;
 		$logger->debug('Fetch list of all products...');
 
-		$listOfProductObjs = $this -> shopDAO -> readAll($storeId, $categoryId);
+		$listOfProductObjs = $this -> productDAO -> readAllProducts($storeId, $categoryId);
 
         if(empty($listOfProductObjs)) 
                 return array('code' => '2004');

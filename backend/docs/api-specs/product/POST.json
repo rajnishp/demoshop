@@ -1,0 +1,100 @@
+/product
+
+	POST ""
+
+	POST Data:
+
+	{   "root": 
+           {
+	        "products":
+	        [
+	            {
+	                "storeId": "2",
+	                "name": "maggiePost",
+	                "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+	                "sku": "234563534",
+	                "pricebuy": "20",
+	                "pricesell": "23",
+	                "categoryId": "1",
+	                "imageLink": "",
+	                "type": "0"
+	            },
+                     {
+	                "storeId": "2",
+	                "name": "maggiePost",
+	                "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+	                "sku": "2345645435",
+	                "pricebuy": "20",
+	                "pricesell": "23",
+	                "categoryId": "1",
+	                "imageLink": "",
+	                "type": "0"
+	            },
+                      {
+	                "storeId": "2",
+	                "name": "maggiePost",
+	                "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+	                "sku": "23456789",
+	                "pricebuy": "20",
+	                "pricesell": "23",
+	                "categoryId": "1",
+	                "imageLink": "",
+	                "type": "0"
+	            }
+	        ]
+	    }
+	}
+
+	Response:
+
+
+    {
+        "internal_status":
+        {
+            "code": "2001",
+            "message": "Product Created"
+        },
+        "data":
+        {
+            "products":
+            [
+                {
+                    "id": 7,
+                    "storeId": "2",
+                    "name": "maggiePost",
+                    "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+                    "sku": "234563534",
+                    "pricebuy": "20",
+                    "pricesell": "23",
+                    "categoryId": "1",
+                    "imageLink": "",
+                    "type": "0"
+                },
+                {
+                    "id": 8,
+                    "storeId": "2",
+                    "name": "maggiePost",
+                    "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+                    "sku": "2345645435",
+                    "pricebuy": "20",
+                    "pricesell": "23",
+                    "categoryId": "1",
+                    "imageLink": "",
+                    "type": "0"
+                },
+                {
+                    "id": 0,
+                    "storeId": "2",
+                    "name": "maggiePost",
+                    "description": "by POst method maggie rs 12 nutrition for health ready in 5 minutes,,",
+                    "sku": "23456789",
+                    "pricebuy": "20",
+                    "pricesell": "23",
+                    "categoryId": "1",
+                    "imageLink": "",
+                    "type": "0"
+                }
+            ]
+        }
+    }
+

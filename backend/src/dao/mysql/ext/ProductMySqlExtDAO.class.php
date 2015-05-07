@@ -7,6 +7,16 @@
  */
 class ProductMySqlExtDAO extends ProductMySqlDAO{
 
+	/**
+	 * Get all records from table
+	 */
+	public function readAllProducts($storeId, $categoryId){
+		$sql = 'SELECT * FROM product WHERE store_id = ? AND category_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($storeId);
+		$sqlQuery->set($categoryId);
+		return $this->getList($sqlQuery);
+	}
 	
 }
 ?>
