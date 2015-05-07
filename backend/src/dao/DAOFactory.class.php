@@ -33,6 +33,12 @@ class DAOFactory{
 	 * @return CategoryDAO
 	 */
 	public static function getCategoryDAO(){
+
+		require_once('CategoryDAO.class.php');
+		require_once('models/Category.class.php');
+		require_once('mysql/CategoryMySqlDAO.class.php');
+		require_once('mysql/ext/CategoryMySqlExtDAO.class.php');
+		
 		return new CategoryMySqlExtDAO();
 	}
 
@@ -66,6 +72,10 @@ class DAOFactory{
 	 * @return StoreDAO
 	 */
 	public static function getStoreDAO(){
+		require_once('StoreDAO.class.php');
+		require_once('models/Store.class.php');
+		require_once('mysql/StoreMySqlDAO.class.php');
+		require_once('mysql/ext/StoreMySqlExtDAO.class.php');
 		return new StoreMySqlExtDAO();
 	}
 
@@ -73,6 +83,11 @@ class DAOFactory{
 	 * @return UserDetailsDAO
 	 */
 	public static function getUserDetailsDAO(){
+
+		require_once('UserDetailsDAO.class.php');
+		require_once('models/UserDetail.class.php');
+		require_once('mysql/UserDetailsMySqlDAO.class.php');
+		require_once('mysql/ext/UserDetailsMySqlExtDAO.class.php');
 		return new UserDetailsMySqlExtDAO();
 	}
 

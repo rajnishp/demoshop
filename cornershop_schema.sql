@@ -8,16 +8,20 @@ CREATE TABLE store (
 	address varchar (80) NOT NULL,
 	latitude float (10, 6) NOT NULL,
 	longitude float (10, 6) NOT NULL,
-	type int (3) NOT NULL
+	type int (3) NOT NULL,
+	last_update_time timestamp
 );
 
 CREATE TABLE category (
 	id int (3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	store_id int (6) NOT NULL,
 	name varchar (25) NOT NULL,
 	parent_id int (3) DEFAULT NULL,
 	image_link varchar (50) NOT NULL,
 	type int (3) NOT NULL
 );
+
+#store_id to be added
 
 CREATE TABLE product (
 	id int (10) NOT NULL AUTO_INCREMENT PRIMARY KEY,

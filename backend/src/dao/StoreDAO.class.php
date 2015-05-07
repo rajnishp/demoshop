@@ -3,7 +3,7 @@
  * Intreface DAO
  *
  * @author: http://phpdao.com
- * @date: 2015-05-06 23:52
+ * @date: 2015-05-07 15:14
  */
 interface StoreDAO{
 
@@ -65,6 +65,8 @@ interface StoreDAO{
 
 	public function queryByType($value);
 
+	public function queryByLastUpdateTime($value);
+
 
 	public function deleteByName($value);
 
@@ -79,6 +81,8 @@ interface StoreDAO{
 	public function deleteByLongitude($value);
 
 	public function deleteByType($value);
+
+	public function deleteByLastUpdateTime($value);
 
 
 }

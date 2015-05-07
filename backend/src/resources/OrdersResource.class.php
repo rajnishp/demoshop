@@ -126,9 +126,9 @@ class OrdersResource implements Resource {
         $orderDetail = $orderObj -> toArray();
 
         if (isset($orderDetail['id'])) {
-            if( isset( $data['order']['cart']) ){
+            if( isset( $data['cart']) ){
             
-                foreach ($data['order']['cart'] as $key => $value) {
+                foreach ($data['cart']['cartProduct'] as $key => $value) {
 
                     $cartObj = new Cart($orderDetail['id'],
                                         $value ['product_id'],

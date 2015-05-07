@@ -3,8 +3,10 @@
  * Class that operate on table 'category'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-06 23:52
+ * @date: 2015-05-07 14:44
  */
+require_once 'StoreMySqlDAO.class.php';
+
 class CategoryMySqlDAO implements CategoryDAO{
 
 	/**
@@ -57,9 +59,10 @@ class CategoryMySqlDAO implements CategoryDAO{
  	 * @param CategoryMySql category
  	 */
 	public function insert($category){
-		$sql = 'INSERT INTO category (name, parent_id, image_link, type) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO category (store_id, name, parent_id, image_link, type) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($category->storeId);
 		$sqlQuery->set($category->name);
 		$sqlQuery->setNumber($category->parentId);
 		$sqlQuery->set($category->imageLink);
@@ -76,9 +79,10 @@ class CategoryMySqlDAO implements CategoryDAO{
  	 * @param CategoryMySql category
  	 */
 	public function update($category){
-		$sql = 'UPDATE category SET name = ?, parent_id = ?, image_link = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE category SET store_id = ?, name = ?, parent_id = ?, image_link = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->setNumber($category->storeId);
 		$sqlQuery->set($category->name);
 		$sqlQuery->setNumber($category->parentId);
 		$sqlQuery->set($category->imageLink);
@@ -95,6 +99,13 @@ class CategoryMySqlDAO implements CategoryDAO{
 		$sql = 'DELETE FROM category';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function queryByStoreId($value){
+		$sql = 'SELECT * FROM category WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
 	}
 
 	public function queryByName($value){
@@ -125,6 +136,13 @@ class CategoryMySqlDAO implements CategoryDAO{
 		return $this->getList($sqlQuery);
 	}
 
+
+	public function deleteByStoreId($value){
+		$sql = 'DELETE FROM category WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 	public function deleteByName($value){
 		$sql = 'DELETE FROM category WHERE name = ?';
@@ -165,6 +183,7 @@ class CategoryMySqlDAO implements CategoryDAO{
 		$category = new Category();
 		
 		$category->id = $row['id'];
+		$category->storeId = $row['store_id'];
 		$category->name = $row['name'];
 		$category->parentId = $row['parent_id'];
 		$category->imageLink = $row['image_link'];

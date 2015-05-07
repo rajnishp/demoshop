@@ -17,6 +17,24 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 		$sqlQuery->set($categoryId);
 		return $this->getList($sqlQuery);
 	}
-	
+
+	public function readMaxProfitProducts($storeId){
+		$sql = 'SELECT * FROM product 
+					WHERE store_id = ? 
+						ORDER BY (pricesell-pricebuy) DESC LIMIT 0, 10';
+
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($storeId);
+		return $this->getList($sqlQuery);
+	}
+
+	public function readLatestStoreProducts(){
+		$sql = 'SELECT product.* FROM product as product JOIN store as store 
+					WHERE store.id = product.store_id ORDER BY store.last_update_time DESC LIMIT 0,2';
+
+		$sqlQuery = new SqlQuery($sql);
+		return $this->getList($sqlQuery);
+	}
+
 }
 ?>

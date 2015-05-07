@@ -3,7 +3,7 @@
  * Class that operate on table 'store'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-05-06 23:52
+ * @date: 2015-05-07 15:14
  */
 class StoreMySqlDAO implements StoreDAO{
 
@@ -57,7 +57,7 @@ class StoreMySqlDAO implements StoreDAO{
  	 * @param StoreMySql store
  	 */
 	public function insert($store){
-		$sql = 'INSERT INTO store (name, login_id, password, address, latitude, longitude, type) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO store (name, login_id, password, address, latitude, longitude, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($store->name);
@@ -67,6 +67,7 @@ class StoreMySqlDAO implements StoreDAO{
 		$sqlQuery->set($store->latitude);
 		$sqlQuery->set($store->longitude);
 		$sqlQuery->setNumber($store->type);
+		$sqlQuery->set($store->lastUpdateTime);
 
 		$id = $this->executeInsert($sqlQuery);	
 		$store->id = $id;
@@ -79,7 +80,7 @@ class StoreMySqlDAO implements StoreDAO{
  	 * @param StoreMySql store
  	 */
 	public function update($store){
-		$sql = 'UPDATE store SET name = ?, login_id = ?, password = ?, address = ?, latitude = ?, longitude = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE store SET name = ?, login_id = ?, password = ?, address = ?, latitude = ?, longitude = ?, type = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($store->name);
@@ -89,6 +90,7 @@ class StoreMySqlDAO implements StoreDAO{
 		$sqlQuery->set($store->latitude);
 		$sqlQuery->set($store->longitude);
 		$sqlQuery->setNumber($store->type);
+		$sqlQuery->set($store->lastUpdateTime);
 
 		$sqlQuery->setNumber($store->id);
 		return $this->executeUpdate($sqlQuery);
@@ -152,6 +154,13 @@ class StoreMySqlDAO implements StoreDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByLastUpdateTime($value){
+		$sql = 'SELECT * FROM store WHERE last_update_time = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
 
 	public function deleteByName($value){
 		$sql = 'DELETE FROM store WHERE name = ?';
@@ -202,6 +211,13 @@ class StoreMySqlDAO implements StoreDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByLastUpdateTime($value){
+		$sql = 'DELETE FROM store WHERE last_update_time = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 
 	
 	/**
@@ -220,6 +236,7 @@ class StoreMySqlDAO implements StoreDAO{
 		$store->latitude = $row['latitude'];
 		$store->longitude = $row['longitude'];
 		$store->type = $row['type'];
+		$store->lastUpdateTime = $row['last_update_time'];
 
 		return $store;
 	}

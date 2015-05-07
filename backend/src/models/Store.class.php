@@ -7,16 +7,17 @@
 	 */
 	class Store{
 		
-		var $id;
-		var $name;
-		var $loginId;
-		var $password;
-		var $address;
-		var $latitude;
-		var $longitude;
-		var $type;
+		private $id;
+		private $name;
+		private $loginId;
+		private $password;
+		private $address;
+		private $latitude;
+		private $longitude;
+		private $type;
+		private $lastUpdateTime;
 
-		function __construct ($name, $loginId, $password, $address, $latitude, $longitude, $type, $id = null) {
+		function __construct ($name, $loginId, $password, $address, $latitude, $longitude, $type, $lastUpdateTime, $id = null) {
 			$this -> id = $id;
 			$this -> loginId = $loginId;
 			$this -> password = $password;
@@ -24,6 +25,7 @@
 			$this -> location = $latitude;
 			$this -> longitude = $longitude;
 			$this -> type = $type;
+			$this -> lastUpdateTime = $lastUpdateTime;
 		}
 
 		function setId ($id) {
@@ -82,6 +84,14 @@
 			return $this -> type;
 		}
 
+		function setLastUpdateTime ($lastUpdateTime) {
+			$this -> lastUpdateTime = $lastUpdateTime;
+		}
+		function getLastUpdateTime () {
+			return $this -> lastUpdateTime;
+		}
+
+
 
 		function toString () {
 			return $this -> id . ", " . 
@@ -91,7 +101,8 @@
 					$this -> address. ", " . 
 					$this -> latitude. ", " . 
 					$this -> longitude. ", " . 
-					$this -> type;
+					$this -> type. ", " . 
+					$this -> lastUpdateTime;
 		}
 
 
@@ -104,7 +115,8 @@
 						address => $this-> address,
 						latitude => $this-> latitude,
 						longitude => $this-> longitude,
-						type => $this-> type
+						type => $this-> type,
+						lastUpdateTime => $this-> lastUpdateTime
 				);
 		}
 	}
