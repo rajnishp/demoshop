@@ -52,62 +52,52 @@ class ProductsResource implements Resource {
         global $logger, $warnings_payload;
         $update = false;
         
-        $postId = $resourceVals ['posts'];
+        $productId = $resourceVals ['products'];
 
-        if (! isset($postId)) {
-            $warnings_payload [] = 'PUT call to /posts must be succeeded ' . 
-                                    'by /post_id i.e. PUT /posts/post_id';
+        if (! isset($productId)) {
+            $warnings_payload [] = 'PUT call to /products must be succeeded ' . 
+                                    'by /product_id i.e. PUT /products/product_id';
             throw new UnsupportedResourceMethodException();
         }
         if (! isset($data))
             throw new MissingParametersException('No fields specified for updation');
 
-        $postObj = $this -> productDAO -> load($postId);
+        $productObj = $this -> productDAO -> load($productId);
         
-        if(! is_object($postObj)) 
+        if(! is_object($productObj)) 
             return array('code' => '2004');
 
-        $newChId= $data ['chId'];
-        if (isset($newChId)) {
-            if ($newChId != $postObj -> getChId()) {
+        $newPricebuy= $data ['pricebuy'];
+        if (isset($newPricebuy)) {
+            if ($newPricebuy != $productObj -> getPricebuy()) {
                 $update = true;
-                $postObj -> setChId($newChId);
+                $productObj -> setPricebuy($newPricebuy);
             }
         }
 
-        $newTitle = $data ['title'];
-        if (isset($newTitle)) {
-            if ($newTitle != $postObj -> getTitle()){
+        $newPricesell= $data ['pricesell'];
+        if (isset($newPricesell)) {
+            if ($newPricesell != $productObj -> getPricesell()) {
                 $update = true;
-                $postObj -> setTitle($newTitle);
+                $productObj -> setPricesell($newPricesell);
             }
         }
-
-
-        $newHashtag = $data ['hashtag'];
-        if (isset($newHashtag)) {
-            if ($newHashtag != $postObj -> getHashtag()){
-                $update = true;
-                $postObj -> setHashtag($newHashtag);
-            }
-        }
-
 
         if ($update) {
-            $logger -> debug('PUT Post object: ' . $postObj -> toString());
-            $result = $this -> postDAO -> update($postObj);
+            $logger -> debug('PUT Product object: ' . $productObj -> toString());
+            $result = $this -> productDAO -> update($productObj);
             $logger -> debug('Updated entry: ' . $result);
         }
 
-        $posts = $postObj -> toArray();
-        $this -> posts [] = $posts;
+        $productPut = $productObj -> toArray();
+        $this -> product [] = $productPut;
 
-        if(! isset($posts ['id'])) 
+        if(! isset($product ['id'])) 
             return array('code' => '2004');
 
         return array('code' => '2002', 
                         'data' => array(
-                            'posts' => $this -> posts
+                            'product' => $this -> product
                         )
         );
     }
@@ -138,7 +128,7 @@ class ProductsResource implements Resource {
                                         0
                                     );
 
-                $logger -> debug ("POSTed product detail............................: " . $productObj -> toString());
+                $logger -> debug ("POSTed product detail.....: " . $productObj -> toString());
 
                 try {
                     $this -> productDAO -> insert($productObj);
@@ -191,7 +181,7 @@ class ProductsResource implements Resource {
 
 		$productId = $resourceVals ['products'];
 		if (isset($productId))
-			$result = $this-> getProduct($productId, $storeId, $categoryId);
+			$result = $this-> getProduct($productId);
 		else	
 			$result = $this-> getListOfAllProducts($storeId, $categoryId);
 
@@ -202,11 +192,11 @@ class ProductsResource implements Resource {
 		return $result;
     }
 
-    private function getProduct($productId, $storeId, $categoryId) {
+    private function getProduct($productId) {
 		global $logger;
 		$logger->debug('Fetch list of  product...');
 
-		$productObj = $this -> productDAO -> load($productId, $categoryId);
+		$productObj = $this -> productDAO -> load($productId);
 
         if(empty($productObj)) 
                 return array('code' => '2004');

@@ -60,17 +60,17 @@ class StoreMySqlDAO implements StoreDAO{
 		$sql = 'INSERT INTO store (name, login_id, password, address, latitude, longitude, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($store->name);
-		$sqlQuery->set($store->loginId);
-		$sqlQuery->set($store->password);
-		$sqlQuery->set($store->address);
-		$sqlQuery->set($store->latitude);
-		$sqlQuery->set($store->longitude);
-		$sqlQuery->setNumber($store->type);
-		$sqlQuery->set($store->lastUpdateTime);
+		$sqlQuery->set($store->getName());
+		$sqlQuery->set($store->getLoginId());
+		$sqlQuery->set($store->getPassword());
+		$sqlQuery->set($store->getAddress());
+		$sqlQuery->set($store->getLatitude());
+		$sqlQuery->set($store->getLongitude());
+		$sqlQuery->setNumber($store->getType());
+		$sqlQuery->set($store->getLastUpdateTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$store->id = $id;
+		$store-> setId ($id);
 		return $id;
 	}
 	
@@ -83,16 +83,16 @@ class StoreMySqlDAO implements StoreDAO{
 		$sql = 'UPDATE store SET name = ?, login_id = ?, password = ?, address = ?, latitude = ?, longitude = ?, type = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($store->name);
-		$sqlQuery->set($store->loginId);
-		$sqlQuery->set($store->password);
-		$sqlQuery->set($store->address);
-		$sqlQuery->set($store->latitude);
-		$sqlQuery->set($store->longitude);
-		$sqlQuery->setNumber($store->type);
-		$sqlQuery->set($store->lastUpdateTime);
+		$sqlQuery->set($store->getName());
+		$sqlQuery->set($store->getLoginId());
+		$sqlQuery->set($store->getPassword());
+		$sqlQuery->set($store->getAddress());
+		$sqlQuery->set($store->getLatitude());
+		$sqlQuery->set($store->getLongitude());
+		$sqlQuery->setNumber($store->getType());
+		$sqlQuery->set($store->getLastUpdateTime());
 
-		$sqlQuery->setNumber($store->id);
+		$sqlQuery->setNumber($store->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -226,9 +226,10 @@ class StoreMySqlDAO implements StoreDAO{
 	 * @return StoreMySql 
 	 */
 	protected function readRow($row){
-		$store = new Store();
 		
-		$store->id = $row['id'];
+		$store = new Store($row['name'], $row['login_id'], $row['password'], $row['address'],$row['latitude'], $row['longitude'], $row['type'], $row['last_update_time'], $row['id']);
+		
+		/*$store->id = $row['id'];
 		$store->name = $row['name'];
 		$store->loginId = $row['login_id'];
 		$store->password = $row['password'];
@@ -236,7 +237,7 @@ class StoreMySqlDAO implements StoreDAO{
 		$store->latitude = $row['latitude'];
 		$store->longitude = $row['longitude'];
 		$store->type = $row['type'];
-		$store->lastUpdateTime = $row['last_update_time'];
+		$store->lastUpdateTime = $row['last_update_time'];*/
 
 		return $store;
 	}

@@ -11,12 +11,12 @@ require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
 class StoreResource implements Resource {
 
-    private $shopDAO;
+    private $storeDAO;
     private $store;
     
     public function __construct() {
 		$DAOFactory = new DAOFactory();
-		$this -> shopDAO = $DAOFactory->getStoreDAO();
+		$this -> storeDAO = $DAOFactory->getStoreDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
@@ -37,7 +37,7 @@ class StoreResource implements Resource {
         }
         $logger -> debug ("Delete store with Id: " . $storeId);-
         
-        $result = $this -> shopDAO -> delete($storeId);
+        $result = $this -> storeDAO -> delete($storeId);
         $logger -> debug ("store Deleted? " . $result);
 
         if ($result) 
@@ -49,6 +49,68 @@ class StoreResource implements Resource {
     }
 
     public function put ($resourceVals, $data) {
+
+        global $logger, $warnings_payload;
+        $update = false;
+        
+        $storeId = $resourceVals ['store'];
+
+        if (! isset($storeId)) {
+            $warnings_payload [] = 'PUT call to /store must be succeeded ' . 
+                                    'by /store_id i.e. PUT /store/store_id';
+            throw new UnsupportedResourceMethodException();
+        }
+        if (! isset($data))
+            throw new MissingParametersException('No fields specified for updation');
+
+        $storeObj = $this -> storeDAO -> load($storeId);
+        
+        if(! is_object($storeObj)) 
+            return array('code' => '2004');
+
+        $newLoginId= $data ['login_id'];
+        if (isset($newLoginId)) {
+            if ($newLoginId != $storeObj -> getLoginId()) {
+                $update = true;
+                $storeObj -> setLoginId($newLoginId);
+            }
+        }
+
+        $newPassword = $data ['password'];
+        if (isset($newPassword)) {
+            if ($newPassword != $storeObj -> getPassword()){
+                $update = true;
+                $storeObj -> setPassword($newPassword);
+            }
+        }
+
+
+        $newAddress = $data ['address'];
+        if (isset($newAddress)) {
+            if ($newAddress != $storebj -> getAddress()){
+                $update = true;
+                $storeObj -> setAddress($newAddress);
+            }
+        }
+
+
+        if ($update) {
+            $logger -> debug('PUT Store object: ' . $storeObj -> toString());
+            $result = $this -> storeDAO -> update($storeObj);
+            $logger -> debug('Updated entry: ' . $result);
+        }
+
+        $storePut = $storeObj -> toArray();
+        $this -> store [] = $storePut;
+
+        if(! isset($store ['id'])) 
+            return array('code' => '2004');
+
+        return array('code' => '2002', 
+                        'data' => array(
+                            'store' => $this -> store
+                        )
+        );
     }
 
     public function post ($resourceVals, $data) {
@@ -64,20 +126,23 @@ class StoreResource implements Resource {
         $storeObj = new Store($data ['name'], 
                                 $data ['login_id'],
                                 $data ['password'],
-                                $data ['location'],
+                                $data ['address'],
+                                $data ['latitude'],
+                                $data ['longitude'],
                                 $data ['type'],
+                                $data ['last_update_time'],
                                 0
                             );
         $logger -> debug ("POSTed store info " . $storeObj -> toString());
 
-        $this -> shopDAO -> insert($storeObj);
+        $this -> storeDAO -> insert($storeObj);
 
         $store = $storeObj -> toArray();
         
         if(! isset($store ['id'])) 
             return array('code' => '2011');
 
-        $this -> order[] = $store;
+        $this -> store[] = $store;
         return array ('code' => '2001', 
                         'data' => array(
                             'store' => $this -> store

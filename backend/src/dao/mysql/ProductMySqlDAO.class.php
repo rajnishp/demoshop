@@ -84,17 +84,17 @@ class ProductMySqlDAO implements ProductDAO{
 		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($product->storeId);
-		$sqlQuery->set($product->name);
-		$sqlQuery->set($product->description);
-		$sqlQuery->set($product->sku);
-		$sqlQuery->set($product->pricebuy);
-		$sqlQuery->set($product->pricesell);
-		$sqlQuery->setNumber($product->categoryId);
-		$sqlQuery->set($product->imageLink);
-		$sqlQuery->setNumber($product->type);
+		$sqlQuery->setNumber($product->getStoreId());
+		$sqlQuery->set($product->getName());
+		$sqlQuery->set($product->getDescription());
+		$sqlQuery->set($product->getSku());
+		$sqlQuery->set($product->getPricebuy());
+		$sqlQuery->set($product->getPricesell());
+		$sqlQuery->setNumber($product->getCategoryId());
+		$sqlQuery->set($product->getImageLink());
+		$sqlQuery->setNumber($product->getType());
 
-		$sqlQuery->setNumber($product->id);
+		$sqlQuery->setNumber($product->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 

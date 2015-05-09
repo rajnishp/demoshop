@@ -60,13 +60,13 @@ class CartMySqlDAO implements CartDAO{
 		$sql = 'INSERT INTO cart (order_id, product_id, quantity, status) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($cart->orderId);
-		$sqlQuery->setNumber($cart->productId);
-		$sqlQuery->setNumber($cart->quantity);
-		$sqlQuery->setNumber($cart->status);
+		$sqlQuery->setNumber($cart->getOrderId());
+		$sqlQuery->setNumber($cart->getProductId());
+		$sqlQuery->setNumber($cart->getQuantity());
+		$sqlQuery->setNumber($cart->getStatus());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$cart->id = $id;
+		$cart->setId($id);
 		return $id;
 	}
 	

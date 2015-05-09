@@ -7,12 +7,12 @@
 	 */
 	class UserDetail{
 		
-		var $id;
-		var $firstname;
-		var $lastname;
-		var $email;
-		var $phone;
-		var $password;
+		private $id;
+		private $firstname;
+		private $lastname;
+		private $email;
+		private $phone;
+		private $password;
 	
 
 		function __construct ($firstname, $lastname, $email, $phone, $password, $id = null) {

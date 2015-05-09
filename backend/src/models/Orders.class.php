@@ -5,13 +5,13 @@
      	 * @author: rajnish
      	 * @date: 2015-05-05 16:53	 
 	 */
-	class Order{
+	class Orders{
 		
-		var $id;
-		var $phone;
-		var $address;
-		var $orderTime;
-		var $status;
+		private $id;
+		private $phone;
+		private $address;
+		private $orderTime;
+		private $status;
 
 		function __construct ($phone, $address, $orderTime, $status, $id = null) {
 			$this -> id = $id;

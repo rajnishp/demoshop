@@ -180,15 +180,16 @@ class CategoryMySqlDAO implements CategoryDAO{
 	 * @return CategoryMySql 
 	 */
 	protected function readRow($row){
-		$category = new Category();
 		
-		$category->id = $row['id'];
+		$category = new Category($row['store_id'], $row['name'], $row['parent_id'], $row['image_link'], $row['type'], $row['id']);
+		
+		/*$category->id = $row['id'];
 		$category->storeId = $row['store_id'];
 		$category->name = $row['name'];
 		$category->parentId = $row['parent_id'];
 		$category->imageLink = $row['image_link'];
 		$category->type = $row['type'];
-
+*/
 		return $category;
 	}
 	

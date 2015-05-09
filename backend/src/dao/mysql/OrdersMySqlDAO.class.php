@@ -60,13 +60,13 @@ class OrdersMySqlDAO implements OrdersDAO{
 		$sql = 'INSERT INTO orders (phone, address, order_time, status) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($order->phone);
-		$sqlQuery->set($order->address);
-		$sqlQuery->set($order->orderTime);
-		$sqlQuery->setNumber($order->status);
+		$sqlQuery->setNumber($order->getPhone());
+		$sqlQuery->set($order->getAddress());
+		$sqlQuery->set($order->getOrderTime());
+		$sqlQuery->setNumber($order->getStatus());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$order->id = $id;
+		$order -> setId ($id);
 		return $id;
 	}
 	
@@ -162,13 +162,14 @@ class OrdersMySqlDAO implements OrdersDAO{
 	 * @return OrdersMySql 
 	 */
 	protected function readRow($row){
-		$order = new Order();
+
+		$order = new Order($row['phone'], $row['address'], $row['order_time'], $row['status'], $row['id']);
 		
-		$order->id = $row['id'];
+		/*$order->id = $row['id'];
 		$order->phone = $row['phone'];
 		$order->address = $row['address'];
 		$order->orderTime = $row['order_time'];
-		$order->status = $row['status'];
+		$order->status = $row['status'];*/
 
 		return $order;
 	}
