@@ -1,0 +1,56 @@
+<% var modal = [];
+  _.each(Numbers, function(Detail) { 
+    modal.push(Detail.number);
+  });
+%>
+<span style="font-size:18px;">
+  <a href="#/messages">Home </a> > <a href="#/messages">Messages </a> > <%= modal[0] %> 
+</span><hr />
+<div class='col-md-2'></div>
+<div class='col-md-8'>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+    <%= modal[0] %>
+    </div>
+    <div class="panel-body">
+      <ul class="media-list">
+      <% _.each(Numbers, function(Detail) { %>
+        <li class="media">
+          <div class="media-body">
+            <div class="media">
+            <% if(Detail.type == "Inbox") { %>
+              <!-- <a class="pull-left" href="#">
+                <img class="media-object img-circle " src="assets/img/user.png" />
+              </a>   -->
+              <div class="media-body" style="padding-right:30%;">
+                <%= Detail.text %> <br />
+                <small class="text-muted"><%= Detail.time %> <button type="submit" id="delmessage" class="btn-link" value="<%= Detail.id %>" >Delete</button></small>
+                <hr />
+              </div>
+            <% } else { %>
+              <div class="media-body" style="padding-left:30%;" >
+                <%= Detail.text %> <br />
+                <small class="text-muted"><%= Detail.time %> <button type="submit" id="delmessage" class="btn-link" value="<%= Detail.id %>" >Delete</button></small>
+                <hr />
+              </div>
+              <!-- <a class="pull-right" href="#">
+                <img class="media-object img-circle " src="assets/img/user.png" />
+              </a> -->
+            <% } %>
+            </div>
+          </div>
+        </li>
+      <%  }); %>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <div class="input-group">
+          <input type="text" class="form-control" id="messagetext" placeholder="Enter Message" />
+          <span class="input-group-btn">
+            <button id="sendmessage" class="btn btn-info" type="button">SEND</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
