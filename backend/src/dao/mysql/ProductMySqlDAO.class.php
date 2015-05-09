@@ -5,6 +5,8 @@
  * @author: http://phpdao.com
  * @date: 2015-05-06 23:52
  */
+
+
 class ProductMySqlDAO implements ProductDAO{
 
 	/**
@@ -57,7 +59,7 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function insert($product){
-		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($product->getStoreId());
@@ -69,6 +71,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->setNumber($product->getCategoryId());
 		$sqlQuery->set($product->getImageLink());
 		$sqlQuery->setNumber($product->getType());
+		$sqlQuery->set($product->getLastUpdateTime());
 
 		$id = $this->executeInsert($sqlQuery);	
 		$product->setId ($id);
@@ -81,7 +84,7 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function update($product){
-		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ?, type = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($product->getStoreId());
@@ -93,6 +96,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->setNumber($product->getCategoryId());
 		$sqlQuery->set($product->getImageLink());
 		$sqlQuery->setNumber($product->getType());
+		$sqlQuery->set($product->getLastUpdateTime());
 
 		$sqlQuery->setNumber($product->getId());
 		return $this->executeUpdate($sqlQuery);
@@ -255,7 +259,7 @@ class ProductMySqlDAO implements ProductDAO{
 		$product->imageLink = $row['image_link'];
 		$product->type = $row['type'];*/
 
-		$product = new Product($row['store_id'], $row['name'], $row['description'], $row['sku'],$row['pricebuy'], $row['pricesell'], $row['category_id'], $row['image_link'], $row['type'], $row['id']);
+		$product = new Product($row['store_id'], $row['name'], $row['description'], $row['sku'],$row['pricebuy'], $row['pricesell'], $row['category_id'], $row['image_link'], $row['type'], $row['last_update_time'], $row['id']);
 		
 		return $product;
 	}

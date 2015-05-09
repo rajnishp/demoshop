@@ -1,6 +1,8 @@
-/product
+/products/<store_id=?>&<category_id=?>
 
-	POST ""
+Returns Store's category's all products.
+
+	POST "api.loc.cornershop.com/v0/products?store_id=2&category_id=1"
 
 	POST Data:
 

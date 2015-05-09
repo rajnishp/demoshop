@@ -108,7 +108,7 @@ class CategoryMySqlDAO implements CategoryDAO{
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByName($value){
+	public function queryByCategoryName($value){
 		$sql = 'SELECT * FROM category WHERE name = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);

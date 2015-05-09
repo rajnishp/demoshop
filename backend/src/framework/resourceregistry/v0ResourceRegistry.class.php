@@ -24,11 +24,13 @@
                     $this -> resource = new StoreResource();
                 break;
 
+                //case '/store/category': 
                 case '/category': 
                     require_once 'resources/CategoryResource.class.php';
                     $this -> resource = new CategoryResource();
                 break;
 
+                //case '/store/category/products':
                 case '/products':
                     require_once 'resources/ProductsResource.class.php';
                     $this -> resource = new ProductsResource();

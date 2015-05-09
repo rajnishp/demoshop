@@ -12,7 +12,7 @@ require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 class ProductsResource implements Resource {
 
     private $productDAO;
-    private $product;
+    private $products;
     
     public function __construct() {
 		$DAOFactory = new DAOFactory();
@@ -176,14 +176,26 @@ class ProductsResource implements Resource {
 
     public function get($resourceVals, $data) {
 		
-        $storeId = (int) $data['store_id'];
-        $categoryId = (int) $data['category_id'];
+        /*$storeName = (int) $data['store_id'];
+        $categoryName = (int) $data['category_id'];
+        $maxStoreName = (int) $data['max_store_id'];*/
+        $storeName = 'stopNshop';
+        //$categoryName = 'Kitchen';
+
 
 		$productId = $resourceVals ['products'];
 		if (isset($productId))
 			$result = $this-> getProduct($productId);
-		else	
-			$result = $this-> getListOfAllProducts($storeId, $categoryId);
+		
+        elseif (isset($storeName) && isset($categoryName))
+			$result = $this-> getListOfAllProducts($storeName, $categoryName);
+
+        elseif (isset($storeName))
+            $result = $this-> getMaxProfitProducts($maxStoreName);
+
+        else
+            $result = $this-> getLatestProducts($storeName);
+
 
 		if (!is_array($result)) {
 		    return array('code' => '6004');
@@ -200,8 +212,6 @@ class ProductsResource implements Resource {
 
         if(empty($productObj)) 
                 return array('code' => '2004');
-
-        
              
         $this -> products [] = $productObj-> toArray();
         
@@ -214,11 +224,11 @@ class ProductsResource implements Resource {
             );
     }
 
-    private function getListOfAllProducts($storeId, $categoryId) {
-		global $logger;
-		$logger->debug('Fetch list of all products...');
+    private function getListOfAllProducts($storeName, $categoryName) {
+        global $logger;
+        $logger->debug('Fetch list of all products...');
 
-		$listOfProductObjs = $this -> productDAO -> readAllProducts($storeId, $categoryId);
+        $listOfProductObjs = $this -> productDAO -> readAllProducts($storeName, $categoryName);
 
         if(empty($listOfProductObjs)) 
                 return array('code' => '2004');
@@ -228,6 +238,50 @@ class ProductsResource implements Resource {
                 $this -> products [] = $product;
         }
         $logger -> debug ('Fetched list of products: ' . json_encode($this -> products));
+
+        return array('code' => '2000', 
+                     'data' => array(
+                                'products' => $this -> products
+                            )
+            );
+    }
+
+    private function getMaxProfitProducts($maxStoreName) {
+        global $logger;
+        $logger->debug('Fetch list of all products with max profit...');
+
+        $listOfProductObjs = $this -> productDAO -> readMaxProfitProducts($maxStoreName);
+
+        if(empty($listOfProductObjs))
+                return array('code' => '2004');
+
+        foreach ($listOfProductObjs as $productObj) {
+                $product = $productObj -> toArray();
+                $this -> products [] = $product;
+        }
+        $logger -> debug ('Fetched list of products with max profit: ' . json_encode($this -> products));
+
+        return array('code' => '2000', 
+                     'data' => array(
+                                'products' => $this -> products
+                            )
+            );
+    }
+
+    private function getLatestProducts($storeName) {
+        global $logger;
+        $logger->debug('Fetch list of all latest products...');
+
+        $listOfProductObjs = $this -> productDAO -> readLatestStoreProducts($storeName);
+
+        if(empty($listOfProductObjs)) 
+                return array('code' => '2004');
+
+        foreach ($listOfProductObjs as $productObj) {
+                $product = $productObj -> toArray();
+                $this -> products [] = $product;
+        }
+        $logger -> debug ('Fetched list of latest products: ' . json_encode($this -> products));
 
         return array('code' => '2000', 
                      'data' => array(

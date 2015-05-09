@@ -51,7 +51,7 @@ interface StoreDAO{
 	 */
 	public function clean();
 
-	public function queryByName($value);
+	public function queryByStoreName($value);
 
 	public function queryByLoginId($value);
 

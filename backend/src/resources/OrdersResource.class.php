@@ -131,6 +131,10 @@ class OrdersResource implements Resource {
                     $this -> orderDAO -> insert($orderObj);
 
                     $orderDetail = $orderObj -> toArray();
+
+                    $this -> order[] = $orderDetail;
+                    
+                    
                 /*}
                 else {
                     $orderId = $orderObj[0] -> toArray();
@@ -170,19 +174,30 @@ class OrdersResource implements Resource {
                     $this -> cartDAO -> insert($cartObj);
 
                     $cartDetail = $cartObj -> toArray();
+
+                    $this -> cart[] = $cartDetail;
+
+                    
                 }
+
+                /*return array ('code' => '2001', 
+                    'data' => array(
+                        'cart' => $this -> cart
+                    )
+                );*/
             }
         }
         
         else 
             return array('code' => '2011');
 
-        $this -> order[] = $order;
         return array ('code' => '2001', 
-                        'data' => array(
-                            'order' => $this -> order
-                        )
+            'data' => array(
+                'order' => $this -> order,
+                'cart' => $this -> cart
+            )
         );
+        
     }
 
     public function get($resourceVals, $data) {

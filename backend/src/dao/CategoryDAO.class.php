@@ -53,7 +53,7 @@ interface CategoryDAO{
 
 	public function queryByStoreId($value);
 
-	public function queryByName($value);
+	public function queryByCategoryName($value);
 
 	public function queryByParentId($value);
 

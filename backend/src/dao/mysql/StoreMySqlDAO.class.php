@@ -105,7 +105,7 @@ class StoreMySqlDAO implements StoreDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByName($value){
+	public function queryByStoreName($value){
 		$sql = 'SELECT * FROM store WHERE name = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);

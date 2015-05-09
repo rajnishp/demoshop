@@ -42,17 +42,16 @@ CREATE TABLE user_details (
 	firstname varchar (25) NOT NULL,
 	lastname varchar (25),
 	email varchar (100) NOT NULL,
-	phone varchar (30) NOT NULL,
+	phone varchar (20) NOT NULL,
 	password varchar (20) NOT NULL
 );
 	
 CREATE TABLE orders (
 	id int (16) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	phone int (11) NOT NULL,
-	address varchar (30) NOT NULL UNIQUE,
+	address varchar (30) NOT NULL,
 	order_time timestamp NOT NULL,
-	status int (2) DEFAULT 0,
-	UNIQUE KEY (id, phone)
+	status int (2) DEFAULT 0
 );
 
 #status: 0: pending, 1: success, 2: inQueue
