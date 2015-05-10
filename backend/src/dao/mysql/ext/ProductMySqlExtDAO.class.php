@@ -30,9 +30,10 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 
 		$categoryId = $categoryArray['id'];
 
-		$sql = "SELECT * FROM product WHERE store_id = '$storeId' AND category_id = '$categoryId'";
+		$sql = "SELECT * FROM product WHERE store_id = ? AND category_id = ?";
 		$sqlQuery = new SqlQuery($sql);
-		
+		$sqlQuery->set($storeId);
+		$sqlQuery->set($categoryId);
 		
 		return $this->getList($sqlQuery);
 	}
@@ -47,11 +48,11 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 		$storeId = $storeArray['id'];
 
 		$sql = "SELECT * FROM product 
-					WHERE store_id = '".$storeId."'
+					WHERE store_id = ?
 						ORDER BY (pricesell-pricebuy) DESC LIMIT 0, 10";
 
 		$sqlQuery = new SqlQuery($sql);
-		//$sqlQuery->set($storeName);
+		$sqlQuery->set($storeId);
 		return $this->getList($sqlQuery);
 	}
 
@@ -65,10 +66,10 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 
 		$storeId = $storeArray['id'];
 
-		$sql = "SELECT * FROM product WHERE store_id = '$storeId' ORDER BY last_update_time DESC LIMIT 0,10";
+		$sql = "SELECT * FROM product WHERE store_id = ? ORDER BY last_update_time DESC LIMIT 0,10";
 
 		$sqlQuery = new SqlQuery($sql);
-		//$sqlQuery->set($storeName);
+		$sqlQuery->set($storeId);
 		return $this->getList($sqlQuery);
 	}
 

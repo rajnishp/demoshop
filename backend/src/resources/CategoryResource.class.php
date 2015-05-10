@@ -9,7 +9,7 @@ require_once 'models/Category.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
-class StoreResource implements Resource {
+class CategoryResource implements Resource {
 
     private $categoryDAO;
     private $category;
@@ -87,13 +87,14 @@ class StoreResource implements Resource {
 
     public function get($resourceVals, $data) {
         
-        $storeId = 1;
+        $storeName = 'stopNshop';
 
         $categoryId = $resourceVals ['category'];
+
         if (isset($categoryId))
-            $result = $this-> getCategory($storeId, $categoryId);
+            $result = $this-> getCategory($storeName, $categoryId);
         else    
-            $result = $this-> getListOfAllCategories($storeId);
+            $result = $this-> getListOfAllCategories($storeName);
 
         if (!is_array($result)) {
             return array('code' => '6004');
@@ -115,7 +116,7 @@ class StoreResource implements Resource {
              
         $this -> category [] = $categoryObj-> toArray();
         
-        $logger -> debug ('Fetched list of category: ' . json_encode($this -> category);
+        $logger -> debug ('Fetched list of category: ' . json_encode($this -> category));
 
         return array('code' => '2000', 
                      'data' => array(
@@ -124,13 +125,13 @@ class StoreResource implements Resource {
             );
     }
 
-    private function getListOfAllCategories($storeId) {
+    private function getListOfAllCategories($storeName) {
         global $logger;
         $logger->debug('Fetch list of all categories...');
 
-        $listOfCategoryObjs = $this -> shopDAO -> readAllCategories($storeId);
+        $listOfCategoryObjs = $this -> categoryDAO -> getAllStoreCategories($storeName);
 
-        if(empty($listOfCatCgoryObjs)) 
+        if(empty($listOfCategoryObjs)) 
                 return array('code' => '2004');
 
         foreach ($listOfCategoryObjs as $categoryObj) {

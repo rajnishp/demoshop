@@ -181,6 +181,7 @@ class ProductsResource implements Resource {
         $maxStoreName = (int) $data['max_store_id'];*/
         $storeName = 'stopNshop';
         //$categoryName = 'Kitchen';
+        //$maxStoreName = 'stopNshop';
 
 
 		$productId = $resourceVals ['products'];
@@ -190,7 +191,7 @@ class ProductsResource implements Resource {
         elseif (isset($storeName) && isset($categoryName))
 			$result = $this-> getListOfAllProducts($storeName, $categoryName);
 
-        elseif (isset($storeName))
+        elseif (isset($maxStoreName))
             $result = $this-> getMaxProfitProducts($maxStoreName);
 
         else
