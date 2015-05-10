@@ -25,8 +25,8 @@ class HomeController {
 
 		echo "inside HomeController getAllStoreCategories Render </br>";
 		
-		var_dump($categories);
-		
+		echo $categories;
+
 		echo "inside HomeController readLatestStoreProducts Render </br>";
 		
 		var_dump( $this -> productDAO -> readLatestStoreProducts( $this -> storeName ) );
@@ -41,9 +41,60 @@ class HomeController {
 
 	function processCategories($categories){
 
-
-		return $categories;
+		 
+		/* "
+                  
+                        </li>
+                     
+                  </ul>
+               ;
+*/
+		return $this -> getCategroyTree ($categories, null, 0);
 	}
+
+	function getCategroyTree($categories, $parent, $level = 0){
+		
+		$categoriesTree = null;
+		
+		if ($level != 0)
+			$returnHtml = "<ul class='level$level'>";
+
+		for ($i=0; $i < count ($categories) ; $i++) { 
+			
+			if ( $categories[$i] -> getParentId() == null && $level == 0){
+				$returnHtml .= "<li onmouseover=\"Element.addClassName(this, 'over') \" onmouseout=\"Element.removeClassName(this, 'over') \" class='level0 nav-categories parent'>
+                  <span>". $categories[$i] -> getName ()."</span><span class='head'><a href='#' style='float:right;'></a></span>" .
+				 
+					$this -> getCategroyTree ($categories, $categories[$i], $level + 1 )
+
+					.
+					"</li>"
+					;
+			}
+			elseif ( $level != 0 && $categories[$i] -> getParentId() == $parent -> getId () ) {
+
+				$returnHtml .= "<li class='level". ($level + 1) ."  nav-categories-new-arrivals' >
+									<a href='http://venusdemo.com/magento/harvest/index.php/categories/new-arrivals.html'>
+									<span>".$categories[$i] -> getName () ."</span></a>
+                     ".
+				
+					$this -> getCategroyTree ($categories, $categories[$i], $level + 1)
+					.
+					"</li>"
+					;
+
+			}
+
+		}
+		
+		if ($level != 0)
+			$returnHtml .= "</ul>";
+
+		
+		return $returnHtml;
+
+
+	} 
 
 }
 
