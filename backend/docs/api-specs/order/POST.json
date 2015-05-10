@@ -1,0 +1,76 @@
+/order
+
+	POST "api.loc.cornershop.com/v0/order"
+
+	POST Data:
+
+		{   "root":
+			{
+            "address": 
+            	[
+                  {
+                    "phone": "8901414422",
+                    "address": "b3 302 Genesis new2",
+                    "order_time": "2015-04-09 15:17:21"
+                  }
+               ],
+             "cartProduct":
+                [
+                  {
+                    "product_id" : "544",
+                    "quantity" : "3"
+                  },
+                  {
+                    "product_id" : "565",
+                    "quantity" : "3"
+                  },
+                  {
+                    "product_id" : "567",
+                    "quantity" : "3"
+                  }
+               ]
+            }
+		}
+
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "2001",
+		        "message": "Post Created"
+		    },
+		    "data": {
+		        "order": [
+		            {
+		                "id": 20,
+		                "phone": "8901414422",
+		                "address": "b3 302 Genesis new2",
+		                "orderTime": "2015-04-09 15:17:21",
+		                "status": 0
+		            }
+		        ],
+		        "cart": [
+		            {
+		                "id": 21,
+		                "orderId": 20,
+		                "productId": "544",
+		                "quantity": "3",
+		                "status": 0
+		            },
+		            {
+		                "id": 22,
+		                "orderId": 20,
+		                "productId": "565",
+		                "quantity": "3",
+		                "status": 0
+		            },
+		            {
+		                "id": 23,
+		                "orderId": 20,
+		                "productId": "567",
+		                "quantity": "3",
+		                "status": 0
+		            }
+		        ]
+		    }
+		}

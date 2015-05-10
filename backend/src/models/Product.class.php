@@ -17,10 +17,11 @@
 		private $categoryId;
 		private $imageLink;
 		private $type;
+		private $lastUpdateTime;
 		
 		function __construct ($storeId, $name, $description, 
 								$sku, $pricebuy, $pricesell, 
-								$categoryId, $imageLink, $type, $id = null) {
+								$categoryId, $imageLink, $type, $lastUpdateTime, $id = null) {
 			$this -> id = $id;
 			$this -> storeId = $storeId;
 			$this -> name = $name;
@@ -31,6 +32,7 @@
 			$this -> categoryId = $categoryId;
 			$this -> imageLink = $imageLink;
 			$this -> type = $type;
+			$this -> lastUpdateTime = $lastUpdateTime;
 		}
 
 		function setId ($id) {
@@ -103,6 +105,12 @@
 			return $this -> type;
 		}
 
+		function setLastUpdateTime ($lastUpdateTime) {
+			$this -> lastUpdateTime = $lastUpdateTime;
+		}
+		function getLastUpdateTime () {
+			return $this -> lastUpdateTime;
+		}
 
 		function toString (){
 			return $this -> id . ", " . 
@@ -114,7 +122,8 @@
 					$this -> pricesell. ", " . 
 					$this -> categoryId. ", " . 
 					$this -> imageLink. ", " . 
-					$this -> type;
+					$this -> type. ", " . 
+					$this -> lastUpdateTime;
 		}
 		
 		function toArray() {
@@ -128,7 +137,8 @@
 						pricesell => $this-> pricesell,
 						categoryId => $this-> categoryId,
 						imageLink => $this-> imageLink,
-						type => $this-> type
+						type => $this-> type,
+						lastUpdateTime => $this-> lastUpdateTime
 				);
 		}
 	}

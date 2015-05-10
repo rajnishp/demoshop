@@ -61,8 +61,15 @@ class DAOFactory{
 	public static function getProductDAO(){
 		
 		require_once('ProductDAO.class.php');
+		require_once('CategoryDAO.class.php');
+		require_once('StoreDAO.class.php');
+		require_once('models/Store.class.php');
+		require_once('models/Category.class.php');
+		
 		require_once('models/Product.class.php');
 		require_once('mysql/ProductMySqlDAO.class.php');
+		require_once('mysql/CategoryMySqlDAO.class.php');
+		require_once('mysql/StoreMySqlDAO.class.php');
 		require_once('mysql/ext/ProductMySqlExtDAO.class.php');
 
 		return new ProductMySqlExtDAO();
