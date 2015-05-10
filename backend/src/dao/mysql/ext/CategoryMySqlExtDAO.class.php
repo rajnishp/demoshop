@@ -17,10 +17,11 @@ class CategoryMySqlExtDAO extends CategoryMySqlDAO{
 		$storeId = $storeArray['id'];
 		
 
-		$sql = "SELECT * FROM category WHERE store_id = '$storeId'";
+
+		$sql = "SELECT * FROM category WHERE store_id = ?";
 		$sqlQuery = new SqlQuery($sql);
-		//$sqlQuery->setNumber($id);
-		
+		$sqlQuery->set($storeId);
+		//var_dump($this->getList($sqlQuery)); exit;
 		return $this->getList($sqlQuery);
 	}
 }
