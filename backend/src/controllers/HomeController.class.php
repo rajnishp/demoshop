@@ -20,14 +20,21 @@ class HomeController {
 	}
 
 	function render (){
+		echo "inside HomeController Render </br>";
+		$categoris = processCategories( $categoryDAO -> getAllStoreCategories( $storeName ) );
 
-		$categoris = processCategories( $categoryDAO -> queryByStoreName( $storeName ) );
+		var_dump( $productDAO -> readLatestStoreProducts( $storeName ) );
+
+		var_dump( $productDAO -> readMaxProfitProducts( $storeName ) );
+		
+		var_dump($categoris);
 
 	}
 
-	function processCategories(){
+	function processCategories($categoris){
 
 
+		return $categoris;
 	}
 
 }

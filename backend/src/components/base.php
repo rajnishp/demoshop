@@ -6,7 +6,7 @@
 <!-- Mobile viewport optimized: h5bp.com/viewport -->
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Home Page</title>
+<title> <?= $title ?> </title>
 <meta name="description" content="Default Description" />
 <meta name="keywords" content="Corner shop, Varien, E-commerce" />
 <meta name="robots" content="INDEX,FOLLOW" />
@@ -23,7 +23,14 @@
       <?php 
       	//include_once 'static/components/sliderbar.php'
       ?>
-      <br /><br /><br />                                        
+      <br /><br /><br /> 
+
+
+
+
+
+
+
     <section id="columns" class="offcanvas-siderbars">
 	
 	<?php include_once 'components/sidebar.php'; ?>
