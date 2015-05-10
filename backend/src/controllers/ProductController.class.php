@@ -23,9 +23,9 @@ class ProductController {
 
 	function render (){
 
-		$categoris = processCategories( $categoryDAO -> getAllStoreCategories( $storeName ) );
+		$categoris = $this -> processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ) );
 
-		var_dump( $productDAO -> load( $productId ) );
+		var_dump( $this -> productDAO -> load( $this -> productId ) );
 
 		
 		var_dump($categoris);

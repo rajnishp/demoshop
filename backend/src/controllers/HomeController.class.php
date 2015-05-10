@@ -9,7 +9,7 @@ class HomeController {
 	private $categoryDAO;
 	private $productDAO;
 	private $storeName;
-	function __construct ( $storeName = "shopnshop"){
+	function __construct ( $storeName = "shopnshop" ){
 
 		$this -> storeName = $storeName;
 
@@ -21,20 +21,28 @@ class HomeController {
 
 	function render (){
 		echo "inside HomeController Render </br>";
-		$categoris = processCategories( $categoryDAO -> getAllStoreCategories( $storeName ) );
+		$categories = $this -> processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ) );
 
-		var_dump( $productDAO -> readLatestStoreProducts( $storeName ) );
-
-		var_dump( $productDAO -> readMaxProfitProducts( $storeName ) );
+		echo "inside HomeController getAllStoreCategories Render </br>";
 		
-		var_dump($categoris);
+		var_dump($categories);
+		
+		echo "inside HomeController readLatestStoreProducts Render </br>";
+		
+		var_dump( $this -> productDAO -> readLatestStoreProducts( $this -> storeName ) );
+
+		echo "inside HomeController readMaxProfitProducts Render </br>";
+		
+		var_dump( $this-> productDAO -> readMaxProfitProducts( $this -> storeName ) );
+		
+
 
 	}
 
-	function processCategories($categoris){
+	function processCategories($categories){
 
 
-		return $categoris;
+		return $categories;
 	}
 
 }

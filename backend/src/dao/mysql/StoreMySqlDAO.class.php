@@ -229,16 +229,6 @@ class StoreMySqlDAO implements StoreDAO{
 		
 		$store = new Store($row['name'], $row['login_id'], $row['password'], $row['address'],$row['latitude'], $row['longitude'], $row['type'], $row['last_update_time'], $row['id']);
 		
-		/*$store->id = $row['id'];
-		$store->name = $row['name'];
-		$store->loginId = $row['login_id'];
-		$store->password = $row['password'];
-		$store->address = $row['address'];
-		$store->latitude = $row['latitude'];
-		$store->longitude = $row['longitude'];
-		$store->type = $row['type'];
-		$store->lastUpdateTime = $row['last_update_time'];*/
-
 		return $store;
 	}
 	

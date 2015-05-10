@@ -9,13 +9,18 @@ class CategoryMySqlExtDAO extends CategoryMySqlDAO{
 
 	public function getAllStoreCategories($storeName){
 
-		$storeData = queryByStoreName($storeName);
+		$storeObj = new StoreMySqlDAO ();
+		$storeData = $storeObj -> queryByStoreName($storeName);
 		//returns store_id
-		$storeId = $storeData['store_id'];
+		$storeArray = $storeData[0] -> toArray();
 
-		$sql = 'SELECT * FROM category WHERE store_id = $storeId';
+		$storeId = $storeArray['id'];
+		
+
+		$sql = "SELECT * FROM category WHERE store_id = '$storeId'";
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
+		//$sqlQuery->setNumber($id);
+		
 		return $this->getList($sqlQuery);
 	}
 }

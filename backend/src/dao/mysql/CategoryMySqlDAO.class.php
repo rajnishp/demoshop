@@ -5,7 +5,7 @@
  * @author: http://phpdao.com
  * @date: 2015-05-07 14:44
  */
-require_once 'StoreMySqlDAO.class.php';
+//require_once 'StoreMySqlDAO.class.php';
 
 class CategoryMySqlDAO implements CategoryDAO{
 

@@ -3,7 +3,7 @@ include_once "controllers/HomeController.class.php";
 include_once "controllers/CategoryProductsController.class.php";
 include_once "controllers/OrderController.class.php";
 include_once "controllers/ProductController.class.php";
-include_once "components/base.php";
+//include_once "components/base.php";
 
 
 require_once 'utils/Util.php';
@@ -38,8 +38,8 @@ var_dump($route);
 
 
 if ( count($route) <= 2 ){
-	##$homeController = new HomeController($route[1]);
-	#$homeController -> render ();
+	$homeController = new HomeController($route[1]);
+	$homeController -> render ();
 }else {
 
 	switch ($route[2]) {
@@ -49,9 +49,9 @@ if ( count($route) <= 2 ){
 				$categoryProductsController = new CategoryProductsController($route[1], $route[3]);
 				$categoryProductsController -> render();
 
-			} else if ($route[5] == "product"){
+			} else if ($route[4] == "product"){
 				
-				$productController = new ProductController($route[1], $route[3], $route[6]);
+				$productController = new ProductController($route[1], $route[3], $route[5]);
 				$productController -> render ();
 			}
 

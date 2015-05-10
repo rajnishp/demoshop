@@ -38,7 +38,6 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 	}
 
 	public function readMaxProfitProducts($storeName){
-
 		$storeObj = new StoreMySqlDAO ();
 		$storeData = $storeObj -> queryByStoreName($storeName);
 		//returns store_id
@@ -48,7 +47,7 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 		$storeId = $storeArray['id'];
 
 		$sql = "SELECT * FROM product 
-					WHERE store_id = '$storeId'
+					WHERE store_id = '".$storeId."'
 						ORDER BY (pricesell-pricebuy) DESC LIMIT 0, 10";
 
 		$sqlQuery = new SqlQuery($sql);
@@ -66,7 +65,7 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 
 		$storeId = $storeArray['id'];
 
-		$sql = "SELECT * FROM product WHERE store_id = '$storeId' ORDER BY last_update_time DESC LIMIT 0,10'";
+		$sql = "SELECT * FROM product WHERE store_id = '$storeId' ORDER BY last_update_time DESC LIMIT 0,10";
 
 		$sqlQuery = new SqlQuery($sql);
 		//$sqlQuery->set($storeName);
