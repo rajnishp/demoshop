@@ -24,7 +24,6 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="css/bootswatch.css">	
   <link rel="stylesheet" href="css/jquery-dataTables.css">
   
-  <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
   
   <script data-main="js/main" src="js/libs/require/require.js"></script>
@@ -39,11 +38,9 @@ if (!isset($_SESSION['user_id'])) {
           <a href="#/messages" class="navbar-brand">
           	<img src ='imgs/mobeclogo.png' style="width:60px; height:40px"/>
           </a>
-          <a href="#/messages" class="navbar-brand">
-          		Mobac
+          <a href="" class="navbar-brand">
+          		Cornershop
           </a>
-          <a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
-          <a href='#/call-details' class="myclass" ><img src="imgs/callHis.jpeg" /> CallDetails </a>
           <!-- <a href='#/locations' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a> -->
           <a href='#/logout' class="myclass" id="logout"> </a>
         </div>
@@ -58,7 +55,7 @@ if (!isset($_SESSION['user_id'])) {
       </div>
       <div class='col-md-10' >
         <div id="page" style="width:100%; height:100%">
-          Loading Mobac UI....
+          Loading CornerShop UI....
 
         </div>   
       </div>
