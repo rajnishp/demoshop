@@ -117,47 +117,22 @@ class OrdersResource implements Resource {
         if( isset( $data['address']) ){
             foreach ($data['address'] as $key => $value) {
 
-                //$orderObj = $this -> orderDAO -> queryByPhone($value['phone']);
+                $orderObj = new Orders($value ['phone'], 
+                                        $value ['address'],
+                                        $value ['order_time'],
+                                        0,
+                                        0
+                                    );
+                $logger -> debug ("POSTed order: " . $orderObj -> toString());
 
-                //if(empty($orderObj)) {
-                    $orderObj = new Orders($value ['phone'], 
-                                            $value ['address'],
-                                            $value ['order_time'],
-                                            0,
-                                            0
-                                        );
-                    $logger -> debug ("POSTed order: " . $orderObj -> toString());
+                $this -> orderDAO -> insert($orderObj);
 
-                    $this -> orderDAO -> insert($orderObj);
+                $orderDetail = $orderObj -> toArray();
 
-                    $orderDetail = $orderObj -> toArray();
-
-                    $this -> order[] = $orderDetail;
-                    
-                    
-                /*}
-                else {
-                    $orderId = $orderObj[0] -> toArray();
-                    if( isset( $data['cartProduct']) ){
-                    
-                        foreach ($data['cartProduct'] as $key => $value) {
-
-                            $cartObj = new Cart($orderId,
-                                                $value ['product_id'],
-                                                $value ['quantity'],
-                                                0,
-                                                0
-                                            );
-                            $logger -> debug ("POSTed order cart Detail: " . $cartObj -> toString());
-
-                            $this -> cartDAO -> insert($cartObj);
-
-                            $cartDetail = $cartObj -> toArray();
-                        }
-                    }
-                }*/
+                $this -> order[] = $orderDetail;
             }
         }
+
         if (isset($orderDetail['id'])) {
             if( isset( $data['cartProduct']) ){
             
@@ -176,15 +151,7 @@ class OrdersResource implements Resource {
                     $cartDetail = $cartObj -> toArray();
 
                     $this -> cart[] = $cartDetail;
-
-                    
                 }
-
-                /*return array ('code' => '2001', 
-                    'data' => array(
-                        'cart' => $this -> cart
-                    )
-                );*/
             }
         }
         
@@ -196,17 +163,16 @@ class OrdersResource implements Resource {
                 'order' => $this -> order,
                 'cart' => $this -> cart
             )
-        );
-        
+        );    
     }
 
     public function get($resourceVals, $data) {
 		
-        $storeId = 1;
+        $storeId = 2;
 
 		$orderId = $resourceVals ['order'];
 		if (isset($orderId))
-			$result = $this-> getOrder($orderId, $storeId, $categoryId);
+			$result = $this-> getOrder($orderId, $storeId);
 		else	
 			$result = $this-> getListOfAllOrders($storeId);
 
@@ -217,11 +183,11 @@ class OrdersResource implements Resource {
 		return $result;
     }
 
-    private function getOrder($orderId, $storeId, $categoryId) {
+    private function getOrder($orderId, $storeId) {
 		global $logger;
 		$logger->debug('Fetch list of  order...');
 
-		$orderObj = $this -> orderDAO -> load($orderId, $categoryId);
+		$orderObj = $this -> orderDAO -> load($orderId);
 
         if(empty($orderObj)) 
                 return array('code' => '2004');
@@ -239,11 +205,11 @@ class OrdersResource implements Resource {
             );
     }
 
-    private function getListOfAllOrders($storeId, $categoryId) {
+    private function getListOfAllOrders($storeId) {
 		global $logger;
 		$logger->debug('Fetch list of all orders...');
 
-		$listOfOrderObjs = $this -> orderDAO -> readAll($storeId, $categoryId);
+		$listOfOrderObjs = $this -> orderDAO -> queryByStoreId($storeId);
 
         if(empty($listOfOrderObjs)) 
                 return array('code' => '2004');

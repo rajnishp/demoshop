@@ -57,10 +57,11 @@ class OrdersMySqlDAO implements OrdersDAO{
  	 * @param OrdersMySql order
  	 */
 	public function insert($order){
-		$sql = 'INSERT INTO orders (phone, address, order_time, status) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO orders (store_id, phone, address, order_time, status) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($order->getPhone());
+		$sqlQuery->setNumber($order->getStoreId());	
+		$sqlQuery->set($order->getPhone());
 		$sqlQuery->set($order->getAddress());
 		$sqlQuery->set($order->getOrderTime());
 		$sqlQuery->setNumber($order->getStatus());
@@ -76,15 +77,16 @@ class OrdersMySqlDAO implements OrdersDAO{
  	 * @param OrdersMySql order
  	 */
 	public function update($order){
-		$sql = 'UPDATE orders SET phone = ?, address = ?, order_time = ?, status = ? WHERE id = ?';
+		$sql = 'UPDATE orders SET store_id = ?, phone = ?, address = ?, order_time = ?, status = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($order->phone);
-		$sqlQuery->set($order->address);
-		$sqlQuery->set($order->orderTime);
-		$sqlQuery->setNumber($order->status);
+		$sqlQuery->setNumber($order->getStoreId());	
+		$sqlQuery->set($order->getPhone());
+		$sqlQuery->set($order->getAddress());
+		$sqlQuery->set($order->getOrderTime());
+		$sqlQuery->setNumber($order->getStatus());
 
-		$sqlQuery->setNumber($order->id);
+		$sqlQuery->setNumber($order->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -95,6 +97,13 @@ class OrdersMySqlDAO implements OrdersDAO{
 		$sql = 'DELETE FROM orders';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function queryByStoreId($value){
+		$sql = 'SELECT * FROM orders WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
 	}
 
 	public function queryByPhone($value){
@@ -125,6 +134,12 @@ class OrdersMySqlDAO implements OrdersDAO{
 		return $this->getList($sqlQuery);
 	}
 
+	public function deleteByStoreId($value){
+		$sql = 'DELETE FROM orders WHERE store_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
 
 	public function deleteByPhone($value){
 		$sql = 'DELETE FROM orders WHERE phone = ?';
@@ -163,7 +178,7 @@ class OrdersMySqlDAO implements OrdersDAO{
 	 */
 	protected function readRow($row){
 
-		$order = new Order($row['phone'], $row['address'], $row['order_time'], $row['status'], $row['id']);
+		$order = new Orders($row['store_id'], $row['phone'], $row['address'], $row['order_time'], $row['status'], $row['id']);
 		
 		/*$order->id = $row['id'];
 		$order->phone = $row['phone'];

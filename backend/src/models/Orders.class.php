@@ -8,13 +8,15 @@
 	class Orders{
 		
 		private $id;
+		private $storeId;
 		private $phone;
 		private $address;
 		private $orderTime;
 		private $status;
 
-		function __construct ($phone, $address, $orderTime, $status, $id = null) {
+		function __construct ( $storeId, $phone, $address, $orderTime, $status, $id = null) {
 			$this -> id = $id;
+			$this -> storeId = $storeId;
 			$this -> phone = $phone;
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
@@ -26,6 +28,13 @@
 		}
 		function getId () {
 			return $this -> id;
+		}
+
+		function setStoreId ($storeId) {
+			$this -> storeId = $storeId;
+		}
+		function getStoreId () {
+			return $this -> storeId;
 		}
 
 		function setPhone ($phone) {
@@ -58,6 +67,7 @@
 
 		function toString () {
 			return $this -> id . ", " . 
+					$this -> storeId . ", " . 
 					$this -> phone. ", " . 
 					$this -> address. ", " . 
 					$this -> orderTime. ", " . 
@@ -68,6 +78,7 @@
 		function toArray () {
 			return array (
 						id => $this-> id,
+						storeId => $this-> storeId,
 						phone => $this-> phone,
 						address => $this-> address,
 						orderTime => $this-> orderTime,
