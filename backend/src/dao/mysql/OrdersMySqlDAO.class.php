@@ -180,12 +180,6 @@ class OrdersMySqlDAO implements OrdersDAO{
 
 		$order = new Orders($row['store_id'], $row['phone'], $row['address'], $row['order_time'], $row['status'], $row['id']);
 		
-		/*$order->id = $row['id'];
-		$order->phone = $row['phone'];
-		$order->address = $row['address'];
-		$order->orderTime = $row['order_time'];
-		$order->status = $row['status'];*/
-
 		return $order;
 	}
 	

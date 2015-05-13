@@ -209,13 +209,13 @@ class OrdersResource implements Resource {
 		global $logger;
 		$logger->debug('Fetch list of all orders...');
 
-		$listOfOrderObjs = $this -> orderDAO -> queryByStoreId($storeId);
+		$listOfOrderObjs = $this -> orderDAO -> getStoreOrders($storeId);
 
         if(empty($listOfOrderObjs)) 
                 return array('code' => '2004');
 
         foreach ($listOfOrderObjs as $orderObj) {
-                $order = $orderObj -> toArray();
+                $order = $orderObj -> toArrayOrderItems();
                 $this -> orders [] = $order;
         }
         $logger -> debug ('Fetched list of orders: ' . json_encode($this -> orders));

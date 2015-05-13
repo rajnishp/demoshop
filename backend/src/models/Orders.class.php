@@ -13,14 +13,18 @@
 		private $address;
 		private $orderTime;
 		private $status;
+		private $carts;
 
-		function __construct ( $storeId, $phone, $address, $orderTime, $status, $id = null) {
+		function __construct ( $storeId, $phone, $address, $orderTime, $status, 
+								$carts = array(), $id = null) {
 			$this -> id = $id;
 			$this -> storeId = $storeId;
 			$this -> phone = $phone;
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
+			$this -> carts = $carts;
+
 		}
 
 		function setId ($id) {
@@ -65,6 +69,34 @@
 			return $this -> status;
 		}
 
+		function setProductName ($productName) {
+			$this -> productName = $productName;
+		}
+		function getProductName () {
+			return $this -> productName;
+		}
+
+		function setDescription ($description) {
+			$this -> description = $description;
+		}
+		function getDescription () {
+			return $this -> description;
+		}
+
+		function setPricesell ($pricesell) {
+			$this -> pricesell = $pricesell;
+		}
+		function getPricesell () {
+			return $this -> pricesell;
+		}
+
+		function setQuantity ($quantity) {
+			$this -> quantity = $quantity;
+		}
+		function getQuantity () {
+			return $this -> quantity;
+		}
+
 		function toString () {
 			return $this -> id . ", " . 
 					$this -> storeId . ", " . 
@@ -83,6 +115,18 @@
 						address => $this-> address,
 						orderTime => $this-> orderTime,
 						status => $this-> status
+				);
+		}
+
+		function toArrayOrderItems () {
+			return array (
+						id => $this-> id,
+						storeId => $this-> storeId,
+						phone => $this-> phone,
+						address => $this-> address,
+						orderTime => $this-> orderTime,
+						status => $this-> status,
+						carts => $this-> carts
 				);
 		}
 	}
