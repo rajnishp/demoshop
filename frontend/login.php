@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['store_admin_id'])) {
     header('Location: index.php');
     exit;
 }
@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id'])) {
 <html class="wf-myriadpro-n6-active wf-museosans-n3-active wf-museosans-n5-active wf-museosans-n7-active wf-myriadpro-n4-active wf-active">
 <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Mobac | Keep your mobile back</title>
+      <title>CornerShop</title>
       <link rel="stylesheet" type="text/css" href="css/validationEngine.css" media="screen" title="no title" charset="utf-8">
       <link rel="stylesheet" type="text/css" href="css/newLogin.css">
       <style type="text/css">.tk-museo-sans{font-family:"museo-sans",sans-serif;}.tk-myriad-pro{font-family:"myriad-pro",sans-serif;}</style>
@@ -25,8 +25,8 @@ if (isset($_SESSION['user_id'])) {
 	<article class="c-login-art">
     <section class="c-login-cont">
       <span id="login_success" class="c-logout-splash c-disp-none"></span>
-      <h2>Mobac Keep your mobile back</h2>
-      <span class="c-logo-head">Log In to Mobac</span>
+      <h2>CornerShop ............</h2>
+      <span class="c-logo-head">Log In to CornerShop</span>
       <form class="form_login" role='form' >
         <span class="c-login-sep">
           <label class="c-login-label" for="login__username">Username</label>

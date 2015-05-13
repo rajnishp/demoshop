@@ -1,0 +1,23 @@
+<h4>List of Categories on cornerShop</h4> <hr />
+<a href="#/new" class="btn btn-primary">New</a>
+  <br/><br/>
+  <table class="display" id='categoryTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th> ID</th><th>StoreId</th><th>Name</th><th>ParentId</th><th>ImageLink</th><th>Type</th><th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(categories, function(category) { %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.storeId %></td>
+          <td><%= category.parentId %></td>
+          <td><%= category.name %></td>
+          <td><%= category.imageLink %></td>
+          <td><%= category.type %></td>
+          <td><a class="btn" href="#/edit/<%= category.id %>">Edit</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

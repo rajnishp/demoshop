@@ -6,7 +6,6 @@
  * @date: 2015-05-06 23:52
  */
 class OrdersMySqlExtDAO extends OrdersMySqlDAO{
-
 	
 }
 ?>
