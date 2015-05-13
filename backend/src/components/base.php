@@ -23,7 +23,7 @@
       <?php 
       	//include_once 'static/components/sliderbar.php'
       ?>
-      <br /><br /><br /> 
+    
 
 
 
@@ -32,12 +32,13 @@
 
 
     <section id="columns" class="offcanvas-siderbars">
-if ($type == "order"){}
-else {	
+<?php if ($type == "order"){}
+else {	?>
 	<?php include_once 'components/sidebar.php'; ?>
 
-	<?php include_once 'components/productList.php' ?>
-			}							</div>
+	<?php include_once 'components/productList.php';
+  } ?>
+										</div>
 		
 
 			</div>

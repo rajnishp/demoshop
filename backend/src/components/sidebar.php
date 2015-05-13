@@ -37,11 +37,9 @@
                });  
             </script>
             <ul id="ves-accordion">
-            <?php foreach ($categories as $key => $value) {
-                
-            ?>
+            <?= $categories ?>
                <li onmouseover="Element.addClassName(this, 'over') " onmouseout="Element.removeClassName(this, 'over') " class="level0 nav-categories parent">
-                  <a href="http://venusdemo.com/magento/harvest/index.php/categories.html"><span>Categories</span></a><span class="head"><a href="#" style="float:right;"></a></span>
+                  <a href="http://venusdemo.com/magento/harvest/index.php/accessories-3.html"><span>Categories</span></a><span class="head"><a href="#" style="float:right;"></a></span>
                   <ul class="level0">
                      <li class="level1 nav-categories-new-arrivals">
                         <a href="http://venusdemo.com/magento/harvest/index.php/categories/new-arrivals.html"><span>New Arrivals</span></a>
@@ -57,7 +55,8 @@
                      </li>
                   </ul>
                </li>
-               <?php }?>
+              
+
                <li onmouseover="Element.addClassName(this, 'over') " onmouseout="Element.removeClassName(this, 'over') " class="level0 nav-accessories-3 parent">
                   <a href="http://venusdemo.com/magento/harvest/index.php/accessories-3.html"><span>Accessories</span></a><span class="head"><a href="#" style="float:right;"></a></span>
                   <ul class="level0">
@@ -75,57 +74,6 @@
                      </li>
                      <li class="level1 nav-accessories-3-blazers last">
                         <a href="http://venusdemo.com/magento/harvest/index.php/accessories-3/blazers.html"><span>Blazers</span></a>
-                     </li>
-                  </ul>
-               </li>
-               <li onmouseover="Element.addClassName(this, 'over') " onmouseout="Element.removeClassName(this, 'over') " class="level0 nav-services parent">
-                  <a href="http://venusdemo.com/magento/harvest/index.php/services.html"><span>Services</span></a><span class="head"><a href="#" style="float:right;"></a></span>
-                  <ul class="level0">
-                     <li class="level1 nav-services-eyewear">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/services/eyewear.html"><span>Eyewear</span></a>
-                     </li>
-                     <li class="level1 nav-services-jewelry">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/services/jewelry.html"><span>Jewelry</span></a>
-                     </li>
-                     <li class="level1 nav-services-shoes">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/services/shoes.html"><span>Shoes</span></a>
-                     </li>
-                     <li class="level1 nav-services-bags-luggage last">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/services/bags-luggage.html"><span>Bags &amp; Luggage</span></a>
-                     </li>
-                  </ul>
-               </li>
-               <li onmouseover="Element.addClassName(this, 'over') " onmouseout="Element.removeClassName(this, 'over') " class="level0 nav-decor parent">
-                  <a href="http://venusdemo.com/magento/harvest/index.php/decor.html"><span>Decor</span></a><span class="head"><a href="#" style="float:right;"></a></span>
-                  <ul class="level0">
-                     <li class="level1 nav-decor-books-music">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/decor/books-music.html"><span>Books &amp; Music</span></a>
-                     </li>
-                     <li class="level1 nav-decor-bed-bath">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/decor/bed-bath.html"><span>Bed &amp; Bath</span></a>
-                     </li>
-                     <li class="level1 nav-decor-electronics">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/decor/electronics.html"><span>Electronics</span></a>
-                     </li>
-                     <li class="level1 nav-decor-decorative-accents last">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/decor/decorative-accents.html"><span>Decorative Accents</span></a>
-                     </li>
-                  </ul>
-               </li>
-               <li onmouseover="Element.addClassName(this, 'over') " onmouseout="Element.removeClassName(this, 'over') " class="level0 nav-sale parent">
-                  <a href="http://venusdemo.com/magento/harvest/index.php/sale.html"><span>Sale</span></a><span class="head"><a href="#" style="float:right;"></a></span>
-                  <ul class="level0">
-                     <li class="level1 nav-sale-women">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/sale/women.html"><span>Women</span></a>
-                     </li>
-                     <li class="level1 nav-sale-men">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/sale/men.html"><span>Men</span></a>
-                     </li>
-                     <li class="level1 nav-sale-accessories">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/sale/accessories.html"><span>Accessories</span></a>
-                     </li>
-                     <li class="level1 nav-sale-home-decor last">
-                        <a href="http://venusdemo.com/magento/harvest/index.php/sale/home-decor.html"><span>Home &amp; Decor</span></a>
                      </li>
                   </ul>
                </li>

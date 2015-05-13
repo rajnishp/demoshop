@@ -34,7 +34,7 @@ $logger -> enabled = true;
 $logger -> debug ("Setting up ...");
 
 $route = explode("/",$_SERVER[REQUEST_URI]);
-var_dump($route);
+//var_dump($route);
 
 
 if ( count($route) <= 2 ){
