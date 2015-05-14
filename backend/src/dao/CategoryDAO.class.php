@@ -51,7 +51,6 @@ interface CategoryDAO{
 	 */
 	public function clean();
 
-	public function queryByStoreId($value);
 
 	public function queryByCategoryName($value);
 
@@ -62,7 +61,7 @@ interface CategoryDAO{
 	public function queryByType($value);
 
 
-	public function deleteByStoreId($value);
+	
 
 	public function deleteByName($value);
 

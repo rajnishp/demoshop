@@ -4,7 +4,7 @@ define([
   'backbone',
   'models/category/CategoryModel',
   'text!templates/category/categoryEditTemplate.html'
-  ], function($, _, Backbone, categoryModel, categoryEditTemplate){
+  ], function($, _, Backbone, CategoryModel, categoryEditTemplate){
 
     var CategoryEditView = Backbone.View.extend({
 
@@ -17,7 +17,7 @@ define([
     initialize : function() {
 
       var that = this;
-      console.log("i am in CategoryEditViehnjsldnhlkjdfnhgjhgjknh");
+      console.log("i am in CategoryEditView.............");
       that.bind("reset", that.clearView);
     },
 
@@ -28,9 +28,10 @@ define([
       var categoryDetails = {};
         //console.log(ev.currentTarget);
         categoryDetails.root = $(ev.currentTarget).serializeObject1();
+        //console.log(serializeObject1());
 
-        if(this.categories != null)
-          var category = new CategoryModel({id: this.categories.id});
+        if(this.category != null)
+          var category = new CategoryModel({id: this.category.id});
         else
           var category = new CategoryModel({id: null});
         

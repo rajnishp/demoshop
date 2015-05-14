@@ -15,15 +15,23 @@
        
        <tr>
         <td> Category Name:</td>
-        <td>  <input name="category_name" class="input-block-level" type="text" value="<%= category ? category.name : '' %>">
+        <td>  <input name="name" class="input-block-level" type="text" value="<%= category ? category.name : '' %>">
         </td>
         <tr>
+        
+
+        <td> Parent Category:
+        </td>
+        <td>
+          <input name="parent_id" class="input-block-level" type="text" value="<%= category ? category.category_id : '' %>">
+        </td>
+
         <td> Image:
         </td>
         <td>
           <input name="image_link" class="input-block-level" type="text" value="<%= category ? category.image_link : '' %>">
-          </td>
-
+        </td>
+        
         <td> Type:
         </td>
         <td>

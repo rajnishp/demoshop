@@ -114,7 +114,7 @@
 						address => $this-> address,
 						orderTime => $this-> orderTime,
 						status => $this-> status,
-						carts => $cartObj -> toArrayCart						
+						carts => $this-> carts						
 					);
 		}
 

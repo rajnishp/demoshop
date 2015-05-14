@@ -25,9 +25,10 @@ define([
             'deliveredOrder/:id': 'showDeliveredOrder',
             
             'store/:storeName/category/': 'shoreCategories',
-            'product/': 'editCategory',
-            'edit/:id': 'editOrder',
-            'new': 'editOrder',
+            'edit/:id': 'editCategory',
+            //'edit/:id': 'editOrder',
+            'new': 'editCategory',
+            //'new': 'editOrder',
             // Default
             '*actions': 'defaultAction'
 
@@ -43,11 +44,11 @@ define([
 
             // We have no matching route, lets display the home page
             console.log("defaultAction");
-            //var categoryListView = new CategoryListView();
-            var ordersListView = new OrdersListView();
+            var categoryListView = new CategoryListView();
+            //var ordersListView = new OrdersListView();
             //var productsListView = new ProductsListView();
-            //categoryListView.render();
-            ordersListView.render();
+            categoryListView.render();
+            //ordersListView.render();
         });
 
         var categoryEditView = new CategoryEditView();
