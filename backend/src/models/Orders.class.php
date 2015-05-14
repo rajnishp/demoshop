@@ -5,8 +5,10 @@
      	 * @author: rajnish
      	 * @date: 2015-05-05 16:53	 
 	 */
+	require_once 'Cart.class.php';
+
 	class Orders{
-		
+
 		private $id;
 		private $storeId;
 		private $phone;
@@ -17,15 +19,20 @@
 
 		function __construct ( $storeId, $phone, $address, $orderTime, $status, 
 								$carts = array(), $id = null) {
+			
+			$cartObj = new Cart();
+
 			$this -> id = $id;
 			$this -> storeId = $storeId;
 			$this -> phone = $phone;
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
-			$this -> carts = $carts;
+			$this -> carts = $cartObj -> toArrayCart;
 
 		}
+
+		
 
 		function setId ($id) {
 			$this -> id = $id;
@@ -69,34 +76,14 @@
 			return $this -> status;
 		}
 
-		function setProductName ($productName) {
-			$this -> productName = $productName;
+		function setCarts ($carts) {
+			$this -> carts = $carts;
 		}
-		function getProductName () {
-			return $this -> productName;
-		}
-
-		function setDescription ($description) {
-			$this -> description = $description;
-		}
-		function getDescription () {
-			return $this -> description;
+		function getCarts () {
+			return $this -> carts;
 		}
 
-		function setPricesell ($pricesell) {
-			$this -> pricesell = $pricesell;
-		}
-		function getPricesell () {
-			return $this -> pricesell;
-		}
-
-		function setQuantity ($quantity) {
-			$this -> quantity = $quantity;
-		}
-		function getQuantity () {
-			return $this -> quantity;
-		}
-
+		
 		function toString () {
 			return $this -> id . ", " . 
 					$this -> storeId . ", " . 
@@ -118,6 +105,7 @@
 				);
 		}
 
+		
 		function toArrayOrderItems () {
 			return array (
 						id => $this-> id,
@@ -126,8 +114,10 @@
 						address => $this-> address,
 						orderTime => $this-> orderTime,
 						status => $this-> status,
-						carts => $this-> carts
-				);
+						carts => $cartObj -> toArrayCart						
+					);
 		}
+
 	}
+	
 ?>

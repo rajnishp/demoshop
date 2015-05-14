@@ -7,18 +7,25 @@
 	 */
 	class Cart{
 		
-		var $id;
-		var $orderId;
-		var $productId;
-		var $quantity;
-		var $status;
+		private $id;
+		private $orderId;
+		private $productId;
+		private $quantity;
+		private $status;
+
+		private $productName;
+		private $description;
+		private $pricesell;
 		
-		function __construct ($orderId, $productId, $quantity, $status, $id = null) {
+		function __construct ($orderId, $productId, $quantity, $status, $productName, $description, $pricesell, $id = null) {
 			$this -> id = $id;
 			$this -> orderId = $orderId;
 			$this -> productId = $productId;
 			$this -> quantity = $quantity;
 			$this -> status = $status;
+			$this -> productName = $productName;
+			$this -> description = $description;
+			$this -> pricesell = $pricesell;
 		}
 
 		function setId ($id) {
@@ -56,6 +63,29 @@
 			return $this -> status;
 		}
 
+		function setProductName ($productName) {
+			$this -> productName = $productName;
+		}
+		function getProductName () {
+			return $this -> productName;
+		}
+
+		function setDescription ($description) {
+			$this -> description = $description;
+		}
+		function getDescription () {
+			return $this -> description;
+		}
+
+		function setPricesell ($pricesell) {
+			$this -> pricesell = $pricesell;
+		}
+		function getPricesell () {
+			return $this -> pricesell;
+		}
+
+
+
 		function toString () {
 			return $this -> id . ", " . 
 					$this -> orderId. ", " . 
@@ -64,6 +94,22 @@
 					$this -> status;
 
 		}
+
+
+		function toArrayCart () {
+			return array (
+						productName => $this-> productName,
+						pricesell => $this-> pricesell,
+						quantity => $this-> quantity,
+						description => $this-> description
+				);
+		}
+
+		/*$toArrayCart = array (productName => $this-> productName,
+						pricesell => $this-> pricesell,
+						quantity => $this-> quantity,
+						description => $this-> description
+						);*/
 
 
 		function toArray () {

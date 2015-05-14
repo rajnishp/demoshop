@@ -214,6 +214,7 @@ class OrdersResource implements Resource {
         if(empty($listOfOrderObjs)) 
                 return array('code' => '2004');
 
+        //var_dump($listOfOrderObjs); exit;
         foreach ($listOfOrderObjs as $orderObj) {
                 $order = $orderObj -> toArrayOrderItems();
                 $this -> orders [] = $order;
