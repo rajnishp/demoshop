@@ -105,12 +105,6 @@
 				);
 		}
 
-		/*$toArrayCart = array (productName => $this-> productName,
-						pricesell => $this-> pricesell,
-						quantity => $this-> quantity,
-						description => $this-> description
-						);*/
-
 
 		function toArray () {
 			return array (

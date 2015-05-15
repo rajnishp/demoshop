@@ -20,7 +20,7 @@
 		function __construct ( $storeId, $phone, $address, $orderTime, $status, 
 								$carts = array(), $id = null) {
 			
-			$cartObj = new Cart();
+			
 
 			$this -> id = $id;
 			$this -> storeId = $storeId;
@@ -28,7 +28,7 @@
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
-			$this -> carts = $cartObj -> toArrayCart;
+			$this -> carts = $carts;
 
 		}
 
@@ -77,6 +77,8 @@
 		}
 
 		function setCarts ($carts) {
+
+
 			$this -> carts = $carts;
 		}
 		function getCarts () {
@@ -107,6 +109,8 @@
 
 		
 		function toArrayOrderItems () {
+			$cartObj = new Cart();
+			$cartItems = $cartObj -> toArrayCart();
 			return array (
 						id => $this-> id,
 						storeId => $this-> storeId,
@@ -114,7 +118,7 @@
 						address => $this-> address,
 						orderTime => $this-> orderTime,
 						status => $this-> status,
-						carts => $this-> carts						
+						carts => $cartItems				
 					);
 		}
 

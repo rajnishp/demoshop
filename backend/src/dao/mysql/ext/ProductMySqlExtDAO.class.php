@@ -73,5 +73,13 @@ class ProductMySqlExtDAO extends ProductMySqlDAO{
 		return $this->getList($sqlQuery);
 	}
 
+
+	public function querySearchProduct($productName){
+		$sql = "SELECT * FROM product WHERE name like '%' ? '%'";
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($productName);
+		return $this->getList($sqlQuery);
+	}
+
 }
 ?>

@@ -21,13 +21,13 @@ define([
         routes: {
             // Define some URL routes
             
-            'deliveredOrder': 'deliveredOrder',
+            /*'deliveredOrder': 'deliveredOrder',
             'deliveredOrder/:id': 'showDeliveredOrder',
             
-            'store/:storeName/category/': 'shoreCategories',
+            'store/:storeName/category/': 'shareCategories',
             'edit/:id': 'editCategory',
             //'edit/:id': 'editOrder',
-            'new': 'editCategory',
+            'new': 'editCategory',*/
             //'new': 'editOrder',
             // Default
             '*actions': 'defaultAction'
@@ -44,21 +44,21 @@ define([
 
             // We have no matching route, lets display the home page
             console.log("defaultAction");
-            var categoryListView = new CategoryListView();
-            //var ordersListView = new OrdersListView();
+            //var categoryListView = new CategoryListView();
+            var ordersListView = new OrdersListView();
             //var productsListView = new ProductsListView();
-            categoryListView.render();
-            //ordersListView.render();
+            //categoryListView.render();
+            ordersListView.render();
         });
 
-        var categoryEditView = new CategoryEditView();
+        /*var categoryEditView = new CategoryEditView();
         app_router.on('route:editCategory', function (id) {
             
             // We have no matching route, lets display the home page
             console.log("edit categoryEditView");
 
             categoryEditView.render({id: id});
-        });
+        });*/
 
         /*app_router.on('route:editOrder', function (id) {
             var orderEditView = new OrdersEditView();

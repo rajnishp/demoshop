@@ -54,6 +54,10 @@ class DAOFactory{
 
 		require_once('OrdersDAO.class.php');
 		require_once('models/Orders.class.php');
+
+		require_once('CartDAO.class.php');
+		require_once('models/Cart.class.php');
+		
 		require_once('mysql/OrdersMySqlDAO.class.php');
 		require_once('mysql/ext/OrdersMySqlExtDAO.class.php');
 		

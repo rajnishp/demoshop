@@ -6,6 +6,7 @@
 require_once 'resources/Resource.interface.php';
 require_once 'dao/DAOFactory.class.php';
 require_once 'models/Orders.class.php';
+require_once 'models/Cart.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
@@ -187,20 +188,20 @@ class OrdersResource implements Resource {
 		global $logger;
 		$logger->debug('Fetch list of  order...');
 
-		$orderObj = $this -> orderDAO -> load($orderId);
-
+		$orderObj = $this -> orderDAO -> loadOrder($orderId);
+//var_dump($orderObj); exit;
         if(empty($orderObj)) 
                 return array('code' => '2004');
 
         
              
-        $this -> orders [] = $orderObj-> toArray();
+        $this -> order [] = $orderObj-> toArrayOrderItems();
         
-        $logger -> debug ('Fetched list of order: ' . json_encode($this -> orders));
+        $logger -> debug ('Fetched order: ' . json_encode($this -> order));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'orders' => $this -> orders
+                                'order' => $this -> order
                             )
             );
     }
@@ -214,7 +215,7 @@ class OrdersResource implements Resource {
         if(empty($listOfOrderObjs)) 
                 return array('code' => '2004');
 
-        var_dump($listOfOrderObjs); exit;
+        //var_dump($listOfOrderObjs); exit;
         foreach ($listOfOrderObjs as $orderObj) {
                 $order = $orderObj -> toArrayOrderItems();
                 $this -> orders [] = $order;

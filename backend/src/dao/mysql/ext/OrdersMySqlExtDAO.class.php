@@ -7,15 +7,17 @@
  */
 class OrdersMySqlExtDAO extends OrdersMySqlDAO{
 	
+	public function loadOrder($orderId){
+		
+		$sql = 'SELECT * FROM orders WHERE id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($orderId);
+	
+		return $this-> getRowOrder($sqlQuery);
+	}
+
 	public function getStoreOrders($storeId){
-		/*$sql = 'SELECT orders.* , product.name, product.description, product.pricesell, cart.quantity
-					FROM orders AS orders
-						JOIN cart AS cart
-							JOIN product AS product
-					WHERE orders.store_id = ?
-						AND orders.id = cart.order_id
-						AND cart.product_id = product.id
-						LIMIT 0 , 30';*/
+		
 		$sql = 'SELECT * FROM orders WHERE store_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($storeId);
@@ -31,17 +33,18 @@ class OrdersMySqlExtDAO extends OrdersMySqlDAO{
 		$sql = 'SELECT * FROM cart as cart JOIN product as product 
 					WHERE cart.order_id = ? AND cart.product_id = product.id';
 		$orderId = $row['id'];
-
-		try {
-			$sqlQuery = new SqlQuery($sql);
-			$sqlQuery->set($orderId);
-			$orderItems[$orderId] = $this->getListCartItems($sqlQuery);	
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($orderId);
+		
+		try {	
+			$orderItems = $this->getListCartItems($sqlQuery);	
 		} catch (Exception $e) {	}
 		
+		//var_dump($orderItems1); exit;
 		
-		$row['cart'] = $orderItems;
+		$row['carts'] = $orderItems;
 	
-		$orders = new Orders($row['store_id'], $row['phone'], $row['address'], $row['order_time'], $row['status'], $row['cart'], $row['id']);
+		$orders = new Orders($row['store_id'], $row['phone'], $row['address'], $row['order_time'], $row['status'], $row['carts'], $row['id']);
 		
 		return $orders;
 	}
@@ -58,7 +61,7 @@ class OrdersMySqlExtDAO extends OrdersMySqlDAO{
 
 	protected function readRowCartItems($row) {
 
-		$orderItems = new Cart(0,0,$row['quantity'],0, $row['name'], $row['pricesell'],  $row['description'], $row['id']);
+		$orderItems = new Cart(0,0,$row['quantity'],0, $row['name'], $row['description'], $row['pricesell'], $row['id']);
 
 		return $orderItems;
 	
@@ -72,6 +75,19 @@ class OrdersMySqlExtDAO extends OrdersMySqlDAO{
 		}
 		
 		return $ret;
+	}
+
+	/**
+	 * Get row
+	 *
+	 * @return OrdersMySql 
+	 */
+	protected function getRowOrder($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		if(count($tab)==0){
+			return null;
+		}
+		return $this->readRowOrders($tab[0]);		
 	}
 }
 ?>

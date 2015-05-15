@@ -179,6 +179,7 @@ class ProductsResource implements Resource {
         /*$storeName = (int) $data['store_id'];
         $categoryName = (int) $data['category_id'];
         $maxStoreName = (int) $data['max_store_id'];*/
+        $productName = $data['search_product'];
         $storeName = 'stopNshop';
         //$categoryName = 'Kitchen';
         //$maxStoreName = 'stopNshop';
@@ -193,6 +194,9 @@ class ProductsResource implements Resource {
 
         elseif (isset($maxStoreName))
             $result = $this-> getMaxProfitProducts($maxStoreName);
+
+        elseif (isset($productName))
+            $result = $this-> getListSearchProducts($productName);     
 
         else
             $result = $this-> getLatestProducts($storeName);
@@ -283,6 +287,28 @@ class ProductsResource implements Resource {
                 $this -> products [] = $product;
         }
         $logger -> debug ('Fetched list of latest products: ' . json_encode($this -> products));
+
+        return array('code' => '2000', 
+                     'data' => array(
+                                'products' => $this -> products
+                            )
+            );
+    }
+
+    private function getListSearchProducts($productName) {
+        global $logger;
+        $logger->debug('Fetch list of all searched products...');
+
+        $listOfProductObjs = $this -> productDAO -> querySearchProduct($productName);
+
+        if(empty($listOfProductObjs))
+                return array('code' => '2004');
+
+        foreach ($listOfProductObjs as $productObj) {
+                $product = $productObj -> toArray();
+                $this -> products [] = $product;
+        }
+        $logger -> debug ('Fetched list of all searched products...' . json_encode($this -> products));
 
         return array('code' => '2000', 
                      'data' => array(
