@@ -5,8 +5,7 @@
      	 * @author: rajnish
      	 * @date: 2015-05-05 16:53	 
 	 */
-	require_once 'Cart.class.php';
-
+	
 	class Orders{
 
 		private $id;
@@ -17,8 +16,7 @@
 		private $status;
 		private $carts;
 
-		function __construct ( $storeId, $phone, $address, $orderTime, $status, 
-								$carts = array(), $id = null) {
+		function __construct ( $storeId, $phone, $address, $orderTime, $status,$id = null) {
 			
 			
 
@@ -28,7 +26,7 @@
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
-			$this -> carts = $carts;
+			
 
 		}
 
@@ -109,8 +107,12 @@
 
 		
 		function toArrayOrderItems () {
-			$cartObj = new Cart();
-			$cartItems = $cartObj -> toArrayCart();
+
+			$cartItems = array();
+			foreach ($this -> carts as $key => $cart) {
+				$cartItems [] = $cart -> toArray();	
+			}
+			
 			return array (
 						id => $this-> id,
 						storeId => $this-> storeId,

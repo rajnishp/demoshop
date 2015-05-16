@@ -189,14 +189,13 @@ class OrdersResource implements Resource {
 		$logger->debug('Fetch list of  order...');
 
 		$orderObj = $this -> orderDAO -> loadOrder($orderId);
-//var_dump($orderObj); exit;
         if(empty($orderObj)) 
                 return array('code' => '2004');
 
         
              
         $this -> order [] = $orderObj-> toArrayOrderItems();
-        
+       
         $logger -> debug ('Fetched order: ' . json_encode($this -> order));
 
         return array('code' => '2000', 
@@ -217,8 +216,8 @@ class OrdersResource implements Resource {
 
         //var_dump($listOfOrderObjs); exit;
         foreach ($listOfOrderObjs as $orderObj) {
-                $order = $orderObj -> toArrayOrderItems();
-                $this -> orders [] = $order;
+                $this -> orders [] = $orderObj -> toArrayOrderItems();
+                
         }
         $logger -> debug ('Fetched list of orders: ' . json_encode($this -> orders));
 

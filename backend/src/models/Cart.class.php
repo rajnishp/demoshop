@@ -109,10 +109,14 @@
 		function toArray () {
 			return array (
 						id => $this-> id,
-						orderId => $this-> orderId,
 						productId => $this-> productId,
 						quantity => $this-> quantity,
-						status => $this-> status
+						status => $this-> status,
+						productName => $this-> productName,
+						pricesell => $this-> pricesell,
+						quantity => $this-> quantity,
+						description => $this-> description
+
 				);
 		}
 	}
