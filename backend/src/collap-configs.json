@@ -29,8 +29,9 @@
         }, 
         "expiry": 86400
     },
+
     "nucleus_backend" : "/var/www/capillary/nucleus/backend/src/",
-    "INTOUCH_BASE_URL" : "http://api.capillary.co.in/v1.1/",
+    "CARTATHOME_BASE_URL" : "http://http://shop.dpower4.com/",
     "NUCLEUS_BASE_URL" : "http://nucleus.capillary.in/v0/",
     "NUCLEUS_VERSION"  : "v0",
     "NUCLEUS_DOMAIN" : "nucleus.capillary.in"

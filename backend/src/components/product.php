@@ -2,13 +2,13 @@
 								<div class="breadcrumbs">
 									<ol class="breadcrumb" >
 										<li class="home" >
-											<a href="http://venusdemo.com/magento/harvest/index.php/" title="Zur Startseite gehen">Startseite</a>
+											<a href="<?= $HOME. "/". $this -> storeName  ?>" title="Home">Home</a>
 										</li>
 										<li class="category4">
-											<a href="http://venusdemo.com/magento/harvest/index.php/categories.html" title="">Categories</a>
+											<a href="<?php echo $HOME . "/". $this -> storeName ."/category/" . $this -> categorisName; ?>" title=""><?= $this -> categorisName ?> </a>
 										</li>
 										<li class="product">
-											<strong>Quisque in arcu</strong>
+											<strong><?= $product -> getName(); ?></strong>
 										</li>
 									</ol>
 								</div>
@@ -28,19 +28,19 @@
 												<div class="row">
 													<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 image-container product-img-box">
 														<div class="image">
-															<span class="onsale"><span>Verkauf</span></span>
-															<span class="new-icon"><span>Neu</span></span>
-															<a href="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" title="Quisque in arcu" class="colorbox">
-															<img id="image" itemprop="image" src="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/image/378x378/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" alt="Quisque in arcu" title="Quisque in arcu" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" class="product-image-zoom img-responsive"/>        </a>
+															<span class="onsale"><span>Sale</span></span>
+															<span class="new-icon"><span>New</span></span>
+															<a href="<?= $product -> getImageLink() ?>" title="<?= $product -> getName(); ?>" class="colorbox">
+															<img id="image" itemprop="image" src="<?= $product -> getImageLink() ?>" alt="<?= $product -> getName(); ?>" title="<?= $product -> getName(); ?>" data-zoom-image="<?= $product -> getName(); ?>" class="product-image-zoom img-responsive"/>        </a>
 														</div>
 														<div id="image-additional" class="image-additional slide carousel more-views">
 															<div class="carousel-inner" id="image-gallery-zoom">
 																<div class="item row clearfix">
 																	<a class="colorbox cboxElement col-xs-3" href="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/5/x5.png" title="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/5/x5.png" data-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/378x378/9df78eab33525d08d6e5fb8d27136e95/x/5/x5.png">
-																	<img src="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/87x87/9df78eab33525d08d6e5fb8d27136e95/x/5/x5.png"  title="" alt="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/5/x5.png" class="product-image-zoom img-responsive" />
+																	<img src="<?= $product -> getImageLink() ?>"  title="" alt="" data-zoom-image="<?= $product -> getImageLink() ?>" class="product-image-zoom img-responsive" />
 																	</a>
 																	<a class=" col-xs-3" href="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/4/x4_1.png" title="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/4/x4_1.png" data-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/378x378/9df78eab33525d08d6e5fb8d27136e95/x/4/x4_1.png">
-																	<img src="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/87x87/9df78eab33525d08d6e5fb8d27136e95/x/4/x4_1.png"  title="" alt="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/4/x4_1.png" class="product-image-zoom img-responsive" />
+																	<img src="<?= $product -> getImageLink() ?>"  title="" alt="" data-zoom-image="<?= $product -> getImageLink() ?>" class="product-image-zoom img-responsive" />
 																	</a>
 																	<a class="colorbox cboxElement col-xs-3" href="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" title="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" data-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/378x378/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png">
 																	<img src="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/87x87/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png"  title="" alt="" data-zoom-image="http://venusdemo.com/magento/harvest/media/catalog/product/cache/3/thumbnail/9df78eab33525d08d6e5fb8d27136e95/x/6/x6.png" class="product-image-zoom img-responsive" />
@@ -107,24 +107,12 @@
 															//--></script> 
 													</div>
 													<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-shop product-view">
-														<h1 itemprop="name">Quisque in arcu</h1>
-														<div class="review">
-															<div class="ratings">
-																<div class="rating-box">
-																	<div class="rating"></div>
-																</div>
-																<span class="separator">|</span>
-																<p class="rating-links">
-																	<a href="http://venusdemo.com/magento/harvest/index.php/review/product/list/id/22/category/4/">0 Review</a>
-																	<span class="separator">|</span>
-																	<a class="add-review" href="http://venusdemo.com/magento/harvest/index.php/review/product/list/id/22/category/4/#review-form">Eigenes Review hinzufügen</a>
-																</p>
-															</div>
-														</div>
+														<h1 itemprop="name"><?= $product -> getName() ?></h1>
+														
 														<div class="description" itemprop="description">
 															<div class="short-description">
 																<h2>Schnellübersicht</h2>
-																<div class="std">Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis. </div>
+																<div class="std"><?= $product -> getDescription() ?> </div>
 															</div>
 															<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 																<meta itemprop="priceCurrency" content="USD"/>
@@ -137,12 +125,12 @@
 																		<p class="old-price">
 																			<span class="price-label">Regulärer Preis:</span>
 																			<span class="price" id="old-price-22">
-																			120,00 $                </span>
+																			     <?= $product -> getPricesell() ?> Rs          </span>
 																		</p>
 																		<p class="special-price">
 																			<span class="price-label">Special Price</span>
 																			<span class="price" id="product-price-22">
-																			110,00 $                </span>
+																			<?= $product -> getPricesell() ?> Rs                </span>
 																		</p>
 																		<meta content="USD" itemprop="currency"/>
 																		<meta content="110" itemprop="price"/>
@@ -164,12 +152,9 @@
 																			</div> -->
 																	</div>
 																</div>
-																<button type="button" title="Zum Warenkobrn hinzufügen" class="btn button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span>Zum Warenkobrn hinzufügen</span></span></button>
-																<div class="add-to-links action">
-																	<div> <a href="http://venusdemo.com/magento/harvest/index.php/wishlist/index/add/product/22/form_key/Qc95WkBksJV51fI6/" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="wishlist">Wunschzettel</a></div>
-																	<div> <a href="http://venusdemo.com/magento/harvest/index.php/catalog/product_compare/add/product/22/uenc/aHR0cDovL3ZlbnVzZGVtby5jb20vbWFnZW50by9oYXJ2ZXN0L2luZGV4LnBocC9xdWlzcXVlLWluLWFyY3UuaHRtbA,,/form_key/Qc95WkBksJV51fI6/" class="compare">Vergleichen</a></div>
-																	<!--    <div> <a href="http://venusdemo.com/magento/harvest/index.php/sendfriend/product/send/id/22/cat_id/4/" class="email-friend">E-Mail an einen Freund</a></div> -->
-																</div>
+																<button type="button" title="Zum Warenkobrn hinzufügen" class="btn button btn-cart" onclick="productAddToCartForm.submit(this)"><span>
+																<span>Add to Cart</span></span></button>
+																
 															</div>
 														</div>
 													</div>
@@ -228,7 +213,7 @@
 											</script>
 										</div>
 									</div>
-									<div class="tabs-group block row-fuild product-collateral">
+								<?php /*	<div class="tabs-group block row-fuild product-collateral">
 										<div id="tabs" class="htabs col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<ul class="nav nav-tabs clearfix">
 												<li> <a href="#tab-description">Description</a> </li>
@@ -1030,7 +1015,8 @@
 									</script>
 									<script type="text/javascript">
 										jQuery('#tabs a').tabs();
-									</script> 
+									</script>
+									*/ ?> 
 									<div id="map-popup" class="map-popup" style="display:none;">
 										<a href="#" class="map-popup-close" id="map-popup-close">x</a>
 										<div class="map-popup-arrow"></div>

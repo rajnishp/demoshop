@@ -3,6 +3,7 @@
 require_once 'dao/DAOFactory.class.php';
 //require_once 'components/xxx.class.php';
 //require_once '.class.php';
+include_once "controllers/HomeController.class.php";
 
 class CategoryProductsController {
 
@@ -22,7 +23,8 @@ class CategoryProductsController {
 
 	function render (){
 
-		$categories = $this -> processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ) );
+		$categories = HomeController :: processCategories(
+		 $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ), $this -> storeName  );
 
 		$categoriesProducts = $this -> productDAO -> readAllProducts( $this -> storeName, $this -> categorisName ) ;
 

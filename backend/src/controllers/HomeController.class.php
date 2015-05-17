@@ -22,7 +22,7 @@ class HomeController {
 
 	function render (){
 		//echo "inside HomeController Render </br>";
-		$categories = $this -> processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ) );
+		$categories = self :: processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ), $this -> storeName );
 
 		//echo "inside HomeController getAllStoreCategories Render </br>";
 		
@@ -39,14 +39,16 @@ class HomeController {
 
 	}
 
-	function processCategories($categories){
+	static function  processCategories($categories, $storeName){
 
-		return $this -> getCategroyTree ($categories, null, 0);
+		return HomeController :: getCategroyTree ($categories, null, 0, $storeName);
 	}
 
-	function getCategroyTree($categories, $parent, $level = 0){
+	static function  getCategroyTree($categories, $parent, $level = 0, $storeName){
 		
 		$categoriesTree = null;
+
+		global $configs;
 		
 		if ($level != 0)
 			$returnHtml = "<ul class='level".($level - 1 )."'>";
@@ -54,7 +56,7 @@ class HomeController {
 		for ($i=0; $i < count ($categories) ; $i++) { 
 			
 			if ( $categories[$i] -> getParentId() == null && $level == 0){
-				$temp = $this -> getCategroyTree ($categories, $categories[$i], $level + 1);
+				$temp = HomeController :: getCategroyTree ($categories, $categories[$i], $level + 1);
 
 				if ($temp !== 0){
 
@@ -68,7 +70,7 @@ class HomeController {
 					;
 				} else {
 					$returnHtml .= "<li onmouseover=\"Element.addClassName(this, 'over') \" onmouseout=\"Element.removeClassName(this, 'over') \" class='level0 parent'>
-                  <a href='". $this -> storeName ."/category/". $categories[$i] -> getName () ."'>
+                  <a href='". $configs['CARTATHOME_BASE_URL'] . $storeName ."/category/". $categories[$i] -> getName () ."'>
 									
 									<span>". $categories[$i] -> getName () ."</span></a><span class='head'><a href='#' style='float:right;'></a></span> 
 
@@ -80,12 +82,12 @@ class HomeController {
 			}
 			elseif ( $level != 0 && $categories[$i] -> getParentId() == $parent -> getId () ) {
 				$out = 1;
-				$temp = $this -> getCategroyTree ($categories, $categories[$i], $level + 1);
+				$temp = HomeController ::  getCategroyTree ($categories, $categories[$i], $level + 1);
 
 				if ($temp === 0){
 					
 				$returnHtml .= "<li class='level". $level  ."  nav-categories-new-arrivals' >
-									<a href='". $this -> storeName ."/category/". $categories[$i] -> getName () ."'>
+									<a href='". $configs['CARTATHOME_BASE_URL']. $storeName ."/category/". $categories[$i] -> getName () ."'>
 									
 									<span>". $categories[$i] -> getName () ."</span></a>
                      

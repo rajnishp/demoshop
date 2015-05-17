@@ -80,7 +80,7 @@
                                     </div>
 
                                     <div class="action">
-                                       <button type="button" title="Add to Cart" class="btn btn-shopping-cart" onclick="addToCart('http://loc.dpower4.com/harvest/index.php/checkout/cart/add/uenc/aHR0cDovL3ZlbnVzZGVtby5jb20vbWFnZW50by9oYXJ2ZXN0L2luZGV4LnBocC8,/product/22/form_key/Qc95WkBksJV51fI6/')"><span><span>Add to Cart</span></span></button>
+                                       <button type="button" title="Add to Cart" class="btn btn-shopping-cart" onclick="addToCartCS(<?= $value -> getId() ?>,'<?= $value -> getName() ?>', <?= $value -> getPricesell() ?>)"><span><span>Add to Cart</span></span></button>
                                        <a class="a-quickview ves-colorbox cboxElement" href="<?php echo "/". $this -> storeName ."/category/". $this -> categorisName."/product/". $value -> getId() ; ?>"><span>Quick View </span></a>
                                     </div>
 
@@ -156,7 +156,7 @@
                                     </div>
 
                                     <div class="action">
-                                       <button type="button" title="Add to Cart" class="btn btn-shopping-cart" onclick="addToCart('http://loc.dpower4.com/harvest/index.php/checkout/cart/add/uenc/aHR0cDovL3ZlbnVzZGVtby5jb20vbWFnZW50by9oYXJ2ZXN0L2luZGV4LnBocC8,/product/22/form_key/Qc95WkBksJV51fI6/')"><span><span>Add to Cart</span></span></button>
+                                       <button type="button" title="Add to Cart" class="btn btn-shopping-cart" onclick="addToCartCS(<?= $value -> getId() ?>,'<?= $value -> getName() ?>', <?= $value -> getPricesell() ?>)"><span><span>Add to Cart</span></span></button>
                                        <a class="a-quickview ves-colorbox cboxElement" href="http://loc.dpower4.com/harvest/index.php/vestempcp/quickview/view/id/22"><span>Quick View </span></a>
                                     </div>
 
@@ -169,7 +169,49 @@
                         </div>
                      
                         <script type="text/javascript">
+                           function addToCartCS(productId, name, price){
+                              
+                              cartProduct = read_cookie("cartProduct");
+                              if (cartProduct == null)
+                                 cartProduct = [];
+                              flag = 0;
+                              var arrayLength = cartProduct.length;
+                              var itemCount = 0;
+                              var totleAmt = 0;
+                              var cartItems = "";
+                              for (var i = 0; i < arrayLength; i++) {
+                                 
+                                 if(cartProduct[i].product_id == productId){
+                                       cartProduct[i].quantity++;
+                                       flag = 1;
+                                       
+                                 }
+                                 itemCount += cartProduct[i].quantity;
+                                 totleAmt += cartProduct[i].quantity * cartProduct[i].price;
+                                 amt = cartProduct[i].quantity * cartProduct[i].price;
+
+                                 cartItems = cartItems + cartProduct[i].name  + " " + cartProduct[i].quantity + " * " + cartProduct[i].price + "  =  " + amt + '<br/>';
+                              }
+                              if(flag == 0){
+                                 cartProduct.push({product_id:productId, quantity:1, name:name, price: price});
+                                 itemCount ++;
+                                 totleAmt += price;
+                                 amt = cartProduct[i].quantity * cartProduct[i].price;
+                                 cartItems += cartProduct[i].name + " " + 1 + " * " + price + "  =  "+ totleAmt + '<br/>';
+                              }
+
+                              document.getElementById("itemCount").innerHTML = "" + itemCount;
+                              document.getElementById("totleAmt").innerHTML = "" + totleAmt;
+                              document.getElementById("cartItems").innerHTML = cartItems;
+                              
+                              bake_cookie("cartProduct", cartProduct);
+                              
+                              console.log(cartProduct);
+                           }
+
+
                            jQuery(document).ready(function() {
+
                                jQuery(".ves-colorbox").colorbox({
                                        width: '60%', 
                                        height: '80%',

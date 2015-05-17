@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" href="http://loc.dpower4.com/harvest/static/skin/frontend/ves_harvest/default/css/font.css" media="all" />
 <link rel="stylesheet" type="text/css" href="http://loc.dpower4.com/harvest/static/skin/frontend/ves_harvest/default/css/print.css" media="print" />
 <script type="text/javascript" src="http://loc.dpower4.com/harvest/static/js/prototype/prototype.js"></script>
+<script type="text/javascript" src="http://loc.dpower4.com/harvest/rCookies.js"></script>
 <script type="text/javascript" src="http://loc.dpower4.com/harvest/static/js/venustheme/ves_tempcp/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="http://loc.dpower4.com/harvest/static/js/venustheme/ves_tempcp/jquery/conflict.js"></script>
 <script type="text/javascript" src="http://loc.dpower4.com/harvest/static/js/venustheme/ves_tempcp/jquery/ui/jquery-ui-1.8.16.custom.min.js"></script>

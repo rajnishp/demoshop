@@ -36,7 +36,11 @@
 else {	?>
 	<?php include_once 'components/sidebar.php'; ?>
 
-	<?php include_once 'components/productList.php';
+	<?php    if ($type == "product"){
+            include_once 'components/product.php';
+          } else {
+            include_once 'components/productList.php';
+          }
   } ?>
 										</div>
 		

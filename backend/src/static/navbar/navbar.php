@@ -88,17 +88,18 @@
                                  <span class="title">Cart</span>	
                                  </span>						
                                  <a href="javascript:;" title="Shopping cart">
-                                 <span id="cart-total">0 item(s) - <span class="price">$0.00</span></span><span class="fa fa-angle-down"></span> 
+                                 <span id="cart-total"><span id="itemCount" >0</span> item(s) - <span class="price"><span id="totleAmt">0.00 </span>Rs</span></span> 
                                  </a>
                               </div>
                            </div>
                            <div class="content">
                               <div class=" block-cart">
                                  <div class="block-content">
-                                    <p class="empty">You have no items in your shopping cart.</p>
+                                    <div id="cartItems">You have no items in your shopping cart.</div>
                                     <div class="actions">
-                                       <button type="button" title="Checkout" class="button" onclick="setLocation('http://venusdemo.com/magento/harvest/index.php/checkout/onepage/')"><span><span>Checkout</span></span></button>
-                                       <a class="view-cart" href="http://venusdemo.com/magento/harvest/index.php/checkout/cart/" title="View cart">View cart</a>
+
+                                       <button type="button" title="Checkout" class="button"><span><span>Checkout</span></span></button>
+                                       <a class="view-cart" href="order" title="View cart">View cart</a>
                                     </div>
                                  </div>
                               </div>
