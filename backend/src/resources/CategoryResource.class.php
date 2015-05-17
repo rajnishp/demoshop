@@ -152,11 +152,12 @@ class CategoryResource implements Resource {
     public function get($resourceVals, $data) {
         
         $categoryId = $resourceVals ['category'];
+        $storeName = 'stopNshop';
 
         if (isset($categoryId))
             $result = $this-> getCategory($categoryId);
         else    
-            $result = $this-> getListOfAllCategories();
+            $result = $this-> getListOfAllStoreCategories($storeName);
 
         if (!is_array($result)) {
             return array('code' => '6004');
@@ -187,11 +188,11 @@ class CategoryResource implements Resource {
             );
     }
 
-    private function getListOfAllCategories() {
+    private function getListOfAllStoreCategories($storeName) {
         global $logger;
         $logger->debug('Fetch list of all categories...');
 
-        $listOfCategoryObjs = $this -> categoryDAO -> queryAll();
+        $listOfCategoryObjs = $this -> categoryDAO -> getAllCategories($storeName);
 
         if(empty($listOfCategoryObjs)) 
                 return array('code' => '2004');
