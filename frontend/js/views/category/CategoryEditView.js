@@ -4,7 +4,7 @@ define([
   'backbone',
   'models/category/CategoryModel',
   'text!templates/category/categoryEditTemplate.html'
-  ], function($, _, Backbone, PostModel, categoryEditTemplate){
+  ], function($, _, Backbone, CategoryModel, categoryEditTemplate){
 
     var CategoryEditView = Backbone.View.extend({
 
@@ -17,7 +17,7 @@ define([
     initialize : function() {
 
       var that = this;
-      console.log("i am in CategoryEditView");
+      console.log("i am in CategoryEditView.............");
       that.bind("reset", that.clearView);
     },
 
@@ -28,8 +28,9 @@ define([
       var categoryDetails = {};
         //console.log(ev.currentTarget);
         categoryDetails.root = $(ev.currentTarget).serializeObject1();
+        //console.log(serializeObject1());
 
-        if(this.post != null)
+        if(this.category != null)
           var category = new CategoryModel({id: this.category.id});
         else
           var category = new CategoryModel({id: null});
@@ -54,8 +55,6 @@ define([
             console.log(JSON.parse(response.responseText));
             alert(JSON.parse(response.responseText).internal_status.message );
 
-
-
           }
 
         });
@@ -64,7 +63,7 @@ define([
       deleteCategory: function (ev) {
         var that = this;
         
-        this.post.destroy({
+        this.category.destroy({
           success: function () {
             console.log('destroyed');
             

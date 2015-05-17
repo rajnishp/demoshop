@@ -5,23 +5,32 @@
      	 * @author: rajnish
      	 * @date: 2015-05-05 16:53	 
 	 */
+	
 	class Orders{
-		
+
 		private $id;
 		private $storeId;
 		private $phone;
 		private $address;
 		private $orderTime;
 		private $status;
+		private $carts;
 
-		function __construct ( $storeId, $phone, $address, $orderTime, $status, $id = null) {
+		function __construct ( $storeId, $phone, $address, $orderTime, $status,$id = null) {
+			
+			
+
 			$this -> id = $id;
 			$this -> storeId = $storeId;
 			$this -> phone = $phone;
 			$this -> address = $address;
 			$this -> orderTime = $orderTime;
 			$this -> status = $status;
+			
+
 		}
+
+		
 
 		function setId ($id) {
 			$this -> id = $id;
@@ -65,6 +74,16 @@
 			return $this -> status;
 		}
 
+		function setCarts ($carts) {
+
+
+			$this -> carts = $carts;
+		}
+		function getCarts () {
+			return $this -> carts;
+		}
+
+		
 		function toString () {
 			return $this -> id . ", " . 
 					$this -> storeId . ", " . 
@@ -85,5 +104,26 @@
 						status => $this-> status
 				);
 		}
+
+		
+		function toArrayOrderItems () {
+
+			$cartItems = array();
+			foreach ($this -> carts as $key => $cart) {
+				$cartItems [] = $cart -> toArray();	
+			}
+			
+			return array (
+						id => $this-> id,
+						storeId => $this-> storeId,
+						phone => $this-> phone,
+						address => $this-> address,
+						orderTime => $this-> orderTime,
+						status => $this-> status,
+						carts => $cartItems				
+					);
+		}
+
 	}
+	
 ?>

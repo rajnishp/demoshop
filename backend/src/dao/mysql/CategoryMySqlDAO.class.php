@@ -59,17 +59,16 @@ class CategoryMySqlDAO implements CategoryDAO{
  	 * @param CategoryMySql category
  	 */
 	public function insert($category){
-		$sql = 'INSERT INTO category (store_id, name, parent_id, image_link, type) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO category (name, parent_id, image_link, type) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($category->storeId);
-		$sqlQuery->set($category->name);
-		$sqlQuery->setNumber($category->parentId);
-		$sqlQuery->set($category->imageLink);
-		$sqlQuery->setNumber($category->type);
+		$sqlQuery->set($category->getName());
+		$sqlQuery->setNumber($category->getParentId());
+		$sqlQuery->set($category->getImageLink());
+		$sqlQuery->setNumber($category->getType());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$category->id = $id;
+		$category-> setId ($id);
 		return $id;
 	}
 	
@@ -79,16 +78,15 @@ class CategoryMySqlDAO implements CategoryDAO{
  	 * @param CategoryMySql category
  	 */
 	public function update($category){
-		$sql = 'UPDATE category SET store_id = ?, name = ?, parent_id = ?, image_link = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE category SET name = ?, parent_id = ?, image_link = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($category->storeId);
-		$sqlQuery->set($category->name);
-		$sqlQuery->setNumber($category->parentId);
-		$sqlQuery->set($category->imageLink);
-		$sqlQuery->setNumber($category->type);
+		$sqlQuery->set($category->getName());
+		$sqlQuery->setNumber($category->getParentId());
+		$sqlQuery->set($category->getImageLink());
+		$sqlQuery->setNumber($category->getType());
 
-		$sqlQuery->setNumber($category->id);
+		$sqlQuery->setNumber($category->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -101,12 +99,6 @@ class CategoryMySqlDAO implements CategoryDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByStoreId($value){
-		$sql = 'SELECT * FROM category WHERE store_id = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
-	}
 
 	public function queryByCategoryName($value){
 		$sql = 'SELECT * FROM category WHERE name = ?';
@@ -136,13 +128,6 @@ class CategoryMySqlDAO implements CategoryDAO{
 		return $this->getList($sqlQuery);
 	}
 
-
-	public function deleteByStoreId($value){
-		$sql = 'DELETE FROM category WHERE store_id = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->executeUpdate($sqlQuery);
-	}
 
 	public function deleteByName($value){
 		$sql = 'DELETE FROM category WHERE name = ?';
@@ -181,15 +166,8 @@ class CategoryMySqlDAO implements CategoryDAO{
 	 */
 	protected function readRow($row){
 		
-		$category = new Category($row['store_id'], $row['name'], $row['parent_id'], $row['image_link'], $row['type'], $row['id']);
-		
-		/*$category->id = $row['id'];
-		$category->storeId = $row['store_id'];
-		$category->name = $row['name'];
-		$category->parentId = $row['parent_id'];
-		$category->imageLink = $row['image_link'];
-		$category->type = $row['type'];
-*/
+		$category = new Category($row['name'], $row['parent_id'], $row['image_link'], $row['type'], $row['id']);
+
 		return $category;
 	}
 	

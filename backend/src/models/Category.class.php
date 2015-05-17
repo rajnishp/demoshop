@@ -8,16 +8,16 @@
 	class Category{
 		
 		private $id;
-		private $storeId;
+		
 		private $name;
 		private $parentId;
 		private $imageLink;
 		private $type;
 		
 
-		function __construct ($storeId, $name, $parentId, $imageLink, $type, $id = null) {
+		function __construct ($name, $parentId, $imageLink, $type, $id = null) {
 			$this -> id = $id;
-			$this -> storeId = $storeId;
+			
 			$this -> name = $name;
 			$this -> parentId = $parentId;
 			$this -> imageLink = $imageLink;
@@ -31,12 +31,7 @@
 			return $this -> id;
 		}
 
-		function setStoreId ($storeId) {
-			$this -> storeId = $storeId;
-		}
-		function getStoreId () {
-			return $this -> storeId;
-		}
+		
 
 		function setName ($name) {
 			$this -> name = $name;
@@ -68,7 +63,6 @@
 
 		function toString () {
 			return $this -> id . ", " . 
-					$this -> storeId . ", " . 
 					$this -> name. ", " . 
 					$this -> parentId. ", " . 
 					$this -> imageLink. ", " . 
@@ -79,7 +73,6 @@
 		function toArray () {
 			return array (
 						id => $this-> id,
-						storeId => $this-> storeId,
 						name => $this-> name,
 						parentId => $this-> parentId,
 						imageLink => $this-> imageLink,

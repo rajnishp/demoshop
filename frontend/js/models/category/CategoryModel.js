@@ -11,7 +11,7 @@ define([
 
  	url : function() {
  		if(this.id == null)
-        	return window.BASE_URL+'/cateory';
+        	return window.BASE_URL+'/category';
         return window.BASE_URL+'/category/'+ this.id;
       } 
     });

@@ -49,6 +49,70 @@ class CategoryResource implements Resource {
     }
 
     public function put ($resourceVals, $data) {
+        global $logger, $warnings_payload;
+        $update = false;
+        
+        $categoryId = $resourceVals ['category'];
+
+        if (! isset($categoryId)) {
+            $warnings_payload [] = 'PUT call to /category must be succeeded ' . 
+                                    'by /categoryId i.e. PUT /category/categoryId';
+            throw new UnsupportedResourceMethodException();
+        }
+        if (! isset($data))
+            throw new MissingParametersException('No fields specified for updation');
+
+        $categoryObj = $this -> categoryDAO -> load($categoryId);
+        
+        if(! is_object($categoryObj)) 
+            return array('code' => '2004');
+
+        $newName= $data ['name'];
+        if (isset($newName)) {
+            if ($newName != $categoryObj -> getName()) {
+                $update = true;
+                $categoryObj -> setName($newName);
+            }
+        }
+
+        $newParentId= $data ['parent_id'];
+        if (isset($newParentId)) {
+            if ($newParentId != $categoryObj -> getParentId()) {
+                $update = true;
+                $categoryObj -> setParentId($newParentId);
+            }
+        }
+
+        $newImageLink= $data ['image_link'];
+        if (isset($newImageLink)) {
+            if ($newImageLink != $categoryObj -> getImageLink()) {
+                $update = true;
+                $categoryObj -> setImageLink($newImageLink);
+            }
+        }
+
+        $newType= $data ['type'];
+        if (isset($newType)) {
+            if ($newType != $categoryObj -> getType()) {
+                $update = true;
+                $categoryObj -> setType($newType);
+            }
+        }
+
+        if ($update) {
+            $logger -> debug('PUT Category object: ' . $categoryObj -> toString());
+            $result = $this -> categoryDAO -> update($categoryObj);
+            $logger -> debug('Updated entry: ' . $result);
+        }
+
+        $categoryPut = $categoryObj -> toArray();
+        $this -> category [] = $categoryPut;
+
+        return array('code' => '2002', 
+                        'data' => array(
+                            'category' => $this -> category
+                        )
+        );
     }
 
     public function post ($resourceVals, $data) {
@@ -61,13 +125,13 @@ class CategoryResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
-        $categoryObj = new Category($data ['store_id'], 
-                                $data ['name'],
-                                $data ['parent_id'],
-                                $data ['image_link'],
-                                $data ['type'],
-                                0
-                            );
+        $categoryObj = new Category( 0,
+                                    $data ['name'],
+                                    $data ['parent_id'],
+                                    $data ['image_link'],
+                                    $data ['type'],
+                                    0
+                                );
         $logger -> debug ("POSTed category info " . $categoryObj -> toString());
 
         $this -> categoryDAO -> insert($categoryObj);
@@ -87,14 +151,12 @@ class CategoryResource implements Resource {
 
     public function get($resourceVals, $data) {
         
-        $storeName = 'stopNshop';
-
         $categoryId = $resourceVals ['category'];
 
         if (isset($categoryId))
-            $result = $this-> getCategory($storeName, $categoryId);
+            $result = $this-> getCategory($categoryId);
         else    
-            $result = $this-> getListOfAllCategories($storeName);
+            $result = $this-> getListOfAllCategories();
 
         if (!is_array($result)) {
             return array('code' => '6004');
@@ -103,11 +165,11 @@ class CategoryResource implements Resource {
         return $result;
     }
 
-    private function getCategory($storeId, $categoryId) {
+    private function getCategory($categoryId) {
         global $logger;
         $logger->debug('Fetch list of  category...');
 
-        $categoryObj = $this -> categoryDAO -> load($storeId, $categoryId);
+        $categoryObj = $this -> categoryDAO -> load($categoryId);
 
         if(empty($categoryObj)) 
                 return array('code' => '2004');
@@ -125,11 +187,11 @@ class CategoryResource implements Resource {
             );
     }
 
-    private function getListOfAllCategories($storeName) {
+    private function getListOfAllCategories() {
         global $logger;
         $logger->debug('Fetch list of all categories...');
 
-        $listOfCategoryObjs = $this -> categoryDAO -> getAllStoreCategories($storeName);
+        $listOfCategoryObjs = $this -> categoryDAO -> queryAll();
 
         if(empty($listOfCategoryObjs)) 
                 return array('code' => '2004');
