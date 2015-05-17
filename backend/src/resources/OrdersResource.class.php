@@ -117,6 +117,7 @@ class OrdersResource implements Resource {
 
         if( isset( $data['address']) ){
 
+            if ( ($data ['address'] ['phone'] != null ) && ($data ['address'] ['address'] !=null ) ) {
                 $orderObj = new Orders($data ['address'] ['store_id'], 
                                         $data ['address'] ['phone'], 
                                         $data ['address'] ['address'],
@@ -131,27 +132,43 @@ class OrdersResource implements Resource {
                 $orderDetail = $orderObj -> toArray();
 
                 $this -> order[] = $orderDetail;
+            }
+            else 
+                return array('code' => '2014'); 
         }
+        else 
+            return array('code' => '2011'); 
 
         if (isset($orderDetail['id'])) {
             if( isset( $data['cartProduct']) ){
-            
-                foreach ($data['cartProduct'] as $key => $value) {
 
-                    $cartObj = new Cart($orderDetail['id'],
-                                        $value ['product_id'],
-                                        $value ['quantity'],
-                                        0
-                                    );
-                    $logger -> debug ("POSTed order cart Detail: " . $cartObj -> toString());
+                $countCart = count($data['cartProduct']);
 
-                    $this -> cartDAO -> insert($cartObj);
+                if ($countCart > 0 ) {
+                    foreach ($data['cartProduct'] as $key => $value) {
+                        if (($value['product_id'] != null) && ($value['quantity'] != null)) {
+                            $cartObj = new Cart($orderDetail['id'],
+                                                $value ['product_id'],
+                                                $value ['quantity'],
+                                                0
+                                            );
+                            $logger -> debug ("POSTed order cart Detail: " . $cartObj -> toString());
 
-                    $cartDetail = $cartObj -> toArray();
+                            $this -> cartDAO -> insert($cartObj);
 
-                    $this -> cart[] = $cartDetail;
+                            $cartDetail = $cartObj -> toArray();
+
+                            $this -> cart[] = $cartDetail;
+                        }
+                        else 
+                            return array('code' => '2015');  
+                    }              
                 }
+                else 
+                    return array('code' => '2011');                
             }
+            else 
+                return array('code' => '2011');
         }
         
         else 
