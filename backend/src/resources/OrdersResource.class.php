@@ -116,11 +116,11 @@ class OrdersResource implements Resource {
         }
 
         if( isset( $data['address']) ){
-            foreach ($data['address'] as $key => $value) {
 
-                $orderObj = new Orders($value ['phone'], 
-                                        $value ['address'],
-                                        $value ['order_time'],
+                $orderObj = new Orders($data ['address'] ['store_id'], 
+                                        $data ['address'] ['phone'], 
+                                        $data ['address'] ['address'],
+                                        $data ['address'] ['order_time'],
                                         0,
                                         0
                                     );
@@ -131,7 +131,6 @@ class OrdersResource implements Resource {
                 $orderDetail = $orderObj -> toArray();
 
                 $this -> order[] = $orderDetail;
-            }
         }
 
         if (isset($orderDetail['id'])) {
@@ -142,7 +141,6 @@ class OrdersResource implements Resource {
                     $cartObj = new Cart($orderDetail['id'],
                                         $value ['product_id'],
                                         $value ['quantity'],
-                                        0,
                                         0
                                     );
                     $logger -> debug ("POSTed order cart Detail: " . $cartObj -> toString());
