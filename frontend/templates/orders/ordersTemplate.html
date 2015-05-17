@@ -27,13 +27,19 @@
                     <td><%= cart.pricesell %></td>
                     <td><%= cart.quantity %></td>
                     <td><%= (cart.pricesell * cart.quantity) %></td>
-                    <td><a class="btn" href="#/edit/<%= order.id %>">Edit</a></td>
+                    <td><a class="btn" href="#/edit/<%= cart.id %>">Edit</a></td>
                   </tr>
                 <% }); %>
               </tbody>
             </table>
           </td>
-          <td> order.status </td>
+          <td>
+                Pending
+                <form class = "update_status">
+                  <input name="status" type="hidden" value="<%= order.id %>">
+                  <button type="submit" class="btn">Delivered </button>
+                </form>
+          </td>
         </tr>
       <% }); %>
     </tbody>

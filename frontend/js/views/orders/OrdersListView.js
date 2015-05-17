@@ -3,19 +3,64 @@ define([
   'underscore',
   'backbone',
   'datatable',
+  'Bootstrap',
+  'Bootbox',
   'collections/orders/OrdersCollection',
-  'text!templates/orders/ordersTemplate.html'
-], function($, _, Backbone, Datatable, OrdersCollection, ordersTemplate){
+  'text!templates/orders/ordersTemplate.html',
+  'models/orders/OrdersModel'
+], function($, _, Backbone, Datatable, Bootstrap, Bootbox, OrdersCollection, ordersTemplate, OrdersModel){
   
   var OrdersListView = Backbone.View.extend({
     
    el : $("#page"),
+   events: {
+      'submit .update_status': 'updateOrderStatus'
+    },
 
     initialize : function() {
      
       var that = this;
       console.log("i am in ListView");
       that.bind("reset", that.clearView);
+    },
+
+    updateOrderStatus: function (ev) {
+      console.log ("inside updateOrderStatus function............");
+      var data = $(ev.currentTarget).serializeObject1();
+      var that = this;
+      console.log(data);
+      
+      Bootbox.confirm("Does this order delivered?", function(result) {
+        console.log(result);
+        if(result){
+          
+          //var key = $.readCookie("auth-key");
+          var rowId = data.value;
+          
+          var orderUpdate = new OrdersModel({id: rowId});
+        
+          orderUpdate.save(orderUpdate,{
+            /*beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+            } ,*/
+            success: function () {
+              
+              delete that.orderUpdate;
+              delete orderUpdate;
+              Bootbox.alert("Order Delivered and Updated Successfully");
+              
+              window.app_router.navigate('order', {trigger:true}); 
+            },
+            error: function (response) {
+              Bootbox.alert("Please try again");
+              
+            }
+          });
+        }
+        
+      });
+      console.log(data);
+      return false;
     },
 
     render: function () {
