@@ -27,29 +27,28 @@ define([
     updateOrderStatus: function (ev) {
       console.log ("inside updateOrderStatus function............");
       var data = $(ev.currentTarget).serializeObject1();
-      var that = this;
       console.log(data);
       
       Bootbox.confirm("Does this order delivered?", function(result) {
         console.log(result);
         if(result){
+          var orderUpdateDetails = {};
+
+          orderUpdateDetails.root = $(ev.currentTarget).serializeObject1();
           
-          //var key = $.readCookie("auth-key");
-          var rowId = data.value;
-          
-          var orderUpdate = new OrdersModel({id: rowId});
-        
-          orderUpdate.save(orderUpdate,{
+          var orderUpdate = new OrdersModel({id: orderUpdateDetails.root.id});
+          //return false;
+          orderUpdate.save(orderUpdateDetails,{
             /*beforeSend: function (xhr) {
               xhr.setRequestHeader('AUTH-KEY', key);
             } ,*/
             success: function () {
               
-              delete that.orderUpdate;
+              //delete that.orderUpdate;
               delete orderUpdate;
               Bootbox.alert("Order Delivered and Updated Successfully");
               
-              window.app_router.navigate('order', {trigger:true}); 
+              //window.app_router.navigate('order', {trigger:true}); 
             },
             error: function (response) {
               Bootbox.alert("Please try again");

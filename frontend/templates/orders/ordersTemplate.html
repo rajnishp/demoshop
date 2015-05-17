@@ -1,5 +1,5 @@
-<h4>List of Orders on from cornerShop to Storename </h4> <hr />
-<a href="#/new" class="btn btn-primary">New</a>
+<h4>List of pending Orders from cornerShop to Storename </h4> <hr />
+
   <br/><br/>
   <table class="display" id='ordersTable' width="100%" cellspacing="0">
     <thead>
@@ -36,7 +36,8 @@
           <td>
                 Pending
                 <form class = "update_status">
-                  <input name="status" type="hidden" value="<%= order.id %>">
+                  <input name="id" type="hidden" value="<%= order.id %>">
+                  <input name="status" type="hidden" value="1">
                   <button type="submit" class="btn">Delivered </button>
                 </form>
           </td>
