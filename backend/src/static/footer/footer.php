@@ -101,7 +101,7 @@ jQuery(document).ready( function (){
 </script>
 
 <div id="ves-paneltool" class="hidden-md hidden-sm hidden-xs">
-<!-- <div class="paneltool themetool">
+<div class="paneltool themetool">
 	<div class="panelbutton">
 		<i class="glyphicon glyphicon-cog"></i>
 	</div>
@@ -718,4 +718,4 @@ jQuery(document).ready( function (){
 		 
 
 		</script>            
-	</section> -->
+	</section>

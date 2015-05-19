@@ -40,9 +40,9 @@
                <div class="row ">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 logo">
                      <div id="logo-theme" class="logo-store">
-                        <strong class="logo-title">Corner Shop</strong>
-                        <a href="http://venusdemo.com/magento/harvest/index.php/" title="Corner Shop" class="logo">
-                        <img src="static/images/logo.png" alt="Corner Shop" /></a>
+                        <strong class="logo-title">CartAtHome.com</strong>
+                        <a href="http://venusdemo.com/magento/harvest/index.php/" title="CartAtHome.com" class="logo">
+                        <img src="static/images/logo.png" alt="CartAtHome.com" /></a>
                      </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
@@ -59,9 +59,9 @@
                      </form>
                      </div>
                   <div class="login col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                     <div class="column pull-right">
+                     <!-- <div class="column pull-right">
                         <div class="quick-login"><span>Quick login<i class="fa fa-angle-up"></i></span></div>
-                     </div>
+                     </div> -->
                     
                     <!--  <div class="column pull-right">
                         <div class="currency ">
@@ -98,7 +98,7 @@
                                     <div id="cartItems">You have no items in your shopping cart.</div>
                                     <div class="actions">
 
-                                       <button type="button" title="Checkout" class="button"><span><span>Checkout</span></span></button>
+                                       <button type="button" title="Checkout" class="button" data-toggle="modal" data-target="#address" ><span><span>Checkout</span></span></button>
                                        <a class="view-cart" href="order" title="View cart">View cart</a>
                                     </div>
                                  </div>
@@ -117,24 +117,50 @@
          </div>
       </div>
    </div>
-   <script type="text/javascript">
-      //<![CDATA[
-      	var dataForm = new VarienForm('login-form', true);
-      //]]>
-      (function($) { 
-      	$('.quick-login').bind('click',function(e) {
-      	 //   alert("AAAAAAAAAA");
-      		if($(this).hasClass('active')){
-      			$('.quick-login-form').removeClass('open');
-      			$(this).removeClass('active');
-      		}else{
-      			$(this).addClass('active');
-      			$('.quick-login-form').addClass('open');
-      		}
-      	}); 
-      })(jQuery);
-   </script>
+  
 </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" onclick="postOrder()">Please give your delivery details</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="form-list">
+                     <li>
+                        <label for="phoneno" class="required"><em>*</em>Phone No.</label>
+                     </li>
+                     <li>
+                        <div class="input-box">
+                           <input type="text" name="phoneno" value="" id="phoneno" class="input-text required-entry" title="Phone No." />
+                        </div>
+                     </li>
+                     <li>
+                        <label for="address" class="required"><em>*</em>Delivery Address</label>
+                     </li>
+                     <li>
+                        <div class="input-box">
+                           <input type="text" name="address" class="input-text required-entry" id="address1" title="Address" />
+                        </div>
+                     </li>
+                     <li>
+                        <button class="button" title="Order" name="send" id="send2" onclick="postOrder()"><span><span>Order</span></span></button>
+                     </li>
+                     
+                  </ul>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
 <section id="sys-notification">
    <div class="container">
       <div id="notification"></div>

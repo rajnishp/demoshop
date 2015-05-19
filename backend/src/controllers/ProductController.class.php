@@ -13,7 +13,7 @@ class ProductController {
 	function __construct ( $storeName = "shopnshop", $categorisName = "", $productId = 0){
 
 		$this -> storeName = $storeName;
-		$this -> categorisName = $categorisName;
+		$this -> categorisName = urldecode($categorisName);
 		$this -> productId = $productId;
 
 		$DAOFactory = new DAOFactory();
@@ -24,8 +24,10 @@ class ProductController {
 
 	function render (){
 
-		$categories = HomeController :: processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ), $this -> storeName  );
-
+		$categories = HomeController :: processCategories(
+		 	$this -> categoryDAO -> getAllCategories( $this -> storeName ), $this -> storeName  );
+		//echo $categories;exit;
+		
 		$product = $this -> productDAO -> load( $this -> productId ) ;
 		$type = "product";
 

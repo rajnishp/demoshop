@@ -22,7 +22,7 @@ class HomeController {
 
 	function render (){
 		//echo "inside HomeController Render </br>";
-		$categories = self :: processCategories( $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ), $this -> storeName );
+		$categories = self :: processCategories( $this -> categoryDAO -> getAllCategories( $this -> storeName ), $this -> storeName );
 
 		//echo "inside HomeController getAllStoreCategories Render </br>";
 		

@@ -13,7 +13,7 @@ class CategoryProductsController {
 	function __construct ( $storeName = "shopnshop", $categorisName = ""){
 
 		$this -> storeName = $storeName;
-		$this -> categorisName = $categorisName;
+		$this -> categorisName = urldecode($categorisName);
 
 		$DAOFactory = new DAOFactory();
 		$this -> categoryDAO = $DAOFactory->getCategoryDAO();
@@ -24,10 +24,9 @@ class CategoryProductsController {
 	function render (){
 
 		$categories = HomeController :: processCategories(
-		 $this -> categoryDAO -> getAllStoreCategories( $this -> storeName ), $this -> storeName  );
+		 $this -> categoryDAO -> getAllCategories( $this -> storeName ), $this -> storeName  );
 
 		$categoriesProducts = $this -> productDAO -> readAllProducts( $this -> storeName, $this -> categorisName ) ;
-
 		include_once "components/base.php";
 
 	}

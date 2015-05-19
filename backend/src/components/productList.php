@@ -205,8 +205,40 @@
                               document.getElementById("cartItems").innerHTML = cartItems;
                               
                               bake_cookie("cartProduct", cartProduct);
+
+                             
                               
                               console.log(cartProduct);
+                           }
+
+                           function postOrder(){
+                              cartProduct = read_cookie("cartProduct");
+                              root = {};
+                              contact_detail = {};
+                              contact_detail.phone = document.getElementById("phoneno").value;
+                              contact_detail.address = document.getElementById("address1").value;
+                              root.cartProduct = cartProduct; 
+                              root.contact_detail = contact_detail;
+                              order = {};
+                              order.root = root;
+                              orderJsonString = JSON.stringify(order);
+                              console.log(orderJsonString); 
+                               jQuery.ajax({
+                                  url: 'http://api.shop.dpower4.com/v0/order',
+                                  dataType: 'json',
+                                  type: 'post',
+                                  contentType: 'application/json',
+                                  data: orderJsonString,
+                                  processData: false,
+                                  success: function( data, textStatus, jQxhr ){
+                                     delete_cookie("cartProduct");
+                                      $('#response pre').html( JSON.stringify( data ) );
+                                  },
+                                  error: function( jqXhr, textStatus, errorThrown ){
+                                      console.log( errorThrown );
+                                  }
+                              });
+
                            }
 
 
