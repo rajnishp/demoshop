@@ -150,5 +150,62 @@ class StoreResource implements Resource {
         );
     }
 
-    public function get () {    }
+    public function get($resourceVals, $data) {
+        
+        $storeId = $resourceVals ['store'];
+
+        if (isset($storeId))
+            $result = $this-> getStore($storeId);
+        else    
+            $result = $this-> getListOfAllStores();
+
+        if (!is_array($result)) {
+            return array('code' => '6004');
+        }
+
+        return $result;
+    }
+
+    private function getStore($storeId) {
+        global $logger;
+        $logger->debug('Fetch store...');
+
+        $storeObj = $this -> storeDAO -> load($storeId);
+
+        if(empty($storeObj)) 
+                return array('code' => '2004');
+
+        
+             
+        $this -> store [] = $storeObj-> toArray();
+        
+        $logger -> debug ('Fetched list of stores: ' . json_encode($this -> store));
+
+        return array('code' => '2000', 
+                     'data' => array(
+                                'store' => $this -> store
+                            )
+            );
+    }
+
+    private function getListOfAllStores() {
+        global $logger;
+        $logger->debug('Fetch list of all stores...');
+
+        $listOfStoreObjs = $this -> storeDAO -> queryAll();
+
+        if(empty($listOfStoreObjs)) 
+                return array('code' => '2004');
+
+        foreach ($listOfStoreObjs as $storeObj) {
+            $this -> stores [] = $storeObj -> toArray();
+        }
+        $logger -> debug ('Fetched list of stores: ' . json_encode($this -> stores));
+
+        return array('code' => '2000', 
+                     'data' => array(
+                                'stores' => $this -> stores
+                            )
+            );
+    }
 }

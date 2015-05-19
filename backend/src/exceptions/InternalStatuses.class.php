@@ -62,6 +62,10 @@
                             'message' => 'Post Could Not Be Updated', 'otherHeaders' => array()),
             '2013' => array('httpStatusCode' => 500, 
                             'message' => 'Post Could Not Be Deleted', 'otherHeaders' => array()),
+            '2014' => array('httpStatusCode' => 400, 
+                            'message' => 'Phone and Address could not be empty', 'otherHeaders' => array()),
+            '2015' => array('httpStatusCode' => 400, 
+                            'message' => 'Cart could not be empty', 'otherHeaders' => array()),
 
 
             /* [3000 - 3999] - Validator Exceptions  */

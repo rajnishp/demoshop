@@ -19,10 +19,11 @@
 
 		function __construct ($name, $loginId, $password, $address, $latitude, $longitude, $type, $lastUpdateTime, $id = null) {
 			$this -> id = $id;
+			$this -> name = $name;
 			$this -> loginId = $loginId;
 			$this -> password = $password;
 			$this -> address = $address;
-			$this -> location = $latitude;
+			$this -> latitude = $latitude;
 			$this -> longitude = $longitude;
 			$this -> type = $type;
 			$this -> lastUpdateTime = $lastUpdateTime;

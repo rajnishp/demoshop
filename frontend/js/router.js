@@ -21,15 +21,14 @@ define([
         routes: {
             // Define some URL routes
             
-            /*'deliveredOrder': 'deliveredOrder',
+            'deliveredOrder': 'deliveredOrder',
             'deliveredOrder/:id': 'showDeliveredOrder',
             
             'store/:storeName/category/': 'shareCategories',
             'edit/:id': 'editCategory',
-            //'edit/:id': 'editOrder',
-            'new': 'editCategory',*/
-            //'new': 'editOrder',
-            // Default
+            'order/': 'defaultAction',
+            'new': 'editCategory',
+            //Default
             '*actions': 'defaultAction'
 
         }

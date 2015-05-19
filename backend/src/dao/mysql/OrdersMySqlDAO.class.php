@@ -86,7 +86,7 @@ class OrdersMySqlDAO implements OrdersDAO{
 		$sqlQuery->set($order->getOrderTime());
 		$sqlQuery->setNumber($order->getStatus());
 
-		$sqlQuery->setNumber($order->getId());
+		$sqlQuery->set($order->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 
