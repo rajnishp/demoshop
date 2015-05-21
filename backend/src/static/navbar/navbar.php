@@ -39,10 +39,15 @@
             <div class="top-infor">
                <div class="row ">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 logo">
+                  	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                      <div id="logo-theme" class="logo-store">
                         <strong class="logo-title">CartAtHome.com</strong>
-                        <a href="http://venusdemo.com/magento/harvest/index.php/" title="CartAtHome.com" class="logo">
-                        <img src="static/images/logo.png" alt="CartAtHome.com" /></a>
+                        <a href="#" title="CartAtHome.com" class="logo">
+                        <img src="http://shop.dpower4.com/static/images/logo.jpg" height="70px" alt="CartAtHome.com" /></a>
+                     	</div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                     <strong>CartAtHome.com</strong>
                      </div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
