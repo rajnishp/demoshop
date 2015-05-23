@@ -42,8 +42,8 @@
                   	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                      <div id="logo-theme" class="logo-store">
                         <strong class="logo-title">CartAtHome.com</strong>
-                        <a href="#" title="CartAtHome.com" class="logo">
-                        <img src="http://shop.dpower4.com/static/images/logo.jpg" height="70px" alt="CartAtHome.com" /></a>
+                        <a href="<?= $BASE ?>" title="CartAtHome.com" class="logo">
+                        <img src="<?= $BASE ?>static/images/logo.jpg" height="70px" alt="CartAtHome.com" /></a>
                      	</div>
                      </div>
                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -103,7 +103,7 @@
                                     <div id="cartItems">You have no items in your shopping cart.</div>
                                     <div class="actions">
 
-                                       <button type="button" title="Checkout" class="button" data-toggle="modal" data-target="#address" ><span><span>Checkout</span></span></button>
+                                       <button type="button" title="Checkout" class="button" data-toggle="modal" data-target="<?= $BASE ?>address" ><span><span>Checkout</span></span></button>
                                        <a class="view-cart" href="order" title="View cart">View cart</a>
                                     </div>
                                  </div>

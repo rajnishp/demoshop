@@ -31,7 +31,7 @@
     },
 
     "nucleus_backend" : "/var/www/capillary/nucleus/backend/src/",
-    "CARTATHOME_BASE_URL" : "http://http://shop.dpower4.com/",
+    "CARTATHOME_BASE_URL" : "http://shop.dpower4.com/",
     "NUCLEUS_BASE_URL" : "http://nucleus.capillary.in/v0/",
     "NUCLEUS_VERSION"  : "v0",
     "NUCLEUS_DOMAIN" : "nucleus.capillary.in"

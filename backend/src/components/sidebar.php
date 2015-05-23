@@ -7,10 +7,10 @@
 </div>
 <section id="after_content_start">
    <div class="banner-left">
-      <img src="http://loc.dpower4.com/harvest/static/media/wysiwyg/bg-right.jpg" alt="" />
+      <img src="<?= $BASE ?>static/media/wysiwyg/bg-right.jpg" alt="" />
    </div>
    <div class="banner-right">
-      <img src="http://loc.dpower4.com/harvest/static/media/wysiwyg/bg-left.jpg" alt="" />
+      <img src="<?= $BASE ?>static/media/wysiwyg/bg-left.jpg" alt="" />
    </div>
 </section>
 <div class="row col2-left-layout no-space main equal">
@@ -87,7 +87,7 @@
       <!-- end class=ves-categoriesmenu -->
       <div class="block info-sidebar a-center">
          <div class="info">
-            <img src="http://loc.dpower4.com/harvest/static/media/wysiwyg/info.jpg" alt="" />
+            <img src="<?= $BASE ?>static/media/wysiwyg/info.jpg" alt="" />
             <p>We will be happy to be at your service.<br /> Give call at: <br />+91 - 8040985523, +91 - 8901414422 .</p>
          </div>
          <div class="business-hours">
@@ -125,8 +125,7 @@
              //]]>
              </script>
          </div>
-         */
-         ?>
+         
       <div class=" block productcarousel" id="module20489844241430553475">
          <div class="block-title">
             <strong><span>Best Sellers</span></strong>
@@ -147,7 +146,7 @@
                                        <span class="new-icon"><span>New</span></span>
                                        <div class="product-img img">
                                           <a href="http://venusdemo.com/magento/harvest/index.php/quisque-in-arcu.html" title="Quisque in arcu" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/3/x33_3.png" width="90" height="90" alt="Quisque in arcu" />
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/3/x33_3.png" width="90" height="90" alt="Quisque in arcu" />
                                           </a>
                                        </div>
                                     </div>
@@ -183,7 +182,7 @@
                                        <span class="new-icon"><span>New</span></span>
                                        <div class="product-img img">
                                           <a href="http://venusdemo.com/magento/harvest/index.php/etiam-gravida.html" title="Etiam gravida" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/4/x40.png" width="90" height="90" alt="Etiam gravida" />
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/4/x40.png" width="90" height="90" alt="Etiam gravida" />
                                           </a>
                                        </div>
                                     </div>
@@ -211,7 +210,7 @@
                                        <span class="new-icon"><span>New</span></span>
                                        <div class="product-img img">
                                           <a href="http://venusdemo.com/magento/harvest/index.php/primis-in-faucibus.html" title="Primis in faucibus" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/1/x18_2.png" width="90" height="90" alt="Primis in faucibus" />
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/1/x18_2.png" width="90" height="90" alt="Primis in faucibus" />
                                           </a>
                                        </div>
                                     </div>
@@ -239,7 +238,7 @@
                                        <span class="new-icon"><span>New</span></span>
                                        <div class="product-img img">
                                           <a href="http://venusdemo.com/magento/harvest/index.php/skinny-fit-suit-oxygen-canis.html" title="Skinny Oxygen Canis" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/2/x20.png" width="90" height="90" alt="Skinny Oxygen Canis" />
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/2/x20.png" width="90" height="90" alt="Skinny Oxygen Canis" />
                                           </a>
                                        </div>
                                     </div>
@@ -266,12 +265,12 @@
                                     <div class="image ">
                                        <span class="onsale"><span>Sale</span></span>
                                        <div class="product-img img">
-                                          <a href="http://venusdemo.com/magento/harvest/index.php/gaming-computer.html" title="Gaming Audio Computer" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/2/x29_1.png" width="90" height="90" alt="Gaming Audio Computer" />
+                                          <a href="<?= $BASE ?>" title="Gaming Audio Computer" class="product-image img">
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/2/x29_1.png" width="90" height="90" alt="Gaming Audio Computer" />
                                           </a>
                                        </div>
                                     </div>
-                                    <h3 class="product-name name"><a href="http://venusdemo.com/magento/harvest/index.php/gaming-computer.html" title="Gaming Audio Computer">Gaming Audio Computer</a></h3>
+                                    <h3 class="product-name name"><a href="<?= $BASE ?>" title="Gaming Audio Computer">Gaming Audio Computer</a></h3>
                                     <div class="price" >
                                        <div class="price-box">
                                           <p class="price-from">
@@ -297,12 +296,12 @@
                                  <div class="product-meta product-shop">
                                     <div class="image ">
                                        <div class="product-img img">
-                                          <a href="http://venusdemo.com/magento/harvest/index.php/slim-fit-suit-in-black.html" title="Slim In black" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/9/x9_3.png" width="90" height="90" alt="Slim In black" />
+                                          <a href="<?= $BASE ?>" title="Slim In black" class="product-image img">
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/9/x9_3.png" width="90" height="90" alt="Slim In black" />
                                           </a>
                                        </div>
                                     </div>
-                                    <h3 class="product-name name"><a href="http://venusdemo.com/magento/harvest/index.php/slim-fit-suit-in-black.html" title="Slim In black">Slim In black</a></h3>
+                                    <h3 class="product-name name"><a href="<?= $BASE ?>" title="Slim In black">Slim In black</a></h3>
                                     <div class="price" >
                                        <div class="price">
                                           <div class="price-box">
@@ -324,12 +323,12 @@
                                  <div class="product-meta product-shop">
                                     <div class="image ">
                                        <div class="product-img img">
-                                          <a href="http://venusdemo.com/magento/harvest/index.php/slim-fit-suit-in-sharkskin.html" title="Slim In Sharkskin" class="product-image img">
-                                          <img src="http://loc.dpower4.com/harvest/static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/1/x15.png" width="90" height="90" alt="Slim In Sharkskin" />
+                                          <a href="<?= $BASE ?>" title="Slim In Sharkskin" class="product-image img">
+                                          <img src="<?= $BASE ?>static/media/catalog/product/cache/1/small_image/90x90/9df78eab33525d08d6e5fb8d27136e95/x/1/x15.png" width="90" height="90" alt="Slim In Sharkskin" />
                                           </a>
                                        </div>
                                     </div>
-                                    <h3 class="product-name name"><a href="http://venusdemo.com/magento/harvest/index.php/slim-fit-suit-in-sharkskin.html" title="Slim In Sharkskin">Slim In Sharkskin</a></h3>
+                                    <h3 class="product-name name"><a href="<?= $BASE ?>" title="Slim In Sharkskin">Slim In Sharkskin</a></h3>
                                     <div class="price" >
                                        <div class="price">
                                           <div class="price-box">
@@ -351,6 +350,8 @@
             </div>
          </div>
       </div>
+      */
+         ?>
       <script type="text/javascript">
          jQuery('#productcarousel20489844241430553475').carousel({interval:false,auto:false,pause:'hover', cycle: true});
       </script>

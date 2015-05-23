@@ -6,8 +6,8 @@
 
             <ul>
                 
-<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-2.jpg">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/icons/dummy.png" data-lazyload="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-2.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
+<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="<?= $BASE ?>static/media/ves_layerslider/upload/slider-2.jpg">
+<img src="<?= $BASE ?>static/media/ves_layerslider/icons/dummy.png" data-lazyload="<?= $BASE ?>static/media/ves_layerslider/upload/slider-2.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
 <div class="caption big-blue  sfb stb"
 							 data-x="1148"
 							 data-y="215"
@@ -53,8 +53,8 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 <a href="#" target="_top" style=" color: #FFFFFF !important;">View Detail</a>
 </div>
 </li>
-<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-3.jpg">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/icons/dummy.png" data-lazyload="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-3.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
+<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="<?= $BASE ?>static/media/ves_layerslider/upload/slider-3.jpg">
+<img src="<?= $BASE ?>static/media/ves_layerslider/icons/dummy.png" data-lazyload="<?= $BASE ?>static/media/ves_layerslider/upload/slider-3.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
 <div class="caption big-blue  sfb stb"
 							 data-x="1149"
 							 data-y="215"
@@ -99,8 +99,8 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 <a href="#" target="_top" style=" color: #FFFFFF !important;">View Detail</a>
 </div>
 </li>
-<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-4.jpg">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/icons/dummy.png" data-lazyload="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/slider-4.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
+<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="<?= $BASE ?>static/media/ves_layerslider/upload/slider-4.jpg">
+<img src="<?= $BASE ?>static/media/ves_layerslider/icons/dummy.png" data-lazyload="<?= $BASE ?>static/media/ves_layerslider/upload/slider-4.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
 <div class="caption big-blue  sfb stb"
 							 data-x="1149"
 							 data-y="215"
@@ -153,7 +153,7 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 							 data-speed="500"
 							 data-start="500"
 							 data-easing="swing"  data-end="500" data-endspeed="500" data-endeasing="swing"   ">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/gratis levering.jpg" style=" width:auto; height:auto;" alt="image" />
+<img src="<?= $BASE ?>static/media/ves_layerslider/upload/gratis levering.jpg" style=" width:auto; height:auto;" alt="image" />
 </div><div class="caption   left right"
 							 data-x="0"
 							 data-y="0"
@@ -164,11 +164,11 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 							 data-speed="500"
 							 data-start="500"
 							 data-easing="swing"  data-end="500" data-endspeed="500" data-endeasing="swing"   ">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/gratis levering.jpg" style=" width:auto; height:auto;" alt="image" />
+<img src="<?= $BASE ?>static/media/ves_layerslider/upload/gratis levering.jpg" style=" width:auto; height:auto;" alt="image" />
 </div>
 </li>
-<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/Agurk.jpg">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/icons/dummy.png" data-lazyload="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/Agurk.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
+<li   data-masterspeed="700" data-transition="random" data-slotamount="7" data-thumb="<?= $BASE ?>static/media/ves_layerslider/upload/Agurk.jpg">
+<img src="<?= $BASE ?>static/media/ves_layerslider/icons/dummy.png" data-lazyload="<?= $BASE ?>static/media/ves_layerslider/upload/Agurk.jpg"  alt="Image" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat"/>
 <div class="caption   left right"
 							 data-x="0"
 							 data-y="0"
@@ -179,7 +179,7 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 							 data-speed="500"
 							 data-start="500"
 							 data-easing="swing"  data-end="500" data-endspeed="500" data-endeasing="swing"   ">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/Agurk.jpg" style=" width:auto; height:auto;" alt="image" />
+<img src="<?= $BASE ?>static/media/ves_layerslider/upload/Agurk.jpg" style=" width:auto; height:auto;" alt="image" />
 </div><div class="caption   left right"
 							 data-x="0"
 							 data-y="0"
@@ -190,7 +190,7 @@ padding-left:25px;">Off fruits and berries. 100% natural and organic </div>
 							 data-speed="500"
 							 data-start="500"
 							 data-easing="swing"  data-end="500" data-endspeed="500" data-endeasing="swing"   ">
-<img src="http://loc.dpower4.com/harvest/static/media/ves_layerslider/upload/Agurk.jpg" style=" width:auto; height:auto;" alt="image" />
+<img src="<?= $BASE ?>static/media/ves_layerslider/upload/Agurk.jpg" style=" width:auto; height:auto;" alt="image" />
 </div>
 </li>            </ul>
 

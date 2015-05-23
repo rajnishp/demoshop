@@ -38,7 +38,7 @@ $route = explode("/",$_SERVER[REQUEST_URI]);
 
 
 if ( count($route) <= 2 ){
-	$homeController = new HomeController($route[1]);
+	$homeController = new HomeController($route[1]?	$route[1]:stopNshop);
 	$homeController -> render ();
 }else {
 

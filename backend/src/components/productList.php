@@ -5,13 +5,13 @@
          <div class="custom-block">
             <div class="row no-space">
                <div class="column col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <a title="" href="http://loc.dpower4.com/harvest/index.php/#">
-                        <img src="http://loc.dpower4.com/harvest/static/media/wysiwyg/custom-1.jpg" alt="" />
+                    <a title="" href="<?= $BASE ?>index.php/#">
+                        <img src="<?= $BASE ?>static/media/wysiwyg/custom-1.jpg" alt="" />
                     </a>
                 </div>
                <div class="column col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <a title="" href="http://loc.dpower4.com/harvest/index.php/#">
-                        <img src="http://loc.dpower4.com/harvest/static/media/wysiwyg/custom-2.jpg" alt="" />
+                    <a title="" href="<?= $BASE ?>index.php/#">
+                        <img src="<?= $BASE ?>static/media/wysiwyg/custom-2.jpg" alt="" />
                     </a>
                 </div>
             </div>
@@ -128,14 +128,14 @@
                                        <div class="image ">
                                           <span class="new-icon"><span>New</span></span>
                                           <div class="product-img img">
-                                             <a href="http://loc.dpower4.com/harvest/index.php/quisque-in-arcu.html" title="Quisque in arcu" class="product-image img">
+                                             <a href="<?= $BASE ?>index.php/quisque-in-arcu.html" title="Quisque in arcu" class="product-image img">
                                              <img src="<?php echo $value -> getImageLink(); ?>" width="200" height="200" alt="Quisque in arcu" />
                                              </a>
                                            
                                           </div>
                                        </div>
                                        
-                                       <h3 class="product-name name"><a href="http://loc.dpower4.com/harvest/index.php/quisque-in-arcu.html" title="Quisque in arcu"><?php echo $value -> getName(); ?></a></h3>
+                                       <h3 class="product-name name"><a href="<?= $BASE ?>index.php/quisque-in-arcu.html" title="Quisque in arcu"><?php echo $value -> getName(); ?></a></h3>
                                        <div class="price" >
                                           <div class="price">
                                              <div class="price-box">
@@ -157,7 +157,7 @@
 
                                     <div class="action">
                                        <button type="button" title="Add to Cart" class="btn btn-shopping-cart" onclick="addToCartCS(<?= $value -> getId() ?>,'<?= $value -> getName() ?>', <?= $value -> getPricesell() ?>)"><span><span>Add to Cart</span></span></button>
-                                       <a class="a-quickview ves-colorbox cboxElement" href="http://loc.dpower4.com/harvest/index.php/vestempcp/quickview/view/id/22"><span>Quick View </span></a>
+                                       <a class="a-quickview ves-colorbox cboxElement" href="<?= $BASE ?>index.php/vestempcp/quickview/view/id/22"><span>Quick View </span></a>
                                     </div>
 
                                  </div>
