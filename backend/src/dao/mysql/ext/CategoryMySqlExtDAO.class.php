@@ -9,7 +9,7 @@ class CategoryMySqlExtDAO extends CategoryMySqlDAO{
 
 	public function getAllCategories($storeName){
 
-		$sql = 'SELECT category . * FROM category AS category JOIN store AS store
+		$sql = 'SELECT category.* FROM category AS category JOIN store AS store
 						WHERE store.name = ? AND store.type = category.type';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($storeName);

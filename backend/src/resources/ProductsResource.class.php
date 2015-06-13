@@ -181,15 +181,16 @@ class ProductsResource implements Resource {
         $maxStoreName = (int) $data['max_store_id'];*/
         $productName = $data['search_product'];
         $storeName = 'stopNshop';
+        $categoryName = $data['category_name'];
         //$categoryName = 'Kitchen';
         //$maxStoreName = 'stopNshop';
-
+//var_dump($categoryName); exit;
 
 		$productId = $resourceVals ['products'];
 		if (isset($productId))
 			$result = $this-> getProduct($productId);
 		
-        elseif (isset($storeName) && isset($categoryName))
+        elseif (isset($storeName) && isset($categoryName)) 
 			$result = $this-> getListOfAllProducts($storeName, $categoryName);
 
         elseif (isset($maxStoreName))

@@ -4,14 +4,21 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    
     'views/category/CategoryListView',
     'views/category/CategoryEditView',
+    
+    'views/products/ProductsListView',
+    'views/products/ProductsEditView',
+    
     'views/orders/OrdersListView',
-    'views/orders/OrdersEditView',
+    'views/orders/OrdersEditView'
     
 ], function ($, _, Backbone,
         CategoryListView,
         CategoryEditView,
+        ProductsListView,
+        ProductsEditView,
         OrdersListView,
         OrdersEditView
 
@@ -20,14 +27,18 @@ define([
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
-            
+            'category': 'showCategories',
+            'products': 'showProducts',
             'deliveredOrder': 'deliveredOrder',
             'deliveredOrder/:id': 'showDeliveredOrder',
             
-            'store/:storeName/category/': 'shareCategories',
-            'edit/:id': 'editCategory',
-            'order/': 'defaultAction',
-            'new': 'editCategory',
+            //'edit/:id': 'editCategory',            
+            //'order/': 'defaultAction',
+            //'new': 'editCategory',
+
+            'edit/:id': 'editProduct',
+            'new': 'editProduct',
+
             //Default
             '*actions': 'defaultAction'
 
@@ -43,30 +54,54 @@ define([
 
             // We have no matching route, lets display the home page
             console.log("defaultAction");
-            //var categoryListView = new CategoryListView();
+            
             var ordersListView = new OrdersListView();
             //var productsListView = new ProductsListView();
-            //categoryListView.render();
             ordersListView.render();
         });
 
-        /*var categoryEditView = new CategoryEditView();
         app_router.on('route:editCategory', function (id) {
+        var categoryEditView = new CategoryEditView();
             
             // We have no matching route, lets display the home page
             console.log("edit categoryEditView");
 
             categoryEditView.render({id: id});
-        });*/
+        });
 
-        /*app_router.on('route:editOrder', function (id) {
+        app_router.on('route:editProduct', function (id) {
+        var productsEditView = new ProductsEditView();
+            
+            // We have no matching route, lets display the home page
+            console.log("edit productsEditView route editProduct");
+
+            productsEditView.render({id: id});
+        });
+
+        app_router.on('route:showCategories', function () {
+        var categoryListView = new CategoryListView();
+            
+            console.log("categoryListView route showCategories");
+
+            categoryListView.render();
+        });
+
+        app_router.on('route:showProducts', function () {
+        var productsListView = new ProductsListView();
+            
+            console.log("productsListView route showProducts");
+
+            productsListView.render();
+        });
+
+        app_router.on('route:editOrder', function (id) {
             var orderEditView = new OrdersEditView();
 
             // We have no matching route, lets display the home page
             console.log("edit orderEditView");
 
             orderEditView.render({id: id});
-        });*/
+        });
 
 
         // Unlike the above, we don't call render on this view as it will handle

@@ -1,0 +1,72 @@
+<h4>Edit Product</h4> <hr />
+<form class="edit-product-form" role="form">
+
+      <legend><%= product ? 'Edit' : 'New' %> Product </legend>
+      <table>
+      <% if (product){ %>
+          <tr>
+            <td>ID</td>
+            <td>
+              <%= product.id  %>
+            </td>
+          </tr>
+          <% }%>
+
+       
+       <tr>
+        <td> Product Name:</td>
+        <td>  <input name="name" class="input-block-level" type="text" value="<%= product ? product.name : '' %>">
+        </td>
+        <tr>
+        
+
+        <td> Description:
+        </td>
+        <td>
+          <input name="description" class="input-block-level" type="text" value="<%= product ? product.description : '' %>">
+        </td>
+
+        <td> SKU:
+        </td>
+        <td>
+          <input name="sku" class="input-block-level" type="text" value="<%= product ? product.sku : '' %>">
+        </td>
+
+        <td> Price Buy:
+        </td>
+        <td>
+          <input name="price_buy" class="input-block-level" type="text" value="<%= product ? product.price_buy : '' %>">
+        </td>
+
+        <td> Price Sell:
+        </td>
+        <td>
+          <input name="price_sell" class="input-block-level" type="text" value="<%= product ? product.price_sell : '' %>">
+        </td>
+
+        <td> Category Id:
+        </td>
+        <td>
+          <input name="category_id" class="input-block-level" type="text" value="<%= product ? product.categoryId : '' %>">
+        </td>
+
+
+        <td> Image:
+        </td>
+        <td>
+          <input name="image_link" class="input-block-level" type="text" value="<%= product ? product.imageLink : '' %>">
+        </td>
+        
+        <td> Type:
+        </td>
+        <td>
+          <input name="type" class="input-block-level" type="text" value="<%= product ? product.type : '' %>">
+          </td>
+      </table>
+        <hr />
+       <button type="submit" class="btn"><%= product ? 'Update' : 'Create' %></button>
+       <% if(product) { %>
+        <input type="hidden" name="id" value="<%= product.id %>" />
+       <button data-channel-id="<%= product.id %>" class="btn btn-danger" id="delproduct">Delete</button>
+       <% }; %>
+    </form>

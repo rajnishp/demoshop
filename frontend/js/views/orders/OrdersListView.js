@@ -20,7 +20,7 @@ define([
     initialize : function() {
      
       var that = this;
-      console.log("i am in ListView");
+      console.log("i am in OrderListView");
       that.bind("reset", that.clearView);
     },
 
