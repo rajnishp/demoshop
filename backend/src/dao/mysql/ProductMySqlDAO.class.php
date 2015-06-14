@@ -59,7 +59,7 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function insert($product){
-		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($product->getStoreId());

@@ -86,7 +86,7 @@ define([
           that.product.fetch({
             success: function (product) {
 
-              console.log(product.attributes.data.product);
+              console.log(product.attributes.data);
 
               var template = _.template(productEditTemplate, {product: product.attributes.data.product[0]});
               //#edit-organization-template

@@ -92,8 +92,8 @@ class ProductsResource implements Resource {
         $productPut = $productObj -> toArray();
         $this -> product [] = $productPut;
 
-        if(! isset($product ['id'])) 
-            return array('code' => '2004');
+        //if(! isset($product ['id']))
+        //    return array('code' => '2004');
 
         return array('code' => '2002', 
                         'data' => array(
@@ -112,6 +112,7 @@ class ProductsResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
+        $currentTimeFormat = date('Y-m-d H:i:s');
         if( isset( $data["products"] ) ) {
 
             foreach ($data["products"] as $key => $value) {
@@ -125,7 +126,7 @@ class ProductsResource implements Resource {
                                         $value ['categoryId'],
                                         $value ['imageLink'],
                                         $value ['type'],
-                                        0
+                                        $currentTimeFormat
                                     );
 
                 $logger -> debug ("POSTed product detail.....: " . $productObj -> toString());
@@ -150,7 +151,7 @@ class ProductsResource implements Resource {
                                         $data ['categoryId'],
                                         $data ['imageLink'],
                                         $data ['type'],
-                                        0
+                                        $currentTimeFormat
                                     );
 
                 $logger -> debug ("POSTed product detail..........: " . $productObj -> toString());
@@ -163,7 +164,7 @@ class ProductsResource implements Resource {
                 return array('code' => '2011');
 
 
-                $this -> product[] = $products;
+                $this -> products[] = $products;
         }
     
         
@@ -219,13 +220,13 @@ class ProductsResource implements Resource {
         if(empty($productObj)) 
                 return array('code' => '2004');
              
-        $this -> products [] = $productObj-> toArray();
+        $this -> product [] = $productObj-> toArray();
         
-        $logger -> debug ('Fetched list of Products: ' . json_encode($this -> products));
+        $logger -> debug ('Fetched list of Products: ' . json_encode($this -> product));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'posts' => $this -> posts
+                                'product' => $this -> product
                             )
             );
     }

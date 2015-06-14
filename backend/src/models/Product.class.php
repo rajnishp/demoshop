@@ -70,7 +70,7 @@
 			return $this -> sku;
 		}
 
-		function setPricebuy ($setPriceBuy) {
+		function setPricebuy ($pricebuy) {
 			$this -> pricebuy = $pricebuy;
 		}
 		function getPricebuy () {
