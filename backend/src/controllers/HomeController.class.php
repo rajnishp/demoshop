@@ -10,7 +10,7 @@ class HomeController {
 	private $categoryDAO;
 	private $productDAO;
 	private $storeName;
-	function __construct ( $storeName = "shopnshop" ){
+	function __construct ( $storeName = "dailyNeeds" ){
 
 		$this -> storeName = $storeName;
 
@@ -21,21 +21,26 @@ class HomeController {
 	}
 
 	function render (){
-		//echo "inside HomeController Render </br>";
-		$categories = self :: processCategories( $this -> categoryDAO -> getAllCategories( $this -> storeName ), $this -> storeName );
+		if( $this -> storeName == "dailyNeeds"){
+			$categories = $this -> categoryDAO -> getAllCategories( $this -> storeName );
+			include_once "components/DNbase.php";			
+		}else {
+			//echo "inside HomeController Render </br>";
 
-		//echo "inside HomeController getAllStoreCategories Render </br>";
-		
-		//echo $categories;
-		
+			$categories = self :: processCategories( $this -> categoryDAO -> getAllCategories( $this -> storeName ), $this -> storeName );
 
-		//echo "inside HomeController readLatestStoreProducts Render </br>";
-		
-		$latest =  $this -> productDAO -> readLatestStoreProducts( $this -> storeName ) ;
-		
-		$maxSavings =  $this-> productDAO -> readMaxProfitProducts( $this -> storeName ) ;
-		include_once "components/base.php";
+			//echo "inside HomeController getAllStoreCategories Render </br>";
+			
+			//echo $categories;
+			
 
+			//echo "inside HomeController readLatestStoreProducts Render </br>";
+			
+			$latest =  $this -> productDAO -> readLatestStoreProducts( $this -> storeName ) ;
+			
+			$maxSavings =  $this-> productDAO -> readMaxProfitProducts( $this -> storeName ) ;
+			include_once "components/base.php";
+		}
 
 	}
 
