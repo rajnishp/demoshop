@@ -67,6 +67,14 @@ class ProductsResource implements Resource {
         if(! is_object($productObj)) 
             return array('code' => '2004');
 
+        $newName= $data ['name'];
+        if (isset($newName)) {
+            if ($newName != $productObj -> getName()) {
+                $update = true;
+                $productObj -> setPricebuy($newName);
+            }
+        }
+
         $newPricebuy= $data ['pricebuy'];
         if (isset($newPricebuy)) {
             if ($newPricebuy != $productObj -> getPricebuy()) {
@@ -75,11 +83,27 @@ class ProductsResource implements Resource {
             }
         }
 
+        $newMrp= $data ['mrp'];
+        if (isset($newMrp)) {
+            if ($newMrp != $productObj -> getMrp()) {
+                $update = true;
+                $productObj -> setMrp($newMrp);
+            }
+        }
+
         $newPricesell= $data ['pricesell'];
         if (isset($newPricesell)) {
             if ($newPricesell != $productObj -> getPricesell()) {
                 $update = true;
                 $productObj -> setPricesell($newPricesell);
+            }
+        }
+
+        $newLastUpdateTime= $data ['last_update_time'];
+        if (isset($newLastUpdateTime)) {
+            if ($newLastUpdateTime != $productObj -> getLastUpdateTime()) {
+                $update = true;
+                $productObj -> setLastUpdateTime($newLastUpdateTime);
             }
         }
 
@@ -122,6 +146,7 @@ class ProductsResource implements Resource {
                                         $value ['description'], 
                                         $value ['sku'],
                                         $value ['pricebuy'],
+                                        $value ['mrp'],
                                         $value ['pricesell'],
                                         $value ['categoryId'],
                                         $value ['imageLink'],
@@ -147,6 +172,7 @@ class ProductsResource implements Resource {
                                         $data ['description'], 
                                         $data ['sku'],
                                         $data ['pricebuy'],
+                                        $data ['mrp'],
                                         $data ['pricesell'],
                                         $data ['categoryId'],
                                         $data ['imageLink'],

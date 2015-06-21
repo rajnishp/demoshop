@@ -47,7 +47,7 @@ define([
 
             delete product;
             delete this.product;
-            window.app_router.navigate('product', {trigger:true});
+            window.app_router.navigate('products', {trigger:true});
             
           },
           error: function (productDetails,response) {
@@ -71,7 +71,7 @@ define([
             
             delete product;
             
-            window.app_router.navigate('product', {trigger:true});
+            window.app_router.navigate('products', {trigger:true});
             //router.navigate('', {trigger:true});
           }
         })

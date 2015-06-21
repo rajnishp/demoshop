@@ -32,12 +32,11 @@ define([
             'deliveredOrder': 'deliveredOrder',
             'deliveredOrder/:id': 'showDeliveredOrder',
             
-            //'edit/:id': 'editCategory',            
-            //'order/': 'defaultAction',
-            //'new': 'editCategory',
-
-            'edit/:id': 'editProduct',
-            'new': 'editProduct',
+            'editCategory/:id': 'editCategory',            
+            'newCategory': 'editCategory',
+            
+            'editProduct/:id': 'editProduct',
+            'newProduct': 'editProduct',
 
             //Default
             '*actions': 'defaultAction'

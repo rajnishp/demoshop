@@ -14,6 +14,12 @@
 
        
        <tr>
+
+        <td> Store Id:</td>
+        <td>  <input name="storeId" class="input-block-level" type="text" value="<%= product ? product.storeId : '' %>">
+        </td>
+        <tr>
+
         <td> Product Name:</td>
         <td>  <input name="name" class="input-block-level" type="text" value="<%= product ? product.name : '' %>">
         </td>
@@ -38,6 +44,12 @@
           <input name="pricebuy" class="input-block-level" type="text" value="<%= product ? product.pricebuy : '' %>">
         </td>
 
+        <td> MRP:
+        </td>
+        <td>
+          <input name="mrp" class="input-block-level" type="text" value="<%= product ? product.mrp : '' %>">
+        </td>
+
         <td> Price Sell:
         </td>
         <td>
@@ -47,21 +59,21 @@
         <td> Category Id:
         </td>
         <td>
-          <input name="category_id" class="input-block-level" type="text" value="<%= product ? product.categoryId : '' %>">
+          <input name="categoryId" class="input-block-level" type="text" value="<%= product ? product.categoryId : '' %>">
         </td>
 
 
         <td> Image:
         </td>
         <td>
-          <input name="image_link" class="input-block-level" type="text" value="<%= product ? product.imageLink : '' %>">
+          <input name="imageLink" class="input-block-level" type="text" value="<%= product ? product.imageLink : '' %>">
         </td>
         
         <td> Type:
         </td>
         <td>
           <input name="type" class="input-block-level" type="text" value="<%= product ? product.type : '' %>">
-          </td>
+        </td>
       </table>
         <hr />
        <button type="submit" class="btn"><%= product ? 'Update' : 'Create' %></button>
