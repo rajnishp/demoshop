@@ -1,0 +1,196 @@
+<!-- Header Start -->
+			<div class="header">
+				<!-- Header Information -->
+				<div class="header-info">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4 col-sm-4">
+								<!-- Social Media -->
+								<div class="social">
+									<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+									<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+									<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+									<a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
+									<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<!-- Search Box -->
+								<div class="search">
+									<form>
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Text to search">
+											<span class="input-group-btn">
+												<button class="btn" type="button"><i class="fa fa-search"></i></button>
+											</span>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<!-- Contact Info -->
+								<div class="contact-info">
+									<span><i class="fa fa-phone br-lblue"></i> <strong>+91 - 9886182033</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Header Navigation -->
+				<div class="header-navigation">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4">
+								<!-- Logo -->
+								<div class="logo">
+									<!-- Heading -->
+									<h1><a href="index.html">
+									<img src="static/images/logo.jpg" height="70px" alt="CartAtHome.com" /> CartAtHome</a></h1>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<!-- Bootstrap Navbar -->
+								<nav class="navbar navbar-default" role="navigation">
+									<!-- Brand and toggle get grouped for better mobile display -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle br-orange" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+									<!-- Collect the nav links, forms, and other content for toggling -->
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<ul class="nav navbar-nav navbar-right">
+											<li>
+												<a href="index.html" class="br-orange">
+													<!-- Linka Icon -->
+													<i class="fa fa-home link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">Home</span>
+												</a>
+											</li>
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle br-purple" data-toggle="dropdown">
+													<!-- Link Icon -->
+													<i class="fa fa-file link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">Page 1 <b class="fa fa-angle-down"></b></span> 
+												</a>
+												<ul class="dropdown-menu dropdown-sm">
+													<li>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="col-inner col-disable">
+																	<h4 class="br-orange"><i class="fa fa-share heading-icon"></i> Suffered Inaltera</h4>
+																	<p>There are many variations of box passages of Lorem Ipsum blackly available, but the majority have non suffered in alteration in some one form, by injected humour, or book randomised even slightly forms believable.</p>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="col-inner">
+																	<ul class="list-unstyled">
+																		<li><a href="error.html"><i class="fa fa-arrow-right dd-link-icon"></i> 404 Error</a></li>
+																		<li><a href="coming-soon.html"><i class="fa fa-arrow-right dd-link-icon"></i> Coming Soon</a></li>
+																		<li><a href="feature.html"><i class="fa fa-arrow-right dd-link-icon"></i> Features</a></li>
+																		<li><a href="gallery.html"><i class="fa fa-arrow-right dd-link-icon"></i> Gallery</a></li>
+																		<li><a href="login.html"><i class="fa fa-arrow-right dd-link-icon"></i> Login</a></li>
+																		<li><a href="login.html"><i class="fa fa-arrow-right dd-link-icon"></i> Register</a></li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</li>
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle br-pink" data-toggle="dropdown">
+													<!-- Link Icon -->
+													<i class="fa fa-file link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">Page 2 <b class="fa fa-angle-down"></b></span> 
+												</a>
+												<ul class="dropdown-menu dropdown-default">
+													<li><a href="careers.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Careers</a></li>
+													<li><a href="faq.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Faq</a></li>
+													<li><a href="resume.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Resume</a></li>
+													<li><a href="landing-page.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Landing Page</a></li>
+													<li><a href="index-column.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Column Index</a></li>
+													<li><a href="service.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Service</a></li>
+													<li><a href="sitemap.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Site Map</a></li>
+													<li><a href="time-line.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Time Line</a></li>
+												</ul>
+											</li>
+											<li class="dropdown">
+												<a href="#" class="dropdown-toggle br-lblue" data-toggle="dropdown">
+													<!-- Link Icon -->
+													<i class="fa fa-file link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">Page 3 <b class="fa fa-angle-down"></b></span> 
+												</a>
+												<ul class="dropdown-menu dropdown-md">
+													<li>
+														<div class="row">
+															<div class="col-md-4">
+																<div class="col-inner col-disable">
+																	<!-- Heading -->
+																	<h4 class="br-green"><i class="fa fa-filter heading-icon"></i> Varsa Oukes</h4>
+																	<!-- Paragraph -->
+																	<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui app blanditiis praesentium voluptatum deleniti atque corrupti quos pain dolores et quas molesti as excet pturi sint occaecati cupiditate non provident.</p>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="col-inner col-disable">
+																	<!-- Heading -->
+																	<h4 class="br-yellow"><i class="fa fa-ticket heading-icon"></i> Slightly Belie</h4>
+																	<!-- Image -->
+																	<img src="static/daily_needs/img/w2.jpg" class="img-responsive" alt="" />
+																	<!-- Paragraph -->
+																	<p>Lorem Ipsum available, but the cool majority have suffered altevable.</p>
+																	<!-- View Next Button -->
+																	<div class="view-button">
+																		<a href="#" class="btn btn-danger btn-sm">View More <i class="fa fa-angle-right"></i></a>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="col-inner">
+																	<ul class="list-unstyled">
+																		<li><a href="blog.html"><i class="fa fa-arrow-right dd-link-icon"></i> Blog</a></li>
+																		<li><a href="blog-single.html"><i class="fa fa-arrow-right dd-link-icon"></i> Single Blog</a></li>
+																		<li><a href="portfolio.html"><i class="fa fa-arrow-right dd-link-icon"></i> Portfolio</a></li>
+																		<li><a href="pricing.html"><i class="fa fa-arrow-right dd-link-icon"></i> Pricing</a></li>
+																		<li><a href="product.html"><i class="fa fa-arrow-right dd-link-icon"></i> Products</a></li>
+																		<li><a href="testimonial.html"><i class="fa fa-arrow-right dd-link-icon"></i> Testimonial</a></li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="aboutus.html" class="br-red">
+													<!-- Link Icon -->
+													<i class="fa fa-user link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">About</span>
+												</a>
+											</li>
+											<li>
+												<a href="contact.html" class="br-yellow">
+													<!-- Link Icon -->
+													<i class="fa fa-phone link-icon"></i>
+													<!-- Link Title -->
+													<span class="link-title">Contact</span>
+												</a>
+											</li>
+										</ul>
+									</div><!-- /.navbar-collapse -->
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Header End -->
