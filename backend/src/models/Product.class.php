@@ -13,25 +13,29 @@
 		private $description;
 		private $sku;
 		private $pricebuy;
+		private $mrp;
 		private $pricesell;
 		private $categoryId;
 		private $imageLink;
 		private $type;
+		private $addedTime;
 		private $lastUpdateTime;
 		
 		function __construct ($storeId, $name, $description, 
-								$sku, $pricebuy, $pricesell, 
-								$categoryId, $imageLink, $type, $lastUpdateTime, $id = null) {
+								$sku, $pricebuy, $mrp, $pricesell, 
+								$categoryId, $imageLink, $type, $addedTime, $lastUpdateTime, $id = null) {
 			$this -> id = $id;
 			$this -> storeId = $storeId;
 			$this -> name = $name;
 			$this -> description = $description;
 			$this -> sku = $sku;
 			$this -> pricebuy = $pricebuy;
+			$this -> mrp = $mrp;
 			$this -> pricesell = $pricesell;
 			$this -> categoryId = $categoryId;
 			$this -> imageLink = $imageLink;
 			$this -> type = $type;
+			$this -> addedTime = $addedTime;
 			$this -> lastUpdateTime = $lastUpdateTime;
 		}
 
@@ -70,11 +74,18 @@
 			return $this -> sku;
 		}
 
-		function setPricebuy ($setPriceBuy) {
+		function setPricebuy ($pricebuy) {
 			$this -> pricebuy = $pricebuy;
 		}
 		function getPricebuy () {
 			return $this -> pricebuy;
+		}
+
+		function setMrp ($mrp) {
+			$this -> mrp = $mrp;
+		}
+		function getMrp () {
+			return $this -> mrp;
 		}
 
 		function setPricesell ($pricesell) {
@@ -105,6 +116,13 @@
 			return $this -> type;
 		}
 
+		function setAddedTime ($addedTime) {
+			$this -> addedTime = $addedTime;
+		}
+		function getAddedTime () {
+			return $this -> addedTime;
+		}
+
 		function setLastUpdateTime ($lastUpdateTime) {
 			$this -> lastUpdateTime = $lastUpdateTime;
 		}
@@ -119,10 +137,12 @@
 					$this -> description. ", " . 
 					$this -> sku. ", " . 
 					$this -> pricebuy. ", " . 
+					$this -> mrp. ", " . 
 					$this -> pricesell. ", " . 
 					$this -> categoryId. ", " . 
 					$this -> imageLink. ", " . 
 					$this -> type. ", " . 
+					$this -> addedTime. ", " . 
 					$this -> lastUpdateTime;
 		}
 		
@@ -134,10 +154,12 @@
 						description => $this-> description,
 						sku => $this-> sku,
 						pricebuy => $this-> pricebuy,
+						mrp => $this-> mrp,
 						pricesell => $this-> pricesell,
 						categoryId => $this-> categoryId,
 						imageLink => $this-> imageLink,
 						type => $this-> type,
+						addedTime => $this-> addedTime,
 						lastUpdateTime => $this-> lastUpdateTime
 				);
 		}

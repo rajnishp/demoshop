@@ -59,7 +59,7 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function insert($product){
-		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, pricesell, category_id, image_link, type, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO product (store_id, name, description, sku, pricebuy, mrp, pricesell, category_id, image_link, type, added_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($product->getStoreId());
@@ -67,11 +67,12 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->set($product->getDescription());
 		$sqlQuery->set($product->getSku());
 		$sqlQuery->set($product->getPricebuy());
+		$sqlQuery->set($product->getMrp());
 		$sqlQuery->set($product->getPricesell());
 		$sqlQuery->setNumber($product->getCategoryId());
 		$sqlQuery->set($product->getImageLink());
 		$sqlQuery->setNumber($product->getType());
-		$sqlQuery->set($product->getLastUpdateTime());
+		$sqlQuery->set($product->getAddedTime());
 
 		$id = $this->executeInsert($sqlQuery);	
 		$product->setId ($id);
@@ -84,7 +85,7 @@ class ProductMySqlDAO implements ProductDAO{
  	 * @param ProductMySql product
  	 */
 	public function update($product){
-		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, pricesell = ?, category_id = ?, image_link = ?, type = ?, last_update_time = ? WHERE id = ?';
+		$sql = 'UPDATE product SET store_id = ?, name = ?, description = ?, sku = ?, pricebuy = ?, mrp = ?, pricesell = ?, category_id = ?, image_link = ?, type = ?, added_time = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($product->getStoreId());
@@ -92,10 +93,12 @@ class ProductMySqlDAO implements ProductDAO{
 		$sqlQuery->set($product->getDescription());
 		$sqlQuery->set($product->getSku());
 		$sqlQuery->set($product->getPricebuy());
+		$sqlQuery->set($product->getMrp());
 		$sqlQuery->set($product->getPricesell());
 		$sqlQuery->setNumber($product->getCategoryId());
 		$sqlQuery->set($product->getImageLink());
 		$sqlQuery->setNumber($product->getType());
+		$sqlQuery->set($product->getAddedTime());
 		$sqlQuery->set($product->getLastUpdateTime());
 
 		$sqlQuery->setNumber($product->getId());

@@ -67,6 +67,14 @@ class ProductsResource implements Resource {
         if(! is_object($productObj)) 
             return array('code' => '2004');
 
+        $newName= $data ['name'];
+        if (isset($newName)) {
+            if ($newName != $productObj -> getName()) {
+                $update = true;
+                $productObj -> setPricebuy($newName);
+            }
+        }
+
         $newPricebuy= $data ['pricebuy'];
         if (isset($newPricebuy)) {
             if ($newPricebuy != $productObj -> getPricebuy()) {
@@ -75,11 +83,27 @@ class ProductsResource implements Resource {
             }
         }
 
+        $newMrp= $data ['mrp'];
+        if (isset($newMrp)) {
+            if ($newMrp != $productObj -> getMrp()) {
+                $update = true;
+                $productObj -> setMrp($newMrp);
+            }
+        }
+
         $newPricesell= $data ['pricesell'];
         if (isset($newPricesell)) {
             if ($newPricesell != $productObj -> getPricesell()) {
                 $update = true;
                 $productObj -> setPricesell($newPricesell);
+            }
+        }
+
+        $newLastUpdateTime= $data ['last_update_time'];
+        if (isset($newLastUpdateTime)) {
+            if ($newLastUpdateTime != $productObj -> getLastUpdateTime()) {
+                $update = true;
+                $productObj -> setLastUpdateTime($newLastUpdateTime);
             }
         }
 
@@ -92,8 +116,8 @@ class ProductsResource implements Resource {
         $productPut = $productObj -> toArray();
         $this -> product [] = $productPut;
 
-        if(! isset($product ['id'])) 
-            return array('code' => '2004');
+        //if(! isset($product ['id']))
+        //    return array('code' => '2004');
 
         return array('code' => '2002', 
                         'data' => array(
@@ -112,6 +136,7 @@ class ProductsResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
+        $currentTimeFormat = date('Y-m-d H:i:s');
         if( isset( $data["products"] ) ) {
 
             foreach ($data["products"] as $key => $value) {
@@ -121,11 +146,12 @@ class ProductsResource implements Resource {
                                         $value ['description'], 
                                         $value ['sku'],
                                         $value ['pricebuy'],
+                                        $value ['mrp'],
                                         $value ['pricesell'],
                                         $value ['categoryId'],
                                         $value ['imageLink'],
                                         $value ['type'],
-                                        0
+                                        $currentTimeFormat
                                     );
 
                 $logger -> debug ("POSTed product detail.....: " . $productObj -> toString());
@@ -146,11 +172,12 @@ class ProductsResource implements Resource {
                                         $data ['description'], 
                                         $data ['sku'],
                                         $data ['pricebuy'],
+                                        $data ['mrp'],
                                         $data ['pricesell'],
                                         $data ['categoryId'],
                                         $data ['imageLink'],
                                         $data ['type'],
-                                        0
+                                        $currentTimeFormat
                                     );
 
                 $logger -> debug ("POSTed product detail..........: " . $productObj -> toString());
@@ -163,7 +190,7 @@ class ProductsResource implements Resource {
                 return array('code' => '2011');
 
 
-                $this -> product[] = $products;
+                $this -> products[] = $products;
         }
     
         
@@ -181,15 +208,16 @@ class ProductsResource implements Resource {
         $maxStoreName = (int) $data['max_store_id'];*/
         $productName = $data['search_product'];
         $storeName = 'stopNshop';
+        $categoryName = $data['category_name'];
         //$categoryName = 'Kitchen';
         //$maxStoreName = 'stopNshop';
-
+//var_dump($categoryName); exit;
 
 		$productId = $resourceVals ['products'];
 		if (isset($productId))
 			$result = $this-> getProduct($productId);
 		
-        elseif (isset($storeName) && isset($categoryName))
+        elseif (isset($storeName) && isset($categoryName)) 
 			$result = $this-> getListOfAllProducts($storeName, $categoryName);
 
         elseif (isset($maxStoreName))
@@ -218,13 +246,13 @@ class ProductsResource implements Resource {
         if(empty($productObj)) 
                 return array('code' => '2004');
              
-        $this -> products [] = $productObj-> toArray();
+        $this -> product [] = $productObj-> toArray();
         
-        $logger -> debug ('Fetched list of Products: ' . json_encode($this -> products));
+        $logger -> debug ('Fetched list of Products: ' . json_encode($this -> product));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'posts' => $this -> posts
+                                'product' => $this -> product
                             )
             );
     }
