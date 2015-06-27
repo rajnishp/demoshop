@@ -70,11 +70,21 @@
 										<h2>Potatos</h2>
 										<!-- Paragraph -->
 										<p>Studious update veldt sees veldt sees quad quad nil molest.</p>
-										<!-- Share Block -->
-										<div class="share">
-											<span>2385<a href="#" class="my-tooltip" title="" data-placement="right" data-original-title="Share"><i class="fa fa-share"></i></a></span>
-											<span>61<i class="fa fa-star-half-o"></i></span>
-										</div>
+										
+
+										<a class="btn btn-danger" data-filter=".one" href="#">
+											Others 220 Rs / Kg
+										</a>
+										<a class="btn btn-success pull-right" data-filter=".three" href="#">
+											Our 200 Rs / Kg
+										</a>
+										<br/><br/>
+										<a class="btn btn-black btn-circle" href="#">
+											Add to Cart
+											<i class="fa fa-angle-right"></i>
+
+										</a>
+
 									</div>
 								</div>
 							</div>
@@ -519,6 +529,18 @@
 										<!-- Paragraph -->
 										<p>Studious update veldt sees veldt sees quad quad nil molest.</p>
 										<!-- Share Block -->
+										<a class="btn btn-danger" data-filter=".one" href="#">
+											Others 220 Rs / Kg
+										</a>
+										<a class="btn btn-success pull-right" data-filter=".three" href="#">
+											Our 200 Rs / Kg
+										</a>
+										<br/><br/>
+										<a class="btn btn-black btn-circle" href="#">
+											Add to Cart
+											<i class="fa fa-angle-right"></i>
+
+										</a>
 										<div class="share">
 											<span>2385<a href="#" class="my-tooltip" title="" data-placement="right" data-original-title="Share"><i class="fa fa-share"></i></a></span>
 											<span>61<i class="fa fa-star-half-o"></i></span>
